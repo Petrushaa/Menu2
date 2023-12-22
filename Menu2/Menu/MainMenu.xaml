@@ -1,0 +1,37 @@
+﻿<Page x:Class="Menu2.MainMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Menu2"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280" Title="Main_Page" >
+
+    <Grid x:Name="GrMainPage" >
+        <Grid.Background>
+            <ImageBrush ImageSource="/menu2.jpg"/>
+        </Grid.Background>
+        <Button x:Name="btPlay" Style ="{DynamicResource TransparentButtonStyle}" HorizontalAlignment="Left" Margin="0,130,0,0" VerticalAlignment="Top" Height="150" Width="450" Click="btPlay_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Play.PNG" Stretch="Fill" Width="368" Height="169" Margin="0,-50,0,0">
+                    <Image.OpacityMask>
+                        <ImageBrush ImageSource="/Play.PNG"/>
+                    </Image.OpacityMask>
+                </Image>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btSettings" Style ="{DynamicResource TransparentButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="150" Width="450" Click="btSettings_Click" Margin="0,280,0,0">
+            <Button.Background>
+                <ImageBrush ImageSource="/Settings.PNG"/>
+            </Button.Background>
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Settings.PNG" Stretch="Fill" Width="357" Height="123"/>
+            </StackPanel>
+        </Button>
+        <Button x:Name="btGiveUp" Style ="{DynamicResource TransparentButtonStyle}" HorizontalAlignment="Left" Margin="0,440,0,0" VerticalAlignment="Top" Height="150" Width="450" Click="btGiveUp_Click">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="/Exit.PNG" Stretch="Fill" Width="401" Height="122"/>
+            </StackPanel>
+        </Button>
+    </Grid>
+</Page>

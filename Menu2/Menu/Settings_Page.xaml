@@ -1,0 +1,21 @@
+﻿<Page x:Name="Settings" x:Class="Menu2.Settings_Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Menu2"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="Settings_Page" >
+    <Viewbox Stretch="Fill">
+        <Grid x:Name="GridSettings">
+            <Grid.Background>
+                <ImageBrush ImageSource="/menu2.jpg"/>
+            </Grid.Background>
+            <Button x:Name="btBack" Content="Назад" Click="btBack_Click" Margin="0,10,104,342" FontSize="5"/>
+            <Button x:Name="btGamePlay" Content="Настройки игры" Margin="49,86,49,237"  Height="75"/>
+            <Button x:Name="btGraphics" Content="Графика" Margin="80,314,80,44"/>
+            <Button x:Name="btVolume" Content="Звук" Margin="47,199,47,151" Height="48" Width="98"/>
+        </Grid>
+    </Viewbox>
+</Page>

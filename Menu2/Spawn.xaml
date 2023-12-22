@@ -1,0 +1,102 @@
+﻿<Page x:Class="Menu2.Spawn"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Menu2"
+      mc:Ignorable="d" 
+      d:DesignHeight="800" d:DesignWidth="1554"
+      Title="Spawn">
+
+    <Grid>
+        <Canvas x:Name="GameScreen" Focusable="True" KeyUp="KeyboardUp" KeyDown="KeyBoardDown" Grid.ColumnSpan="3">
+            <Canvas.Background>
+                <ImageBrush ImageSource="/3244.jpg"/>
+            </Canvas.Background>
+            <Rectangle x:Name="Character" Tag="User" Width="50" Height="54" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Top="179" Canvas.Left="350">
+                <Rectangle.Fill>
+                    <ImageBrush x:Name="ImagePlayer" ImageSource="/characterRight.png"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle x:Name="Wall" Tag="Collide" Stroke="Black" Width="730" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="0" Canvas.Top="0">
+                <Rectangle.Fill>
+                    <ImageBrush ImageSource="/кладка-камня_256.jpg"/>
+                </Rectangle.Fill>
+            </Rectangle>
+            <Rectangle
+
+    Width="730" Tag="Collide" Stroke="Black" x:Name="Wall_Копировать" Height="50" HorizontalAlignment="Left" Canvas.Left="824" VerticalAlignment="Center" Canvas.Top="0">
+
+                <Rectangle.Fill
+
+    >
+
+                    <ImageBrush
+
+    ImageSource="/кладка-камня_256.jpg"/>
+
+                </Rectangle.Fill>
+
+            </Rectangle>
+            <Rectangle
+
+            Width="1554" Tag="Collide" Stroke="Black" x:Name="Wall_Копировать1" Height="50" Canvas.Top="756" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="0">
+
+                <Rectangle.Fill
+
+    >
+
+                    <ImageBrush
+
+                    ImageSource="/кладка-камня_256.jpg"/>
+
+                </Rectangle.Fill>
+
+            </Rectangle>
+            <Rectangle
+
+            Width="50" Tag="Collide" Stroke="Black" x:Name="Wall_Копировать2" Height="706" Canvas.Left="0" Canvas.Top="50" HorizontalAlignment="Center" VerticalAlignment="Top">
+
+                <Rectangle.Fill
+
+    >
+
+                    <ImageBrush
+
+                    ImageSource="/312.png"/>
+
+                </Rectangle.Fill>
+
+            </Rectangle>
+            <Rectangle
+
+            Width="50" Tag="Collide" Stroke="Black" x:Name="Wall_Копировать3" Height="706" Canvas.Left="1504" Canvas.Top="50" HorizontalAlignment="Center" VerticalAlignment="Top">
+
+                <Rectangle.Fill
+
+    >
+
+                    <ImageBrush ImageSource="/312.png"/>
+
+                </Rectangle.Fill>
+
+            </Rectangle>
+            <Rectangle
+
+            Width="134" Tag="Collide" Stroke="Black" x:Name="Wall_Копировать4" Height="155" Canvas.Top="601" Canvas.Left="50" HorizontalAlignment="Left" VerticalAlignment="Center">
+
+                <Rectangle.Fill
+
+    >
+
+                    <ImageBrush
+
+                    ImageSource="/shop.jpg"/>
+
+                </Rectangle.Fill>
+
+            </Rectangle>
+
+        </Canvas>
+    </Grid>
+</Page>
