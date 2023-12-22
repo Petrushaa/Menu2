@@ -13,7 +13,7 @@ using System.Windows.Shapes;
 
 namespace Menu2
 {
-    internal class Player
+    internal class Player //ggg
     {
 
         private bool _UpKeyPressed, _DownKeyPressed, _LeftKeyPressed, _RightKeyPressed;
