@@ -44,7 +44,7 @@ namespace Menu2
             InitializeComponent();
             //WindowMaximized();
             GameScreen.Focus();
-            player = new Player(ImagePlayer, Character);
+            player = new Player(GameScreen, ImagePlayer, Character);
             collisia = new Collisia(GameScreen, Character, SpeedX, SpeedY, player);
             GameTimer.Interval = TimeSpan.FromMilliseconds(1);
             GameTimer.Tick += GameTick;

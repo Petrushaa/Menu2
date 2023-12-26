@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Menu2.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime;
@@ -13,14 +14,16 @@ using System.Windows.Shapes;
 
 namespace Menu2
 {
-    internal class Player //ggg
+    internal class Player 
     {
 
         private bool _UpKeyPressed, _DownKeyPressed, _LeftKeyPressed, _RightKeyPressed;
         public float _SpeedX, _SpeedY, _Friction, _Speed;
-        private Rectangle _Character;
+        public Rectangle _Character;
         ImageBrush _ObjectImage;
-        public Player(ImageBrush ObjectImage, Rectangle Character, float SpeedY = 0, float SpeedX = 0, bool UpKeyPressed = false, bool DownKeyPressed = false, bool LeftKeyPressed = false, bool RightKeyPressed = false, float Friction = 0.77f, float Speed = 2f)
+        string facing;
+        private Canvas canvas;
+        public Player(Canvas canvas, ImageBrush ObjectImage, Rectangle Character, float SpeedY = 0, float SpeedX = 0, bool UpKeyPressed = false, bool DownKeyPressed = false, bool LeftKeyPressed = false, bool RightKeyPressed = false, float Friction = 0.77f, float Speed = 2f, string facing = "up")
         {
             _Speed = Speed;
             _SpeedY = SpeedY;
@@ -32,6 +35,8 @@ namespace Menu2
             _RightKeyPressed = RightKeyPressed;
             _Character = Character;
             _ObjectImage = ObjectImage;
+            this.facing = facing;
+            this.canvas = canvas;
         }
         public float X { get; set; }
         public float Y { get; set; }
@@ -83,6 +88,10 @@ namespace Menu2
             {
                 _RightKeyPressed = false;
             }
+            if (e.Key == Key.Space)
+            {
+                ShootBullet(facing);
+            }
         }
 
         public void KeyBoardDown(object sender, KeyEventArgs e)
@@ -91,14 +100,17 @@ namespace Menu2
             if (e.Key == Key.W || e.Key == Key.Up)
             {
                 _UpKeyPressed = true;
+                facing = "up";
             }
             if (e.Key == Key.S || e.Key == Key.Down)
             {
                 _DownKeyPressed = true;
+                facing = "down";
             }
             if (e.Key == Key.A || e.Key == Key.Left)
             {
                 _LeftKeyPressed = true;
+                facing = "left";
 
                 _ObjectImage.ImageSource = new BitmapImage(new Uri("characterLeft.png", UriKind.RelativeOrAbsolute));//Устанавливаем свойство ImageSource объекта ImageBrush на новое изображение
             }
@@ -106,7 +118,16 @@ namespace Menu2
             {
                 _RightKeyPressed = true;
                 _ObjectImage.ImageSource = new BitmapImage(new Uri("characterRight.png", UriKind.RelativeOrAbsolute));//Устанавливаем свойство ImageSource объекта ImageBrush на новое изображение
+                facing = "right";
             }
+        }
+        private void ShootBullet(string direction)
+        {
+            Bullet shootBullet = new Bullet(canvas);
+            shootBullet.direction = direction;
+            shootBullet.bulletLeft = (Canvas.GetLeft(_Character) + (_Character.Width / 2));
+            shootBullet.bulletTop = (Canvas.GetTop(_Character) + (_Character.Height / 2));
+
         }
     }
 }

@@ -5,6 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Menu2"
         mc:Ignorable="d"
-        Title="Game" Height="800" Width="1554" WindowStyle="None" WindowState="Maximized">
+        Title="Game" Height="720" Width="1280" WindowStyle="None" WindowState="Maximized">
     <Frame Name="MainFrame" Background="White" NavigationUIVisibility="Hidden" KeyDown="KeyDownK"/>
 </Window>

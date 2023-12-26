@@ -5,49 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Menu2"
         mc:Ignorable="d"
-        Title="GamePlay" Height="800" Width="1554" >
+        Title="GamePlay" Height="720" Width="1280" >
     <Viewbox>
-        <Canvas x:Name="GameScreen" Focusable="True" KeyUp="KeyboardUp" KeyDown="KeyBoardDown" Height="800" Width="1554">
+        <Canvas x:Name="GameScreen" Focusable="True" KeyUp="KeyboardUp" KeyDown="KeyBoardDown" Height="720" Width="1280">
             <Canvas.Background>
-                <ImageBrush ImageSource="/images/3244.jpg"/>
+                <ImageBrush ImageSource="/Spawn/spawn.jpg"/>
             </Canvas.Background>
-            <Rectangle x:Name="Character" Tag="User" Width="50" Height="54" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="752" Canvas.Top="79">
+            <Rectangle x:Name="Character" Tag="User" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="752" Canvas.Top="79">
                 <Rectangle.Fill>
                     <ImageBrush x:Name="ImagePlayer" ImageSource="/images/characterRight.png"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <Rectangle x:Name="Wall" Tag="Collide" Stroke="Black" Width="730" Height="50" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="0" Canvas.Top="0">
-                <Rectangle.Fill>
-                    <ImageBrush ImageSource="/wall.jpg"/>
-                </Rectangle.Fill>
-            </Rectangle>
-            <Rectangle
-        Width="730" Tag="Collide" Stroke="Black" x:Name="Wall_Копировать" Height="50" HorizontalAlignment="Left" Canvas.Left="824" VerticalAlignment="Center" Canvas.Top="0">
-                <Rectangle.Fill>
-                    <ImageBrush
-        ImageSource="/wall.jpg"/>
-                </Rectangle.Fill>
-            </Rectangle>
-            <Rectangle
-                Width="1554" Tag="Collide" Stroke="Black" x:Name="Wall_Копировать1" Height="50" Canvas.Top="756" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="0">
-                <Rectangle.Fill>
-                    <ImageBrush
-                        ImageSource="/wall.jpg"/>
-                </Rectangle.Fill>
-            </Rectangle>
-            <Rectangle
-                Width="50" Tag="Collide" Stroke="Black" x:Name="Wall_Копировать2" Height="706" Canvas.Left="0" Canvas.Top="50" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <Rectangle.Fill>
-                    <ImageBrush
-                        ImageSource="/images/312.png"/>
-                </Rectangle.Fill>
-            </Rectangle>
-            <Rectangle
-                Width="50" Tag="Collide" Stroke="Black" x:Name="Wall_Копировать3" Height="706" Canvas.Left="1504" Canvas.Top="50" HorizontalAlignment="Center" VerticalAlignment="Top">
-                <Rectangle.Fill>
-                    <ImageBrush ImageSource="/images/312.png"/>
-                </Rectangle.Fill>
-            </Rectangle>
+            <Image Height="720" Width="1280" Source="/Spawn/borders.PNG" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Canvas>
     </Viewbox>
 </Page>

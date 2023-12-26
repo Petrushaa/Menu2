@@ -26,6 +26,13 @@ namespace Menu2
         private float SpeedX, SpeedY;
         Player player2;
         Collisia collisia;
+        bool goLeft, goRight, goUp, goDown, gameOver;
+        int playerHealth = 100;
+        int speed = 10;
+        int ammo = 10;
+        int zombieSpeed = 3;
+        List<Image> griverList = new List<Image>();
+
         //private void WindowMaximized()
         //{
         //    Создаем новый объект окна gamePlay
@@ -43,7 +50,7 @@ namespace Menu2
         {
             InitializeComponent();
             GameScreen.Focus();
-            player2 = new Player(ImagePlayer, Character);
+            player2 = new Player(GameScreen, ImagePlayer, Character);
             collisia = new Collisia(GameScreen, Character, SpeedX, SpeedY, player2);
             GameTimer.Interval = TimeSpan.FromMilliseconds(1);
             GameTimer.Tick += GameTick;
@@ -57,12 +64,23 @@ namespace Menu2
 
         private void GameTick(object sender, EventArgs e)
         {
+            if (playerHealth > 1)
+            {
+                healthBar.Value = playerHealth;
+            }
+            else
+            {
+                gameOver = true;
+            }
+            lbAmmo.Content = "Ammo: " + ammo;
+            
             if ((Canvas.GetLeft(Character) > GameScreen.ActualWidth) || (Canvas.GetTop(Character) > GameScreen.ActualHeight))
             {
 
                 GameTimer.Stop();
                 NavigationService.Navigate(new GamePlay());
             }
+
             player2.Move();
             SpeedX = player2.X;
             SpeedY = player2.Y;
@@ -75,5 +93,10 @@ namespace Menu2
             Canvas.SetTop(Character, Canvas.GetTop(Character) - SpeedY);
             collisia.Collide("y");
         }
+        private void RestartGame()
+        {
+
+        }
+
     }
 }
