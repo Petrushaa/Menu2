@@ -88,10 +88,6 @@ namespace Menu2
             {
                 _RightKeyPressed = false;
             }
-            if (e.Key == Key.Space)
-            {
-                ShootBullet(facing);
-            }
         }
 
         public void KeyBoardDown(object sender, KeyEventArgs e)
@@ -120,6 +116,10 @@ namespace Menu2
                 _ObjectImage.ImageSource = new BitmapImage(new Uri("characterRight.png", UriKind.RelativeOrAbsolute));//Устанавливаем свойство ImageSource объекта ImageBrush на новое изображение
                 facing = "right";
             }
+            if (e.Key == Key.Space)
+            {
+                ShootBullet(facing);
+            }
         }
         private void ShootBullet(string direction)
         {
@@ -127,7 +127,7 @@ namespace Menu2
             shootBullet.direction = direction;
             shootBullet.bulletLeft = (Canvas.GetLeft(_Character) + (_Character.Width / 2));
             shootBullet.bulletTop = (Canvas.GetTop(_Character) + (_Character.Height / 2));
-
+            shootBullet.MakeBullet(canvas);
         }
     }
 }

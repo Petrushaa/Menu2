@@ -26,15 +26,15 @@ namespace Menu2.Classes
         {
             this.canvas = canvas;
         }
-        public void MakeBullet()
+        public void MakeBullet(Canvas canvas)
         {
-            bullet.Height = 5;
-            bullet.Width = 5;
+            bullet.Height = 20;
+            bullet.Width = 20;
             bullet.Tag = "Bullet";
+            canvas.Children.Add(bullet);
             Canvas.SetLeft(bullet, bulletLeft);
             Canvas.SetTop(bullet, bulletTop);
             Canvas.SetZIndex(bullet, 1);
-            canvas.Children.Add(bullet);
             bulletTimer.Interval = TimeSpan.FromMilliseconds(20);
             bulletTimer.Tick += new EventHandler(BulletTimerEvent);
             bulletTimer.Start();
@@ -57,19 +57,19 @@ namespace Menu2.Classes
             {
                 Canvas.SetLeft(bullet, Canvas.GetTop(bullet) + speed);
             }
-            if ((Canvas.GetLeft(bullet) < 10) || (Canvas.GetLeft(bullet) > 860) || (Canvas.GetTop(bullet) > 600))
+            if ((Canvas.GetLeft(bullet) < 10) || (Canvas.GetLeft(bullet) > 860) || (Canvas.GetTop(bullet) > 600)) //ограничения по окну
             {
                 bulletTimer.Stop();
                 bulletTimer = null;
                 bullet = null;
             }
         }
-        private void DropAmmo()
-        {
-            Image ammo = new Image();
-            ammo.Source = new BitmapImage(new Uri("ammo.png", UriKind.Relative));
-            Canvas.SetLeft(rnd.Next(10, Canvas.HeightProperty - ammo.Width));
+        //private void DropAmmo()
+        //{
+        //    Image ammo = new Image();
+        //    ammo.Source = new BitmapImage(new Uri("ammo.png", UriKind.Relative));
+        //    Canvas.SetLeft(rnd.Next(10, Canvas.HeightProperty - ammo.Width));
             
-        }
+        //}
     }
 }
