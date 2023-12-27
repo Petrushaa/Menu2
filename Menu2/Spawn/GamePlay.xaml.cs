@@ -37,10 +37,11 @@ namespace Menu2
         public GamePlay()
         {
             InitializeComponent();
+            List<UIElement> elementsCopy = GameScreen.Children.Cast<UIElement>().ToList();
             //WindowMaximized();
             GameScreen.Focus();
             player = new Player(GameScreen, ImagePlayer, Character);
-            collisia = new Collisia(GameScreen, Character, SpeedX, SpeedY, player);
+            collisia = new Collisia(elementsCopy,GameScreen, Character, SpeedX, SpeedY, player);
             GameTimer.Interval = TimeSpan.FromMilliseconds(1);
             GameTimer.Tick += GameTick;
             GameTimer.Start();

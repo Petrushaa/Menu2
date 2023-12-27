@@ -43,11 +43,11 @@ namespace Menu2
         private void KeyboardUp(object sender, KeyEventArgs e)
         {
             player2.KeyboardUp(sender, e);
-            if (e.Key == Key.Space && ammo > 0)
+            if (e.Key == Key.Space && Player.ammo > 0)
             {
-                ammo--;
+                Player.ammo--;
                 player2.ShootBullet();
-                if (ammo < 1)
+                if (Player.ammo < 1)
                 {
                     Bullet ammo = new Bullet(GameScreen);
                     DropAmmo();
@@ -61,9 +61,10 @@ namespace Menu2
         public Maze1()
         {
             InitializeComponent();
+            List <UIElement> elementsCopy = GameScreen.Children.Cast<UIElement>().ToList();
             GameScreen.Focus();
             player2 = new Player(GameScreen, ImagePlayer, Character);
-            collisia = new Collisia(GameScreen, Character, SpeedX, SpeedY, player2);
+            collisia = new Collisia(elementsCopy, GameScreen, Character, SpeedX, SpeedY, player2);
             GameTimer.Interval = TimeSpan.FromMilliseconds(1);
             GameTimer.Tick += GameTick;
             GameTimer.Start();
@@ -74,6 +75,8 @@ namespace Menu2
         }
         private void GameTick(object sender, EventArgs e)
         {
+            List<UIElement> elementsCopy = GameScreen.Children.Cast<UIElement>().ToList();
+            collisia.elementsCopy = elementsCopy;
             if (playerHealth > 1)
             {
                 healthBar.Value = playerHealth;
@@ -82,7 +85,7 @@ namespace Menu2
             {
                 gameOver = true;
             }
-            lbAmmo.Content = "Ammo: " + ammo;
+            lbAmmo.Content = "Ammo: " + Player.ammo;
             if ((Canvas.GetLeft(Character) > GameScreen.ActualWidth) || (Canvas.GetTop(Character) > GameScreen.ActualHeight))
             {
                 GameTimer.Stop();
@@ -99,6 +102,8 @@ namespace Menu2
             collisia.Collide("x");
             Canvas.SetTop(Character, Canvas.GetTop(Character) - SpeedY);
             collisia.Collide("y");
+
+
         }
         private void RestartGame()
         {
@@ -113,6 +118,8 @@ namespace Menu2
             // Заполняем прямоугольник картинкой
             ammo.Fill = myImageBrush;
             ammo.Tag = "ammo";
+            ammo.Height = 20;
+            ammo.Width = 20;
             Canvas.SetTop(ammo, rnd.Next(10, Convert.ToInt32(GameScreen.ActualHeight - ammo.Height)));
             Canvas.SetLeft(ammo, rnd.Next(10, Convert.ToInt32(GameScreen.ActualWidth - ammo.Width)));
             GameScreen.Children.Add(ammo);
