@@ -26,11 +26,6 @@ namespace Menu2
         private float SpeedX, SpeedY;
         Player player;
         Collisia collisia;
-        //private void WindowMaximized()
-        //{
-        //    Создаем новый объект окна gamePlay
-        //    this.WindowState = WindowState.Maximized;
-        //}
         private void KeyboardUp(object sender, KeyEventArgs e)
         {
             player.KeyboardUp(sender, e);

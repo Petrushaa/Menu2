@@ -16,14 +16,15 @@ namespace Menu2
 {
     internal class Player 
     {
-
         private bool _UpKeyPressed, _DownKeyPressed, _LeftKeyPressed, _RightKeyPressed;
         public float _SpeedX, _SpeedY, _Friction, _Speed;
         public Rectangle _Character;
         ImageBrush _ObjectImage;
-        string facing;
+        public static string facing = "up";
         private Canvas canvas;
-        public Player(Canvas canvas, ImageBrush ObjectImage, Rectangle Character, float SpeedY = 0, float SpeedX = 0, bool UpKeyPressed = false, bool DownKeyPressed = false, bool LeftKeyPressed = false, bool RightKeyPressed = false, float Friction = 0.77f, float Speed = 2f, string facing = "up")
+        public static int ammo = 10;
+        Bullet bullet;
+        public Player(Canvas canvas, ImageBrush ObjectImage, Rectangle Character, float SpeedY = 0, float SpeedX = 0, bool UpKeyPressed = false, bool DownKeyPressed = false, bool LeftKeyPressed = false, bool RightKeyPressed = false, float Friction = 0.77f, float Speed = 2f)
         {
             _Speed = Speed;
             _SpeedY = SpeedY;
@@ -35,7 +36,6 @@ namespace Menu2
             _RightKeyPressed = RightKeyPressed;
             _Character = Character;
             _ObjectImage = ObjectImage;
-            this.facing = facing;
             this.canvas = canvas;
         }
         public float X { get; set; }
@@ -88,11 +88,11 @@ namespace Menu2
             {
                 _RightKeyPressed = false;
             }
+         
+            
         }
-
         public void KeyBoardDown(object sender, KeyEventArgs e)
         {
-
             if (e.Key == Key.W || e.Key == Key.Up)
             {
                 _UpKeyPressed = true;
@@ -107,7 +107,6 @@ namespace Menu2
             {
                 _LeftKeyPressed = true;
                 facing = "left";
-
                 _ObjectImage.ImageSource = new BitmapImage(new Uri("characterLeft.png", UriKind.RelativeOrAbsolute));//Устанавливаем свойство ImageSource объекта ImageBrush на новое изображение
             }
             if (e.Key == Key.D || e.Key == Key.Right)
@@ -116,18 +115,14 @@ namespace Menu2
                 _ObjectImage.ImageSource = new BitmapImage(new Uri("characterRight.png", UriKind.RelativeOrAbsolute));//Устанавливаем свойство ImageSource объекта ImageBrush на новое изображение
                 facing = "right";
             }
-            if (e.Key == Key.Space)
-            {
-                ShootBullet(facing);
-            }
         }
-        private void ShootBullet(string direction)
+        public void ShootBullet()
         {
             Bullet shootBullet = new Bullet(canvas);
-            shootBullet.direction = direction;
-            shootBullet.bulletLeft = (Canvas.GetLeft(_Character) + (_Character.Width / 2));
-            shootBullet.bulletTop = (Canvas.GetTop(_Character) + (_Character.Height / 2));
-            shootBullet.MakeBullet(canvas);
+            shootBullet.direction = facing;
+            shootBullet.bulletLeft = (int)Math.Round(Canvas.GetLeft(_Character) + (_Character.Width / 2));
+            shootBullet.bulletTop = (int)Math.Round(Canvas.GetTop(_Character) + (_Character.Height / 2));
+            shootBullet.MakeBullet();
         }
     }
 }

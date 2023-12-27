@@ -10,32 +10,41 @@ using System.Threading;
 using System.Windows.Media;
 using System.Windows.Threading;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 namespace Menu2.Classes
 {
     internal class Bullet
     {
-        Canvas canvas;
+        Canvas canvas = new Canvas();
         public string direction;
         public double bulletLeft;
         public double bulletTop;
         private int speed = 20;
-        private Image bullet = new Image();
+        private Rectangle bullet = new Rectangle();
         private DispatcherTimer bulletTimer = new DispatcherTimer();
         private Random rnd = new Random();
         public Bullet(Canvas canvas)
         {
             this.canvas = canvas;
         }
-        public void MakeBullet(Canvas canvas)
+        public void MakeBullet()
         {
+            // Создаем новый объект ImageBrush
+            ImageBrush myImageBrush = new ImageBrush();
+
+            // Загружаем картинку из ресурсов проекта
+            myImageBrush.ImageSource = new BitmapImage(new Uri("characterLeft.png", UriKind.RelativeOrAbsolute));
+
+            // Заполняем прямоугольник картинкой
+            bullet.Fill = myImageBrush;
             bullet.Height = 20;
             bullet.Width = 20;
-            bullet.Tag = "Bullet";
-            canvas.Children.Add(bullet);
+            bullet.Tag = "bullet";
             Canvas.SetLeft(bullet, bulletLeft);
             Canvas.SetTop(bullet, bulletTop);
             Canvas.SetZIndex(bullet, 1);
-            bulletTimer.Interval = TimeSpan.FromMilliseconds(20);
+            canvas.Children.Add(bullet);
+            bulletTimer.Interval = TimeSpan.FromMilliseconds(speed);
             bulletTimer.Tick += new EventHandler(BulletTimerEvent);
             bulletTimer.Start();
         }
@@ -51,25 +60,19 @@ namespace Menu2.Classes
             }
             if (direction == "up")
             {
-                Canvas.SetLeft(bullet, Canvas.GetTop(bullet) - speed);
+                Canvas.SetTop(bullet, Canvas.GetTop(bullet) - speed);
             }
             if (direction == "down")
             {
-                Canvas.SetLeft(bullet, Canvas.GetTop(bullet) + speed);
+                Canvas.SetTop(bullet, Canvas.GetTop(bullet) + speed);
             }
-            if ((Canvas.GetLeft(bullet) < 10) || (Canvas.GetLeft(bullet) > 860) || (Canvas.GetTop(bullet) > 600)) //ограничения по окну
+            if (Canvas.GetLeft(bullet) < 10 || Canvas.GetLeft(bullet) > (canvas.ActualWidth - 50) || Canvas.GetTop(bullet) > (canvas.ActualHeight - 50) || Canvas.GetTop(bullet) < 10) //ограничения по окну
             {
                 bulletTimer.Stop();
+                bullet.Fill = null;
                 bulletTimer = null;
-                bullet = null;
+                canvas.Children.Remove(bullet);
             }
         }
-        //private void DropAmmo()
-        //{
-        //    Image ammo = new Image();
-        //    ammo.Source = new BitmapImage(new Uri("ammo.png", UriKind.Relative));
-        //    Canvas.SetLeft(rnd.Next(10, Canvas.HeightProperty - ammo.Width));
-            
-        //}
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Menu2.Classes;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
@@ -32,6 +33,7 @@ namespace Menu2
         int ammo = 10;
         int zombieSpeed = 3;
         List<Image> griverList = new List<Image>();
+        Random rnd = new Random();
 
         //private void WindowMaximized()
         //{
@@ -41,6 +43,16 @@ namespace Menu2
         private void KeyboardUp(object sender, KeyEventArgs e)
         {
             player2.KeyboardUp(sender, e);
+            if (e.Key == Key.Space && ammo > 0)
+            {
+                ammo--;
+                player2.ShootBullet();
+                if (ammo < 1)
+                {
+                    Bullet ammo = new Bullet(GameScreen);
+                    DropAmmo();
+                }
+            }
         }
         private void KeyBoardDown(object sender, KeyEventArgs e)
         {
@@ -56,12 +68,10 @@ namespace Menu2
             GameTimer.Tick += GameTick;
             GameTimer.Start();
         }
-
         private void windowMaze_Closed(object sender, EventArgs e)
         {
             Application.Current.Shutdown();
         }
-
         private void GameTick(object sender, EventArgs e)
         {
             if (playerHealth > 1)
@@ -73,14 +83,11 @@ namespace Menu2
                 gameOver = true;
             }
             lbAmmo.Content = "Ammo: " + ammo;
-            
             if ((Canvas.GetLeft(Character) > GameScreen.ActualWidth) || (Canvas.GetTop(Character) > GameScreen.ActualHeight))
             {
-
                 GameTimer.Stop();
                 NavigationService.Navigate(new GamePlay());
             }
-
             player2.Move();
             SpeedX = player2.X;
             SpeedY = player2.Y;
@@ -97,6 +104,21 @@ namespace Menu2
         {
 
         }
+        public void DropAmmo()
+        {
+            Rectangle ammo = new Rectangle();
+            ImageBrush myImageBrush = new ImageBrush();
+            // Загружаем картинку из ресурсов проекта
+            myImageBrush.ImageSource = new BitmapImage(new Uri("characterRight.png", UriKind.RelativeOrAbsolute));
+            // Заполняем прямоугольник картинкой
+            ammo.Fill = myImageBrush;
+            ammo.Tag = "ammo";
+            Canvas.SetTop(ammo, rnd.Next(10, Convert.ToInt32(GameScreen.ActualHeight - ammo.Height)));
+            Canvas.SetLeft(ammo, rnd.Next(10, Convert.ToInt32(GameScreen.ActualWidth - ammo.Width)));
+            GameScreen.Children.Add(ammo);
+            Canvas.SetZIndex(ammo, 1);
+            //Canvas.SetZIndex(player, 1);
 
+        }
     }
 }

@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Menu2"
         mc:Ignorable="d"
-        Title="GamePlay" Height="720" Width="1280" >
-    <Viewbox>
-        <Canvas x:Name="GameScreen" Focusable="True" KeyUp="KeyboardUp" KeyDown="KeyBoardDown" Height="720" Width="1280">
+        Title="GamePlay" Height="800" Width="1554">
+    <Viewbox Stretch="Fill">
+        <Canvas x:Name="GameScreen" Focusable="True" KeyUp="KeyboardUp" KeyDown="KeyBoardDown" Height="800" Width="1554">
             <Canvas.Background>
                 <ImageBrush ImageSource="/Spawn/spawn.jpg"/>
             </Canvas.Background>
@@ -16,7 +16,6 @@
                     <ImageBrush x:Name="ImagePlayer" ImageSource="/images/characterRight.png"/>
                 </Rectangle.Fill>
             </Rectangle>
-            <Image Height="720" Width="1280" Source="/Spawn/borders.PNG" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Canvas>
     </Viewbox>
 </Page>
