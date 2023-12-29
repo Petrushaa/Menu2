@@ -16,103 +16,95 @@ namespace Menu2
 {
     internal class Player 
     {
-        private bool _UpKeyPressed, _DownKeyPressed, _LeftKeyPressed, _RightKeyPressed;
-        public float _SpeedX, _SpeedY, _Friction, _Speed;
-        public Rectangle _Character;
-        ImageBrush _ObjectImage;
+        private bool UpKeyPressed, DownKeyPressed, LeftKeyPressed, RightKeyPressed;
+        public float SpeedX, SpeedY, Friction, Speed;
+        public Image Character;
         public static string facing = "up";
         private Canvas canvas;
         public static int ammo = 10;
         Bullet bullet;
-        public Player(Canvas canvas, ImageBrush ObjectImage, Rectangle Character, float SpeedY = 0, float SpeedX = 0, bool UpKeyPressed = false, bool DownKeyPressed = false, bool LeftKeyPressed = false, bool RightKeyPressed = false, float Friction = 0.77f, float Speed = 2f)
+        Collisia collisia;
+        public Player(Canvas canvas, Image Character, Collisia collisia, float SpeedY = 0, float SpeedX = 0, bool UpKeyPressed = false, bool DownKeyPressed = false, bool LeftKeyPressed = false, bool RightKeyPressed = false, float Friction = 0.77f, float Speed = 2f)
         {
-            _Speed = Speed;
-            _SpeedY = SpeedY;
-            _SpeedX = SpeedX;
-            _Friction = Friction;
-            _UpKeyPressed = UpKeyPressed;
-            _DownKeyPressed = DownKeyPressed;
-            _LeftKeyPressed = LeftKeyPressed;
-            _RightKeyPressed = RightKeyPressed;
-            _Character = Character;
-            _ObjectImage = ObjectImage;
+            this.Speed = Speed;
+            this.SpeedY = SpeedY;
+            this.SpeedX = SpeedX;
+            this.Friction = Friction;
+            this.UpKeyPressed = UpKeyPressed;
+            this.DownKeyPressed = DownKeyPressed;
+            this.LeftKeyPressed = LeftKeyPressed;
+            this.RightKeyPressed = RightKeyPressed;
+            this.Character = Character;
             this.canvas = canvas;
+            this.collisia = collisia;
         }
-        public float X { get; set; }
-        public float Y { get; set; }
-
         public void Move()
         {
-            if (_UpKeyPressed)
+            if (UpKeyPressed)
             {
-                _SpeedY += _Speed;
+                SpeedY += Speed;
             }
-            if (_RightKeyPressed)
+            if (RightKeyPressed)
             {   
-                _SpeedX += _Speed;
+                SpeedX += Speed;
             }
-            if (_LeftKeyPressed)
+            if (LeftKeyPressed)
             {
-                _SpeedX -= _Speed;
+                SpeedX -= Speed;
             }
-            if (_DownKeyPressed)
+            if (DownKeyPressed)
             {
-                _SpeedY -= _Speed;
+                SpeedY -= Speed;
             }
-            _SpeedX = _SpeedX * _Friction;
-            _SpeedY = _SpeedY * _Friction;
-            X = _SpeedX;
-            Y = _SpeedY;
-
-            //Canvas.SetLeft(_Character, Canvas.GetLeft(_Character) + _SpeedX);
-            //Collide("x");
-            //Canvas.SetTop(_Character, Canvas.GetTop(_Character) - _SpeedY);
-            //Collide("y");
+            SpeedX = SpeedX * Friction;
+            SpeedY = SpeedY * Friction;
+            Canvas.SetLeft(Character, Canvas.GetLeft(Character) + SpeedX);
+            collisia.Collide("x");
+            Canvas.SetTop(Character, Canvas.GetTop(Character) - SpeedY);
+            collisia.Collide("y");
         }
         public void KeyboardUp(object sender, KeyEventArgs e)
         {
 
             if (e.Key == Key.W || e.Key == Key.Up)
             {
-                _UpKeyPressed = false;
+                UpKeyPressed = false;
             }
             if (e.Key == Key.S || e.Key == Key.Down)
             {
-                _DownKeyPressed = false;
+                DownKeyPressed = false;
             }
             if (e.Key == Key.A || e.Key == Key.Left)
             {
-                _LeftKeyPressed = false;
+                LeftKeyPressed = false;
             }
             if (e.Key == Key.D || e.Key == Key.Right)
             {
-                _RightKeyPressed = false;
+                RightKeyPressed = false;
             }
-         
-            
         }
         public void KeyBoardDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.W || e.Key == Key.Up)
             {
-                _UpKeyPressed = true;
+                UpKeyPressed = true;
                 facing = "up";
             }
             if (e.Key == Key.S || e.Key == Key.Down)
             {
-                _DownKeyPressed = true;
+                DownKeyPressed = true;
                 facing = "down";
             }
             if (e.Key == Key.A || e.Key == Key.Left)
             {
-                _LeftKeyPressed = true;
+                LeftKeyPressed = true;
                 facing = "left";
-                _ObjectImage.ImageSource = new BitmapImage(new Uri("characterLeft.png", UriKind.RelativeOrAbsolute));//Устанавливаем свойство ImageSource объекта ImageBrush на новое изображение
+                Character.Source = new BitmapImage(new Uri("characterLeft.png", UriKind.RelativeOrAbsolute));
             }
             if (e.Key == Key.D || e.Key == Key.Right)
             {
-                _RightKeyPressed = true;
-                _ObjectImage.ImageSource = new BitmapImage(new Uri("characterRight.png", UriKind.RelativeOrAbsolute));//Устанавливаем свойство ImageSource объекта ImageBrush на новое изображение
+                RightKeyPressed = true;
+                Character.Source = new BitmapImage(new Uri("characterRight.png", UriKind.RelativeOrAbsolute));
                 facing = "right";
             }
         }
@@ -120,8 +112,8 @@ namespace Menu2
         {
             Bullet shootBullet = new Bullet(canvas);
             shootBullet.direction = facing;
-            shootBullet.bulletLeft = (int)Math.Round(Canvas.GetLeft(_Character) + (_Character.Width / 2));
-            shootBullet.bulletTop = (int)Math.Round(Canvas.GetTop(_Character) + (_Character.Height / 2));
+            shootBullet.bulletLeft = (int)Math.Round(Canvas.GetLeft(Character) + (Character.Width / 2)); //выбираем координаты для спавна пули
+            shootBullet.bulletTop = (int)Math.Round(Canvas.GetTop(Character) + (Character.Height / 2)); //коорды = положение перса + половина его3 размеров
             shootBullet.MakeBullet();
         }
     }

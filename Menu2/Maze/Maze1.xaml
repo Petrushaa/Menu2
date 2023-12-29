@@ -8,14 +8,11 @@
         Title="Maze1" Height="720" Width="1280" >
     <Viewbox Stretch="Fill">
         <Canvas x:Name="GameScreen" Focusable="True" KeyUp="KeyboardUp" KeyDown="KeyBoardDown" Background="Gray" Height="720" Width="1280">
-            <Rectangle x:Name="Character" Tag="User" Width="81" Height="67" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Top="457" Canvas.Left="508">
-                <Rectangle.Fill>
-                    <ImageBrush x:Name="ImagePlayer" ImageSource="/images/characterRight.png"/>
-                </Rectangle.Fill>
-            </Rectangle>
+            <Image x:Name="Character" Tag="User" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="335" Canvas.Left="615" Source="/images/characterRight.png" Stretch="Fill"/>
             <ProgressBar x:Name="healthBar" Height="30"  Width="200" Value="100" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="1070" Canvas.Top="20"/>
             <Label x:Name="lbHealth" Content="Health:" Canvas.Left="966" Canvas.Top="10" Height="40" Width="89" FontSize="30" FontFamily="Bahnschrift SemiBold SemiCondensed" HorizontalAlignment="Left" VerticalAlignment="Center"/>
             <Label x:Name="lbAmmo" Content="Ammo: 0" Canvas.Left="91" Canvas.Top="10" Height="40" Width="122" FontSize="30" FontFamily="Bahnschrift SemiBold SemiCondensed" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Image Height="100" Tag ="Collide" Canvas.Left="213" Canvas.Top="292" Width="100" Source="/Maze/wall.png"/>
         </Canvas>
     </Viewbox>
 </Page>

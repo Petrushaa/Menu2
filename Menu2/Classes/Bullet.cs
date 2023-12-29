@@ -20,7 +20,7 @@ namespace Menu2.Classes
         public double bulletLeft;
         public double bulletTop;
         private int speed = 20;
-        private Rectangle bullet = new Rectangle();
+        private Image bullet = new Image();
         private DispatcherTimer bulletTimer = new DispatcherTimer();
         private Random rnd = new Random();
         public Bullet(Canvas canvas)
@@ -29,20 +29,13 @@ namespace Menu2.Classes
         }
         public void MakeBullet()
         {
-            // Создаем новый объект ImageBrush
-            ImageBrush myImageBrush = new ImageBrush();
-
-            // Загружаем картинку из ресурсов проекта
-            myImageBrush.ImageSource = new BitmapImage(new Uri("characterLeft.png", UriKind.RelativeOrAbsolute));
-
-            // Заполняем прямоугольник картинкой
-            bullet.Fill = myImageBrush;
+            //Загружаем картинку из ресурсов проекта
             bullet.Height = 20;
             bullet.Width = 20;
             bullet.Tag = "bullet";
+            Canvas.SetZIndex(bullet, 1); //выдвигаем на передний план
             Canvas.SetLeft(bullet, bulletLeft);
             Canvas.SetTop(bullet, bulletTop);
-            Canvas.SetZIndex(bullet, 1);
             canvas.Children.Add(bullet);
             bulletTimer.Interval = TimeSpan.FromMilliseconds(speed);
             bulletTimer.Tick += new EventHandler(BulletTimerEvent);
@@ -52,24 +45,28 @@ namespace Menu2.Classes
         {
             if (direction == "left")
             {
+                bullet.Source = new BitmapImage(new Uri("bulletL.png", UriKind.RelativeOrAbsolute));
                 Canvas.SetLeft(bullet, Canvas.GetLeft(bullet) - speed);
             }
             if (direction == "right")
             {
+                bullet.Source = new BitmapImage(new Uri("bulletR.png", UriKind.RelativeOrAbsolute));
                 Canvas.SetLeft(bullet, Canvas.GetLeft(bullet) + speed);
             }
             if (direction == "up")
             {
+                bullet.Source = new BitmapImage(new Uri("bulletU.png", UriKind.RelativeOrAbsolute));
                 Canvas.SetTop(bullet, Canvas.GetTop(bullet) - speed);
             }
             if (direction == "down")
             {
+                bullet.Source = new BitmapImage(new Uri("bulletD.png", UriKind.RelativeOrAbsolute));
                 Canvas.SetTop(bullet, Canvas.GetTop(bullet) + speed);
             }
             if (Canvas.GetLeft(bullet) < 10 || Canvas.GetLeft(bullet) > (canvas.ActualWidth - 50) || Canvas.GetTop(bullet) > (canvas.ActualHeight - 50) || Canvas.GetTop(bullet) < 10) //ограничения по окну
             {
                 bulletTimer.Stop();
-                bullet.Fill = null;
+                bullet.Source = null;
                 bulletTimer = null;
                 canvas.Children.Remove(bullet);
             }

@@ -11,11 +11,8 @@
             <Canvas.Background>
                 <ImageBrush ImageSource="/Spawn/spawn.jpg"/>
             </Canvas.Background>
-            <Rectangle x:Name="Character" Tag="User" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="752" Canvas.Top="79">
-                <Rectangle.Fill>
-                    <ImageBrush x:Name="ImagePlayer" ImageSource="/images/characterRight.png"/>
-                </Rectangle.Fill>
-            </Rectangle>
+            <Image x:Name="Character" Tag="User" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="752" Canvas.Top="375" Stretch="Fill" Source="/Spawn/characterLeft.png"/>
+            <Image Height="100" Tag="Collide" Canvas.Left="1086" Canvas.Top="375" Width="100" Source="/Spawn/wall.png" Stretch="Fill"/>
         </Canvas>
     </Viewbox>
 </Page>

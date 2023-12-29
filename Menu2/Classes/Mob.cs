@@ -15,8 +15,8 @@ namespace Menu2.Classes
         Random rand = new Random();
         List<Image> griverList;
         Canvas canvas = new Canvas();
-        Rectangle player;
-        public mob(List<Image> griverList, Canvas canvas, Rectangle player)
+        Image player;
+        public mob(List<Image> griverList, Canvas canvas, Image player)
         {
             this.griverList = griverList;
             this.canvas = canvas;

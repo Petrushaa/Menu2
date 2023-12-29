@@ -59,7 +59,6 @@
     <Compile Include="Classes\Collisia1.cs" />
     <Compile Include="Classes\Mob.cs" />
     <Compile Include="Classes\Player.cs" />
-    <Compile Include="Classes\RandomLabirint.cs" />
     <Compile Include="Game.xaml.cs">
       <DependentUpon>Game.xaml</DependentUpon>
     </Compile>
@@ -137,6 +136,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="bin\Debug\Menu2.exe.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -144,21 +144,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\3244.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\3123.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\312.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="shop.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\characterRight.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Settings.PNG" />
@@ -173,19 +158,76 @@
     <Resource Include="menu2.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="wallMaze.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="wall.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Exit.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\borders.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\characterRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\chLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\bullet.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ammo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Spawn\images\312.png" />
+    <Resource Include="Spawn\images\3244.jpg" />
+    <Resource Include="Spawn\images\characterLeft.png" />
+    <Resource Include="Spawn\images\spawn.jpg" />
+    <Resource Include="Spawn\images\wall.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Spawn\spawn.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Spawn\borders.PNG" />
+    <Resource Include="Spawn\characterLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\menu.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\menu2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Play.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Settings.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\zombie.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Spawn\characterRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Maze\characterRight.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Maze\characterLeft.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Spawn\ammo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="bin\Debug\Menu2.exe" />
+    <Content Include="bin\Debug\Menu2.pdb" />
+    <Resource Include="Maze\bulletR.png" />
+    <Resource Include="Maze\bulletU.png" />
+    <Resource Include="Maze\bulletL.png" />
+    <Resource Include="Maze\bulletD.png" />
+    <Resource Include="Maze\wall.png" />
+    <Resource Include="Spawn\wall.png" />
+    <Resource Include="Maze\ammo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Release\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

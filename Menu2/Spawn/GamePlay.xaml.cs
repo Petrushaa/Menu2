@@ -26,6 +26,27 @@ namespace Menu2
         private float SpeedX, SpeedY;
         Player player;
         Collisia collisia;
+        public GamePlay()
+        {
+            InitializeComponent();
+            GameScreen.Focus();
+            collisia = new Collisia(GameScreen, Character, player);
+            player = new Player(GameScreen, Character, collisia);
+            collisia.player = player;
+            GameTimer.Interval = TimeSpan.FromMilliseconds(1);
+            GameTimer.Tick += GameTick;
+            GameTimer.Start();
+        }
+        private void GameTick(object sender, EventArgs e)
+        {
+            collisia.elementsCopy = GameScreen.Children.Cast<UIElement>().ToList(); //обновляем список элементов, которые есть на канвасе
+            if ((Canvas.GetLeft(Character) < 0) || (Canvas.GetTop(Character) < 0))
+            {
+                GameTimer.Stop();
+                NavigationService.Navigate(new Maze1());
+            }
+            player.Move();//активируем метод движения нашего игрока
+        }
         private void KeyboardUp(object sender, KeyEventArgs e)
         {
             player.KeyboardUp(sender, e);
@@ -33,37 +54,6 @@ namespace Menu2
         private void KeyBoardDown(object sender, KeyEventArgs e)
         {
             player.KeyBoardDown(sender, e);
-        }
-        public GamePlay()
-        {
-            InitializeComponent();
-            List<UIElement> elementsCopy = GameScreen.Children.Cast<UIElement>().ToList();
-            //WindowMaximized();
-            GameScreen.Focus();
-            player = new Player(GameScreen, ImagePlayer, Character);
-            collisia = new Collisia(elementsCopy,GameScreen, Character, SpeedX, SpeedY, player);
-            GameTimer.Interval = TimeSpan.FromMilliseconds(1);
-            GameTimer.Tick += GameTick;
-            GameTimer.Start();
-        }
-        private void GameTick(object sender, EventArgs e)
-        {
-            if ((Canvas.GetLeft(Character) < 0) || (Canvas.GetTop(Character) < 0))
-            {
-                GameTimer.Stop();
-                NavigationService.Navigate(new Maze1());
-            }
-            player.Move();
-            SpeedX = player.X;
-            SpeedY = player.Y;
-            collisia.AllCollisia = GameScreen.Children.OfType<Rectangle>();
-            collisia._SpeedX = SpeedX;
-            collisia._SpeedY = SpeedY;
-            collisia._Object = Character;
-            Canvas.SetLeft(Character, Canvas.GetLeft(Character) + SpeedX);
-            collisia.Collide("x");
-            Canvas.SetTop(Character, Canvas.GetTop(Character) - SpeedY);
-            collisia.Collide("y");
         }
     }
 }

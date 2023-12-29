@@ -24,22 +24,26 @@ namespace Menu2
     public partial class Maze1 : Page
     {
         private DispatcherTimer GameTimer = new DispatcherTimer();
-        private float SpeedX, SpeedY;
         Player player2;
         Collisia collisia;
-        bool goLeft, goRight, goUp, goDown, gameOver;
+        bool gameOver;
         int playerHealth = 100;
         int speed = 10;
         int ammo = 10;
         int zombieSpeed = 3;
         List<Image> griverList = new List<Image>();
         Random rnd = new Random();
-
-        //private void WindowMaximized()
-        //{
-        //    Создаем новый объект окна gamePlay
-        //    this.WindowState = WindowState.Maximized;
-        //}
+        public Maze1()
+        {
+            InitializeComponent();
+            GameScreen.Focus();
+            collisia = new Collisia(GameScreen, Character, player2);
+            player2 = new Player(GameScreen, Character, collisia);
+            collisia.player = player2;
+            GameTimer.Interval = TimeSpan.FromMilliseconds(1);
+            GameTimer.Tick += GameTick;
+            GameTimer.Start();
+        }
         private void KeyboardUp(object sender, KeyEventArgs e)
         {
             player2.KeyboardUp(sender, e);
@@ -58,25 +62,9 @@ namespace Menu2
         {
             player2.KeyBoardDown(sender, e);
         }
-        public Maze1()
-        {
-            InitializeComponent();
-            List <UIElement> elementsCopy = GameScreen.Children.Cast<UIElement>().ToList();
-            GameScreen.Focus();
-            player2 = new Player(GameScreen, ImagePlayer, Character);
-            collisia = new Collisia(elementsCopy, GameScreen, Character, SpeedX, SpeedY, player2);
-            GameTimer.Interval = TimeSpan.FromMilliseconds(1);
-            GameTimer.Tick += GameTick;
-            GameTimer.Start();
-        }
-        private void windowMaze_Closed(object sender, EventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
         private void GameTick(object sender, EventArgs e)
         {
-            List<UIElement> elementsCopy = GameScreen.Children.Cast<UIElement>().ToList();
-            collisia.elementsCopy = elementsCopy;
+            collisia.elementsCopy = GameScreen.Children.Cast<UIElement>().ToList(); //передаем список из всех дочерних элементов на канвасе
             if (playerHealth > 1)
             {
                 healthBar.Value = playerHealth;
@@ -90,18 +78,9 @@ namespace Menu2
             {
                 GameTimer.Stop();
                 NavigationService.Navigate(new GamePlay());
-            }
-            player2.Move();
-            SpeedX = player2.X;
-            SpeedY = player2.Y;
-            collisia.AllCollisia = GameScreen.Children.OfType<Rectangle>();
-            collisia._SpeedX = SpeedX;
-            collisia._SpeedY = SpeedY;
-            collisia._Object = Character;
-            Canvas.SetLeft(Character, Canvas.GetLeft(Character) + SpeedX);
-            collisia.Collide("x");
-            Canvas.SetTop(Character, Canvas.GetTop(Character) - SpeedY);
-            collisia.Collide("y");
+            }//переход на другую локацию
+            player2.Move();//активируем метод движения нашего игрока
+    
 
 
         }
@@ -111,12 +90,9 @@ namespace Menu2
         }
         public void DropAmmo()
         {
-            Rectangle ammo = new Rectangle();
-            ImageBrush myImageBrush = new ImageBrush();
+            Image ammo = new Image();
             // Загружаем картинку из ресурсов проекта
-            myImageBrush.ImageSource = new BitmapImage(new Uri("characterRight.png", UriKind.RelativeOrAbsolute));
-            // Заполняем прямоугольник картинкой
-            ammo.Fill = myImageBrush;
+            ammo.Source = new BitmapImage(new Uri("ammo.png", UriKind.RelativeOrAbsolute));
             ammo.Tag = "ammo";
             ammo.Height = 20;
             ammo.Width = 20;
@@ -124,8 +100,7 @@ namespace Menu2
             Canvas.SetLeft(ammo, rnd.Next(10, Convert.ToInt32(GameScreen.ActualWidth - ammo.Width)));
             GameScreen.Children.Add(ammo);
             Canvas.SetZIndex(ammo, 1);
-            //Canvas.SetZIndex(player, 1);
-
+            Canvas.SetZIndex(Character, 1);
         }
     }
 }
