@@ -21,9 +21,6 @@
             </StackPanel>
         </Button>
         <Button x:Name="btSettings" Style ="{DynamicResource TransparentButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Height="150" Width="450" Click="btSettings_Click" Margin="0,280,0,0">
-            <Button.Background>
-                <ImageBrush ImageSource="/Settings.PNG"/>
-            </Button.Background>
             <StackPanel Orientation="Horizontal">
                 <Image Source="/Settings.PNG" Stretch="Fill" Width="357" Height="123"/>
             </StackPanel>
