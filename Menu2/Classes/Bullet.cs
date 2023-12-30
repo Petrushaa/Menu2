@@ -23,9 +23,11 @@ namespace Menu2.Classes
         private Image bullet = new Image();
         private DispatcherTimer bulletTimer = new DispatcherTimer();
         private Random rnd = new Random();
-        public Bullet(Canvas canvas)
+        private Image character;
+        public Bullet(Canvas canvas, Image character)
         {
             this.canvas = canvas;
+            this.character = character;
         }
         public void MakeBullet()
         {
@@ -70,6 +72,20 @@ namespace Menu2.Classes
                 bulletTimer = null;
                 canvas.Children.Remove(bullet);
             }
+        }
+        public void DropAmmo()
+        {
+            Image ammo = new Image();
+            // Загружаем картинку из ресурсов проекта
+            ammo.Source = new BitmapImage(new Uri("ammo.png", UriKind.RelativeOrAbsolute));
+            ammo.Tag = "ammo";
+            ammo.Height = 20;
+            ammo.Width = 20;
+            Canvas.SetTop(ammo, rnd.Next(10, Convert.ToInt32(canvas.ActualHeight - ammo.Height)));
+            Canvas.SetLeft(ammo, rnd.Next(10, Convert.ToInt32(canvas.ActualWidth - ammo.Width)));
+            canvas.Children.Add(ammo);
+            Canvas.SetZIndex(ammo, 1);
+            Canvas.SetZIndex(character, 1);
         }
     }
 }

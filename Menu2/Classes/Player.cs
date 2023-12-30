@@ -16,14 +16,15 @@ namespace Menu2
 {
     internal class Player 
     {
-        private bool UpKeyPressed, DownKeyPressed, LeftKeyPressed, RightKeyPressed;
+        public bool UpKeyPressed, DownKeyPressed, LeftKeyPressed, RightKeyPressed;
         public float SpeedX, SpeedY, Friction, Speed;
         public Image Character;
         public static string facing = "up";
         private Canvas canvas;
         public static int ammo = 10;
-        Bullet bullet;
-        Collisia collisia;
+        public Bullet bullet;
+        public Collisia collisia;
+        public int Health = 100;
         public Player(Canvas canvas, Image Character, Collisia collisia, float SpeedY = 0, float SpeedX = 0, bool UpKeyPressed = false, bool DownKeyPressed = false, bool LeftKeyPressed = false, bool RightKeyPressed = false, float Friction = 0.77f, float Speed = 2f)
         {
             this.Speed = Speed;
@@ -110,7 +111,7 @@ namespace Menu2
         }
         public void ShootBullet()
         {
-            Bullet shootBullet = new Bullet(canvas);
+            Bullet shootBullet = new Bullet(canvas, Character);
             shootBullet.direction = facing;
             shootBullet.bulletLeft = (int)Math.Round(Canvas.GetLeft(Character) + (Character.Width / 2)); //выбираем координаты для спавна пули
             shootBullet.bulletTop = (int)Math.Round(Canvas.GetTop(Character) + (Character.Height / 2)); //коорды = положение перса + половина его3 размеров

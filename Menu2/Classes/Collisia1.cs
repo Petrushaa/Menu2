@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Menu2.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
 namespace Menu2
@@ -15,14 +17,16 @@ namespace Menu2
         public Player player;
         public Canvas canvas;
         public List<UIElement> elementsCopy;
+        public mob mobe;
 
-        public Collisia(Canvas canvas, Image object1, Player player, List<UIElement> elementsCopy = null) //конструктор
+        public Collisia(Canvas canvas, Image object1, Player player, mob mobe = null, List<UIElement> elementsCopy = null) //конструктор
         {
             //Конструктор присваиваем все переменные
             this.object1 = object1; 
             this.player = player;
             this.canvas = canvas;
             this.elementsCopy = elementsCopy;
+            this.mobe = mobe;
         }
         public void Collide(string Dir) // Сам метод коллизии
         {
@@ -60,6 +64,49 @@ namespace Menu2
                         imagey.Source = null;
                         Player.ammo += 5;
                        
+                    }
+                }
+                if (x is Image imageG && (string)imageG.Tag == "griver")
+                {
+                    Rect PlayerHB = new Rect(Canvas.GetLeft(object1), Canvas.GetTop(object1), object1.Width, object1.Height);//создаем хитбокс объекта (персонажа) 
+                    Rect GriverHB = new Rect(Canvas.GetLeft(imageG), Canvas.GetTop(imageG), imageG.Width, imageG.Height);
+                    if(PlayerHB.IntersectsWith(GriverHB))
+                    {
+                        player.Health -= 1;
+                    }
+                    if (Canvas.GetLeft(x) < Canvas.GetLeft(object1))
+                    {
+                        Canvas.SetLeft(x, Canvas.GetLeft(x) + mob.zombieSpeed);
+                        ((Image)x).Source = new BitmapImage(new Uri("zRight.png", UriKind.RelativeOrAbsolute));
+                    }
+                    if (Canvas.GetTop(x) > Canvas.GetTop(object1))
+                    {
+                        Canvas.SetTop(x, Canvas.GetTop(x) - mob.zombieSpeed);
+                        ((Image)x).Source = new BitmapImage(new Uri("zDown.png", UriKind.RelativeOrAbsolute));
+                    }
+                    if (Canvas.GetTop(x) < Canvas.GetTop(object1))
+                    {
+                        Canvas.SetTop(x, Canvas.GetTop(x) + mob.zombieSpeed);
+                        ((Image)x).Source = new BitmapImage(new Uri("zUp.png", UriKind.RelativeOrAbsolute));
+                    }
+                    if (Canvas.GetLeft(x) > Canvas.GetLeft(object1))
+                    {
+                        Canvas.SetLeft(x, Canvas.GetLeft(x) - mob.zombieSpeed);
+                        ((Image)x).Source = new BitmapImage(new Uri("zLeft.png", UriKind.RelativeOrAbsolute));
+                    }
+                }
+                foreach (UIElement j in elementsCopy)
+                {
+                    if (j is Image bul && (string)bul.Tag == "bullet" && x is Image zomb && (string)zomb.Tag == "griver")
+                    {
+                        Rect bul2 = new Rect(Canvas.GetLeft(bul), Canvas.GetTop(bul), bul.Width, bul.Height);//создаем хитбокс объекта (персонажа) 
+                        Rect zomb2 = new Rect(Canvas.GetLeft(zomb), Canvas.GetTop(zomb), zomb.Width, zomb.Height);
+                        if (bul2.IntersectsWith(zomb2))
+                        {
+                            canvas.Children.Remove(x); //удаляем зомби
+                            canvas.Children.Remove(j); //удаляем пулю
+                            mobe.makeGrivers();
+                        }
                     }
                 }
             }

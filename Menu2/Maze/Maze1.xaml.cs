@@ -1,4 +1,5 @@
 ﻿using Menu2.Classes;
+using Menu2.Menu;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
@@ -27,12 +28,12 @@ namespace Menu2
         Player player2;
         Collisia collisia;
         bool gameOver;
-        int playerHealth = 100;
         int speed = 10;
         int ammo = 10;
-        int zombieSpeed = 3;
         List<Image> griverList = new List<Image>();
+        mob mobe;
         Random rnd = new Random();
+        gameOver gOver;
         public Maze1()
         {
             InitializeComponent();
@@ -40,67 +41,81 @@ namespace Menu2
             collisia = new Collisia(GameScreen, Character, player2);
             player2 = new Player(GameScreen, Character, collisia);
             collisia.player = player2;
+            mobe = new mob(griverList, GameScreen, Character, player2);
+            collisia.mobe = mobe;
+            RestartGame();
             GameTimer.Interval = TimeSpan.FromMilliseconds(1);
             GameTimer.Tick += GameTick;
             GameTimer.Start();
-        }
-        private void KeyboardUp(object sender, KeyEventArgs e)
-        {
-            player2.KeyboardUp(sender, e);
-            if (e.Key == Key.Space && Player.ammo > 0)
-            {
-                Player.ammo--;
-                player2.ShootBullet();
-                if (Player.ammo < 1)
-                {
-                    Bullet ammo = new Bullet(GameScreen);
-                    DropAmmo();
-                }
-            }
-        }
-        private void KeyBoardDown(object sender, KeyEventArgs e)
-        {
-            player2.KeyBoardDown(sender, e);
+            
         }
         private void GameTick(object sender, EventArgs e)
         {
             collisia.elementsCopy = GameScreen.Children.Cast<UIElement>().ToList(); //передаем список из всех дочерних элементов на канвасе
-            if (playerHealth > 1)
-            {
-                healthBar.Value = playerHealth;
-            }
-            else
-            {
-                gameOver = true;
-            }
             lbAmmo.Content = "Ammo: " + Player.ammo;
             if ((Canvas.GetLeft(Character) > GameScreen.ActualWidth) || (Canvas.GetTop(Character) > GameScreen.ActualHeight))
             {
                 GameTimer.Stop();
                 NavigationService.Navigate(new GamePlay());
             }//переход на другую локацию
+            if (player2.Health > 1)
+            {
+                healthBar.Value = player2.Health;
+            }
+            else
+            {
+                gameOver = true;
+                player2.UpKeyPressed = false;
+                player2.DownKeyPressed = false;
+                player2.RightKeyPressed = false;
+                player2.LeftKeyPressed = false;
+                GameTimer.Stop();
+                gOver.Show();
+            }
             player2.Move();//активируем метод движения нашего игрока
-    
-
-
         }
-        private void RestartGame()
+        private void KeyboardUp(object sender, KeyEventArgs e)
         {
-
+            player2.KeyboardUp(sender, e);
+            if (e.Key == Key.Space && Player.ammo > 0 && gameOver == false)
+            {
+                Player.ammo--;
+                player2.ShootBullet();
+                if (Player.ammo < 1)
+                {
+                    Bullet ammo = new Bullet(GameScreen, Character);
+                    ammo.DropAmmo();
+                }
+            }
         }
-        public void DropAmmo()
+        private void KeyBoardDown(object sender, KeyEventArgs e)
         {
-            Image ammo = new Image();
-            // Загружаем картинку из ресурсов проекта
-            ammo.Source = new BitmapImage(new Uri("ammo.png", UriKind.RelativeOrAbsolute));
-            ammo.Tag = "ammo";
-            ammo.Height = 20;
-            ammo.Width = 20;
-            Canvas.SetTop(ammo, rnd.Next(10, Convert.ToInt32(GameScreen.ActualHeight - ammo.Height)));
-            Canvas.SetLeft(ammo, rnd.Next(10, Convert.ToInt32(GameScreen.ActualWidth - ammo.Width)));
-            GameScreen.Children.Add(ammo);
-            Canvas.SetZIndex(ammo, 1);
-            Canvas.SetZIndex(Character, 1);
+            if (gameOver == true)
+            {
+                return;
+            }
+            player2.KeyBoardDown(sender, e);
+        }
+        public void RestartGame()
+        {
+            Character.Source = new BitmapImage(new Uri("characterRight.png", UriKind.RelativeOrAbsolute));
+            foreach (Image i in griverList)
+            {
+                GameScreen.Children.Remove(i);
+            }
+            griverList.Clear();
+            for (int i = 0; i < 3; i++)
+            {
+                mobe.makeGrivers();
+            }
+            player2.UpKeyPressed = false;
+            player2.DownKeyPressed = false;
+            player2.LeftKeyPressed = false;
+            player2.RightKeyPressed = false;
+            gameOver = false;
+            player2.Health = 100;
+            Player.ammo = 10;
+            GameTimer.Start();
         }
     }
 }
