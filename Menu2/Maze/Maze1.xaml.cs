@@ -28,12 +28,9 @@ namespace Menu2
         Player player2;
         Collisia collisia;
         bool gameOver;
-        int speed = 10;
-        int ammo = 10;
         List<Image> griverList = new List<Image>();
         mob mobe;
         Random rnd = new Random();
-        gameOver gOver;
         public Maze1()
         {
             InitializeComponent();
@@ -47,7 +44,8 @@ namespace Menu2
             GameTimer.Interval = TimeSpan.FromMilliseconds(1);
             GameTimer.Tick += GameTick;
             GameTimer.Start();
-            
+
+
         }
         private void GameTick(object sender, EventArgs e)
         {
@@ -56,6 +54,8 @@ namespace Menu2
             if ((Canvas.GetLeft(Character) > GameScreen.ActualWidth) || (Canvas.GetTop(Character) > GameScreen.ActualHeight))
             {
                 GameTimer.Stop();
+                // Get the navigation service from the current page
+                // Navigate to the GamePlay page
                 NavigationService.Navigate(new GamePlay());
             }//переход на другую локацию
             if (player2.Health > 1)
@@ -70,6 +70,8 @@ namespace Menu2
                 player2.RightKeyPressed = false;
                 player2.LeftKeyPressed = false;
                 GameTimer.Stop();
+                // Передаем ссылку на текущее окно в конструктор второго окна
+                gameOver gOver = new gameOver(this);
                 gOver.Show();
             }
             player2.Move();//активируем метод движения нашего игрока

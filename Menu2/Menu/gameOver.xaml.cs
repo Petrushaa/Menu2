@@ -16,11 +16,11 @@ namespace Menu2.Menu
 {
     public partial class gameOver : Window
     {
-        Maze1 maze;
-        public gameOver()
+        private Maze1 game;
+        public gameOver(Maze1 game)
         {
             InitializeComponent();
-            maze = new Maze1();
+            this.game = game;
         }
 
         private void btExit_Click(object sender, RoutedEventArgs e)
@@ -30,7 +30,8 @@ namespace Menu2.Menu
 
         private void btResume_Click(object sender, RoutedEventArgs e)
         {
-            maze.RestartGame();
+            game.RestartGame();
+            this.Close();
         }
     }
 }
