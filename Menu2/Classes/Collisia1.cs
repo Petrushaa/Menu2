@@ -19,58 +19,58 @@ namespace Menu2
         public List<UIElement> elementsCopy;
         public mob mobe;
 
-        public Collisia(Canvas canvas, Image object1, Player player, mob mobe = null, List<UIElement> elementsCopy = null) //конструктор
+        public Collisia(Canvas canvas, Image object1, Player player, mob mobe = null) //конструктор
         {
             //Конструктор присваиваем все переменные
             this.object1 = object1; 
             this.player = player;
             this.canvas = canvas;
-            this.elementsCopy = elementsCopy;
             this.mobe = mobe;
         }
-        public void Collide(string Dir) // Сам метод коллизии
+        public void Collide(string Dir)
         {
-            foreach (UIElement x in elementsCopy) //Проверяем КАЖДЫЙ ректангле, в списке AllCollisia
+            foreach (UIElement x in elementsCopy)
             {
+                //КОЛЛИЗИЯ
                 if (x is Image imagex && (string)imagex.Tag == "Collide") //Если у ректангле тег Коллизии, то 
                 {
                     Rect PlayerHB = new Rect(Canvas.GetLeft(object1), Canvas.GetTop(object1), object1.Width, object1.Height);//создаем хитбокс объекта (персонажа) 
-                    Rect ToCollide = new Rect(Canvas.GetLeft(imagex), Canvas.GetTop(imagex), imagex.RenderSize.Width, imagex.RenderSize.Height);//Создаем хитбокс коллизии, т.е. нашего ректа
+                    Rect ToCollide = new Rect(Canvas.GetLeft(imagex), Canvas.GetTop(imagex), imagex.Width, imagex.Height);//Создаем хитбокс коллизии, т.е. нашего ректа
 
                     if (PlayerHB.IntersectsWith(ToCollide))//Проверяем пересекаются ли хитбоксы объекта (персонажа) с нашей коллизией
                     {
-                        if (Dir == "x")//Если мы передали, что передвинулись по кординате х, то
+                        if (Dir == "x")
                         {
-                            Canvas.SetLeft(object1, Canvas.GetLeft(object1) - player.SpeedX); //Тут мы его передвигаем обратно по кординате х
-                            player.SpeedX = 0;  //Обнуление переменных _SpeedX и _SpeedY в методе Collide происходит для того, чтобы предотвратить дальнейшее движение
-                                                 //объекта в направлении, в котором была обнаружена коллизия. Если вы не обнулите эти переменные, то объект продолжит
-                                                 //двигаться в направлении, в котором была обнаружена коллизия, что может привести к нежелательным последствиям .
+                            Canvas.SetLeft(object1, Canvas.GetLeft(object1) - player.SpeedX); //Тут мы его передвигаем обратно на х
+                            player.SpeedX = 0;
                         }
-                        else ////Если мы передали, что передвинулись по кординате у , то
+                        else
                         {
-                            Canvas.SetTop(object1, Canvas.GetTop(object1) + player.SpeedY);//Тут мы его передвигаем обратно по кординате у
+                            Canvas.SetTop(object1, Canvas.GetTop(object1) + player.SpeedY);//Тут мы его передвигаем обратно по  у
                             player.SpeedY = 0;
                         }
                     }
                 }
-                if (x is Image imagey && (string)imagey.Tag == "ammo") //Если у ректангле тег Коллизии, то 
+                //СБОР ПАТРОН
+                if (x is Image imagey && (string)imagey.Tag == "ammo")
                 {
-                    Rect PlayerHB = new Rect(Canvas.GetLeft(object1), Canvas.GetTop(object1), object1.Width, object1.Height);//создаем хитбокс объекта (персонажа) 
-                    Rect ToCollide = new Rect(Canvas.GetLeft(imagey), Canvas.GetTop(imagey), imagey.Width, imagey.Height);//Создаем хитбокс коллизии, т.е. нашего ректа
+                    Rect PlayerHB = new Rect(Canvas.GetLeft(object1), Canvas.GetTop(object1), object1.Width, object1.Height);
+                    Rect ToCollide = new Rect(Canvas.GetLeft(imagey), Canvas.GetTop(imagey), imagey.Width, imagey.Height);
 
-                    if (PlayerHB.IntersectsWith(ToCollide))//Проверяем пересекаются ли хитбоксы объекта (персонажа) с нашей коллизией
+                    if (PlayerHB.IntersectsWith(ToCollide))
                     {
                         canvas.Children.Remove(imagey);
                         imagey.Source = null;
                         Player.ammo += 5;
-                       
+
                     }
                 }
+                //ИИ ГРИВЕРОВ
                 if (x is Image imageG && (string)imageG.Tag == "griver")
                 {
                     Rect PlayerHB = new Rect(Canvas.GetLeft(object1), Canvas.GetTop(object1), object1.Width, object1.Height);//создаем хитбокс объекта (персонажа) 
                     Rect GriverHB = new Rect(Canvas.GetLeft(imageG), Canvas.GetTop(imageG), imageG.Width, imageG.Height);
-                    if(PlayerHB.IntersectsWith(GriverHB))
+                    if (PlayerHB.IntersectsWith(GriverHB))
                     {
                         player.Health -= 1;
                     }
@@ -94,6 +94,7 @@ namespace Menu2
                         Canvas.SetLeft(x, Canvas.GetLeft(x) - mob.zombieSpeed);
                         ((Image)x).Source = new BitmapImage(new Uri("zLeft.png", UriKind.RelativeOrAbsolute));
                     }
+
                 }
                 foreach (UIElement j in elementsCopy)
                 {
@@ -103,8 +104,10 @@ namespace Menu2
                         Rect zomb2 = new Rect(Canvas.GetLeft(zomb), Canvas.GetTop(zomb), zomb.Width, zomb.Height);
                         if (bul2.IntersectsWith(zomb2))
                         {
-                            canvas.Children.Remove(x); //удаляем зомби
-                            canvas.Children.Remove(j); //удаляем пулю
+                            canvas.Children.Remove(zomb); //удаляем зомби
+                            zomb.Source = null;
+                            canvas.Children.Remove(bul); ; //удаляем пулю
+                            mobe.griverList.Remove(zomb);
                             mobe.makeGrivers();
                         }
                     }

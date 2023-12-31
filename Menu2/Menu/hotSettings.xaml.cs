@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Menu2
 {
@@ -19,8 +20,10 @@ namespace Menu2
     /// </summary>
     public partial class hotSettings : Window
     {
-        public hotSettings()
+        DispatcherTimer timer;
+        public hotSettings(DispatcherTimer timer)
         {
+            this.timer = timer;
             InitializeComponent();
         }
 
@@ -31,7 +34,8 @@ namespace Menu2
 
         private void btResume_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            timer.Start();
+            this.Visibility = Visibility.Collapsed;
         }
     }
 }

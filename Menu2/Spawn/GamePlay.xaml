@@ -5,14 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Menu2"
         mc:Ignorable="d"
-        Title="GamePlay" Height="800" Width="1554">
-    <Viewbox Stretch="Fill">
-        <Canvas x:Name="GameScreen" Focusable="True" KeyUp="KeyboardUp" KeyDown="KeyBoardDown" Height="800" Width="1554">
-            <Canvas.Background>
-                <ImageBrush ImageSource="/Spawn/spawn.jpg"/>
-            </Canvas.Background>
+        Title="GamePlay"  Height="720" Width="1280">
+    <Viewbox Stretch="Fill"  Height="720" Width="1280">
+        <Canvas x:Name="GameScreen" Focusable="True" KeyUp="KeyboardUp" KeyDown="KeyBoardDown"  Height="720" Width="1280" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Image Source="/Spawn/images/spawn.jpg" Width ="1280" Height="720"/>
             <Image x:Name="Character" Tag="User" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="752" Canvas.Top="375" Stretch="Fill" Source="/Spawn/characterLeft.png"/>
+            <Image Source="/Spawn/borders.PNG" Width="1280" Height="720"/>
+            <Image Source="/Spawn/images/trees.PNG" Width="1280" Height="720"/>
             <Image Height="100" Tag="Collide" Canvas.Left="1086" Canvas.Top="375" Width="100" Source="/Spawn/wall.png" Stretch="Fill"/>
+
         </Canvas>
     </Viewbox>
 </Page>

@@ -24,13 +24,14 @@ namespace Menu2
 {
     public partial class Maze1 : Page
     {
-        private DispatcherTimer GameTimer = new DispatcherTimer();
+        public DispatcherTimer GameTimer = new DispatcherTimer();
         Player player2;
         Collisia collisia;
         bool gameOver;
         List<Image> griverList = new List<Image>();
         mob mobe;
         Random rnd = new Random();
+        hotSettings hotset;
         public Maze1()
         {
             InitializeComponent();
@@ -38,14 +39,13 @@ namespace Menu2
             collisia = new Collisia(GameScreen, Character, player2);
             player2 = new Player(GameScreen, Character, collisia);
             collisia.player = player2;
-            mobe = new mob(griverList, GameScreen, Character, player2);
+            mobe = new mob(griverList, GameScreen);
             collisia.mobe = mobe;
             RestartGame();
             GameTimer.Interval = TimeSpan.FromMilliseconds(1);
             GameTimer.Tick += GameTick;
             GameTimer.Start();
-
-
+            hotset = new hotSettings(GameTimer);
         }
         private void GameTick(object sender, EventArgs e)
         {
@@ -97,6 +97,15 @@ namespace Menu2
                 return;
             }
             player2.KeyBoardDown(sender, e);
+            if (e.Key == Key.Escape)
+            {
+                player2.UpKeyPressed = false;
+                player2.DownKeyPressed = false;
+                player2.LeftKeyPressed = false;
+                player2.RightKeyPressed = false;
+                hotset.Visibility = Visibility.Visible;
+                GameTimer.Stop();
+            }
         }
         public void RestartGame()
         {

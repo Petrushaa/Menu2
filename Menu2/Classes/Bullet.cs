@@ -21,7 +21,7 @@ namespace Menu2.Classes
         public double bulletTop;
         private int speed = 20;
         private Image bullet = new Image();
-        private DispatcherTimer bulletTimer = new DispatcherTimer();
+        public DispatcherTimer bulletTimer = new DispatcherTimer();
         private Random rnd = new Random();
         private Image character;
         public Bullet(Canvas canvas, Image character)

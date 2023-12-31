@@ -167,7 +167,7 @@
     <Resource Include="Exit.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\borders.PNG" />
+    <Resource Include="Spawn\borders.PNG" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\characterRight.png" />
@@ -185,11 +185,7 @@
     <Resource Include="Spawn\images\312.png" />
     <Resource Include="Spawn\images\3244.jpg" />
     <Resource Include="Spawn\images\characterLeft.png" />
-    <Resource Include="Spawn\images\spawn.jpg" />
     <Resource Include="Spawn\images\wall.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Spawn\spawn.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Spawn\characterLeft.png" />
@@ -234,6 +230,14 @@
     <Resource Include="Spawn\wall.png" />
     <Resource Include="Maze\ammo.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="spawn.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Spawn\images\trees.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Spawn\images\spawn.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

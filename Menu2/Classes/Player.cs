@@ -22,7 +22,6 @@ namespace Menu2
         public static string facing = "up";
         private Canvas canvas;
         public static int ammo = 10;
-        public Bullet bullet;
         public Collisia collisia;
         public int Health = 100;
         public Player(Canvas canvas, Image Character, Collisia collisia, float SpeedY = 0, float SpeedX = 0, bool UpKeyPressed = false, bool DownKeyPressed = false, bool LeftKeyPressed = false, bool RightKeyPressed = false, float Friction = 0.77f, float Speed = 2f)

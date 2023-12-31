@@ -22,10 +22,10 @@ namespace Menu2
 {
     public partial class GamePlay : Page
     {
-        private DispatcherTimer GameTimer = new DispatcherTimer();
-        private float SpeedX, SpeedY;
+        public DispatcherTimer GameTimer = new DispatcherTimer();
         Player player;
         Collisia collisia;
+        hotSettings hotset;
         public GamePlay()
         {
             InitializeComponent();
@@ -36,11 +36,12 @@ namespace Menu2
             GameTimer.Interval = TimeSpan.FromMilliseconds(1);
             GameTimer.Tick += GameTick;
             GameTimer.Start();
+            hotset = new hotSettings(GameTimer);
         }
         private void GameTick(object sender, EventArgs e)
         {
             collisia.elementsCopy = GameScreen.Children.Cast<UIElement>().ToList(); //обновляем список элементов, которые есть на канвасе
-            if ((Canvas.GetLeft(Character) < 0) || (Canvas.GetTop(Character) < 0))
+            if ((Canvas.GetLeft(Character) < 0) || (Canvas.GetTop(Character) < 0) || (Canvas.GetLeft(Character) > GameScreen.Width) || (Canvas.GetTop(Character) > GameScreen.Height))
             {
                 GameTimer.Stop();
                 NavigationService.Navigate(new Maze1());
@@ -54,6 +55,16 @@ namespace Menu2
         private void KeyBoardDown(object sender, KeyEventArgs e)
         {
             player.KeyBoardDown(sender, e);
+            if (e.Key == Key.Escape)
+            {
+                player.UpKeyPressed = false;
+                player.DownKeyPressed = false;
+                player.LeftKeyPressed = false;
+                player.RightKeyPressed = false;
+                player.UpKeyPressed = false;
+                hotset.Visibility = Visibility.Visible;
+                GameTimer.Stop();
+            }
         }
     }
 }

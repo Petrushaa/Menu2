@@ -14,23 +14,12 @@ using System.Windows.Shapes;
 
 namespace Menu2
 {
-    /// <summary>
-    /// Логика взаимодействия для Game.xaml
-    /// </summary>
     public partial class Game : Window
     {
         public Game()
         {
             InitializeComponent();
             MainFrame.Content = new GamePlay();
-        }
-        private void KeyDownK(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Escape)
-            {
-                hotSettings window = new hotSettings();
-                window.Show();
-            }
         }
     }
 }
