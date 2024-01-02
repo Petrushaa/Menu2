@@ -3,37 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Controls;
-using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Windows.Threading;
 
 namespace Menu2.Classes
 {
-    internal class mob
+    public class Mob
     {
-        Random rand = new Random();
-        public List<Image> griverList;
-        Canvas canvas = new Canvas();
-        public static int zombieSpeed = 1;
-        public mob(List<Image> griverList, Canvas canvas)
-        {
-            this.griverList = griverList;
-            this.canvas = canvas;
-        }
-        public void makeGrivers()
-        {
-            Image griver = new Image();
-            griver.Tag = "griver";
-            griver.Source = new BitmapImage(new Uri("zombie.png", UriKind.Relative));
-            Canvas.SetLeft(griver, rand.Next(50, Convert.ToInt32(canvas.Width/3 - 50)));
-            Canvas.SetTop(griver, rand.Next(50, Convert.ToInt32(canvas.Height/3 - 50)));
-            griver.Height = 50;
-            griver.Width = 50;
-            griverList.Add(griver);
-            canvas.Children.Add(griver);
-            Canvas.SetZIndex(griver, 1);
-        }
+        public string Name { get; set; } // имя моба
+        public int MaxHealth { get; set; } // максимальное хп моба
+        public int CurrentHealth { get; set; } // текущее хп моба
+        public string Image { get; set; } // путь к изображению моба
+        public int Speed { get; set; }// скорость моба
     }
 }

@@ -12,8 +12,8 @@
             <Image x:Name="Character" Tag="User" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="752" Canvas.Top="375" Stretch="Fill" Source="/Spawn/characterLeft.png"/>
             <Image Source="/Spawn/borders.PNG" Width="1280" Height="720"/>
             <Image Source="/Spawn/images/trees.PNG" Width="1280" Height="720"/>
-            <Image Height="100" Tag="Collide" Canvas.Left="1086" Canvas.Top="375" Width="100" Source="/Spawn/wall.png" Stretch="Fill"/>
-
+            <Image Height="65" Tag="Collide" Canvas.Left="0" Canvas.Top="658" Width="586" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Image Height="45" Tag="Collide" Canvas.Left="752" Canvas.Top="658" Width="525" HorizontalAlignment="Left" VerticalAlignment="Center"/>
         </Canvas>
     </Viewbox>
 </Page>

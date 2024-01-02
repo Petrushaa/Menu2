@@ -15,9 +15,6 @@ using System.Windows.Threading;
 
 namespace Menu2
 {
-    /// <summary>
-    /// Логика взаимодействия для hotSettings.xaml
-    /// </summary>
     public partial class hotSettings : Window
     {
         DispatcherTimer timer;
@@ -26,12 +23,10 @@ namespace Menu2
             this.timer = timer;
             InitializeComponent();
         }
-
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
-
         private void btResume_Click(object sender, RoutedEventArgs e)
         {
             timer.Start();

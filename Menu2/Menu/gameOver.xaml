@@ -10,6 +10,7 @@
         <Canvas Width="500" Height="500">
             <Button x:Name="btRestart" Content="Начать заново" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="168" Canvas.Top="154" Height="72" Width="164" Click="btResume_Click"/>
             <Button x:Name="btExit" Content="Выйти из игры" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btExit_Click" Height="49" Canvas.Left="162" Canvas.Top="345" Width="176"/>
+            <Label Content="Game Over" Canvas.Left="140" Canvas.Top="46" FontFamily="Cascadia Code" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         </Canvas>
     </Viewbox>
 </Window>

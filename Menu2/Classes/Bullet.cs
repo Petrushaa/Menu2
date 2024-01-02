@@ -79,8 +79,8 @@ namespace Menu2.Classes
             // Загружаем картинку из ресурсов проекта
             ammo.Source = new BitmapImage(new Uri("ammo.png", UriKind.RelativeOrAbsolute));
             ammo.Tag = "ammo";
-            ammo.Height = 20;
-            ammo.Width = 20;
+            ammo.Height = 30;
+            ammo.Width = 30;
             Canvas.SetTop(ammo, rnd.Next(10, Convert.ToInt32(canvas.ActualHeight - ammo.Height)));
             Canvas.SetLeft(ammo, rnd.Next(10, Convert.ToInt32(canvas.ActualWidth - ammo.Width)));
             canvas.Children.Add(ammo);
