@@ -24,16 +24,20 @@ namespace Menu2.Classes
         public DispatcherTimer bulletTimer = new DispatcherTimer();
         private Random rnd = new Random();
         private Image character;
+        private int bulletHeight;
+        private int bulletWidth;
         public Bullet(Canvas canvas, Image character)
         {
             this.canvas = canvas;
             this.character = character;
+            bulletHeight = ((int)character.Height) / 2;
+            bulletWidth = ((int)character.Width) / 2;
         }
         public void MakeBullet()
         {
             //Загружаем картинку из ресурсов проекта
-            bullet.Height = 20;
-            bullet.Width = 20;
+            bullet.Height = bulletHeight;
+            bullet.Width = bulletWidth;
             bullet.Tag = "bullet";
             Canvas.SetZIndex(bullet, 1); //выдвигаем на передний план
             Canvas.SetLeft(bullet, bulletLeft);
@@ -79,8 +83,8 @@ namespace Menu2.Classes
             // Загружаем картинку из ресурсов проекта
             ammo.Source = new BitmapImage(new Uri("ammo.png", UriKind.RelativeOrAbsolute));
             ammo.Tag = "ammo";
-            ammo.Height = 30;
-            ammo.Width = 30;
+            ammo.Height = ((int)character.Height);
+            ammo.Width = ((int)character.Width);
             Canvas.SetTop(ammo, rnd.Next(10, Convert.ToInt32(canvas.ActualHeight - ammo.Height)));
             Canvas.SetLeft(ammo, rnd.Next(10, Convert.ToInt32(canvas.ActualWidth - ammo.Width)));
             canvas.Children.Add(ammo);

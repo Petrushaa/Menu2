@@ -21,46 +21,46 @@ namespace Menu2.Maze
     // Пример использования MobView в главном окне
     public partial class test : Window
     {
-        public test()
-        {
-            InitializeComponent();
+        //public test()
+        //{
+        //    InitializeComponent();
 
-            // Создаем экземпляр моба
-            Mob zombie = new Mob
-            {
-                Name = "zombie",
-                MaxHealth = 100,
-                CurrentHealth = 50,
-                Image = "zombie.png"
-            };
+        //    // Создаем экземпляр моба
+        //    Mob zombie = new Mob
+        //    {
+        //        Name = "zombie",
+        //        MaxHealth = 100,
+        //        CurrentHealth = 50,
+        //        Image = "zombie.png"
+        //    };
 
-            // Создаем экземпляр модели представления моба
-            MobViewModel viewModel = new MobViewModel(zombie);
+        //    // Создаем экземпляр модели представления моба
+        //    MobViewModel viewModel = new MobViewModel(zombie);
 
-            // Создаем экземпляр представления моба
-            MobView view = new MobView(viewModel);
+        //    // Создаем экземпляр представления моба
+        //    MobView view = new MobView(viewModel);
 
-            // Добавляем представление моба в главное окно
-            this.Content = view;
-            // Подписываемся на событие Dead модели представления моба
-            viewModel.Dead += ViewModel_Dead;
-        }
-        // Обработчик события Dead модели представления моба
-        private void ViewModel_Dead(object sender, EventArgs e)
-        {
-            // Получаем модель представления моба из параметра sender
-            MobViewModel viewModel = sender as MobViewModel;
+        //    // Добавляем представление моба в главное окно
+        //    this.Content = view;
+        //    // Подписываемся на событие Dead модели представления моба
+        //    viewModel.Dead += ViewModel_Dead;
+        //}
+        //// Обработчик события Dead модели представления моба
+        //private void ViewModel_Dead(object sender, EventArgs e)
+        //{
+        //    // Получаем модель представления моба из параметра sender
+        //    MobViewModel viewModel = sender as MobViewModel;
 
-            // Если модель представления моба не null
-            if (viewModel != null)
-            {
-                // Удаляем представление моба из главного окна
-                this.Content = null;
+        //    // Если модель представления моба не null
+        //    if (viewModel != null)
+        //    {
+        //        // Удаляем представление моба из главного окна
+        //        this.Content = null;
 
-                // Отписываемся от события Dead модели представления моба
-                viewModel.Dead -= ViewModel_Dead;
-            }
-        }
+        //        // Отписываемся от события Dead модели представления моба
+        //        viewModel.Dead -= ViewModel_Dead;
+        //    }
+        //}
 
 
     }

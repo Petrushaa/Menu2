@@ -5,15 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Menu2"
         mc:Ignorable="d"
-        Title="GamePlay"  Height="720" Width="1280">
-    <Viewbox Stretch="Fill"  Height="720" Width="1280">
-        <Canvas x:Name="GameScreen" Focusable="True" KeyUp="KeyboardUp" KeyDown="KeyBoardDown"  Height="720" Width="1280" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
-            <Image Source="/Spawn/images/spawn.jpg" Width ="1280" Height="720"/>
-            <Image x:Name="Character" Tag="User" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="752" Canvas.Top="375" Stretch="Fill" Source="/Spawn/characterLeft.png"/>
-            <Image Source="/Spawn/borders.PNG" Width="1280" Height="720"/>
-            <Image Source="/Spawn/images/trees.PNG" Width="1280" Height="720"/>
-            <Image Height="65" Tag="Collide" Canvas.Left="0" Canvas.Top="658" Width="586" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <Image Height="45" Tag="Collide" Canvas.Left="752" Canvas.Top="658" Width="525" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        Title="GamePlay"  Height="1080" Width="1920">
+    <Viewbox Stretch="Fill">
+        <Canvas x:Name="GameScreen" Focusable="True" KeyUp="KeyboardUp" KeyDown="KeyBoardDown"  Height="1080" Width="1920" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <Image Source="/Spawn/images/spawn.jpg" Height="1080" Width="1920"/>
+            <Image x:Name="Character" Tag="User" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="640" Stretch="Fill" Source="/Spawn/characterLeft.png" Canvas.Top="151"/>
+            <Image Source="/Spawn/borders.PNG" Width="1920" Height="1080"/>
+            <Image Source="/Spawn/images/trees.PNG" Width="1920" Height="1080"/>
         </Canvas>
     </Viewbox>
 </Page>

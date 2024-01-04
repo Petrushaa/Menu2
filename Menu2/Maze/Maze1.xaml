@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Menu2"
         mc:Ignorable="d"
-        Title="Maze1" Height="720" Width="1280" >
+        Title="Maze1" Height="1080" Width="1920">
     <Viewbox Stretch="Fill">
-        <Canvas x:Name="GameScreen" Focusable="True" KeyUp="KeyboardUp" KeyDown="KeyBoardDown" Background="Gray" Height="720" Width="1280">
-            <Image x:Name="Character" Tag="User" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="335" Canvas.Left="615" Source="/images/characterRight.png" Stretch="Fill"/>
-            <ProgressBar x:Name="healthBar" Height="30"  Width="200" Value="100" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="1070" Canvas.Top="20"/>
-            <Label x:Name="lbHealth" Content="Health:" Canvas.Left="966" Canvas.Top="10" Height="40" Width="89" FontSize="30" FontFamily="Bahnschrift SemiBold SemiCondensed" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+        <Canvas x:Name="GameScreen" Focusable="True" KeyUp="KeyboardUp" KeyDown="KeyBoardDown" Background="Gray" Height="1080" Width="1920">
+            <Image x:Name="Character" Tag="User" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Top="1050" Canvas.Left="945" Source="/images/characterRight.png" Stretch="Fill"/>
+            <ProgressBar x:Name="healthBar" Height="30"  Width="200" Value="100" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="1720" Canvas.Top="30"/>
+            <Label x:Name="lbHealth" Content="Health:" Canvas.Left="1626" Canvas.Top="25" Height="40" Width="89" FontSize="30" FontFamily="Bahnschrift SemiBold SemiCondensed" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Label x:Name="lbAmmo" Content="Ammo: 0" Canvas.Left="91" Canvas.Top="10" Height="40" Width="122" FontSize="30" FontFamily="Bahnschrift SemiBold SemiCondensed" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            <Image Height="100" Tag ="Collide" Canvas.Left="213" Canvas.Top="292" Width="100" Source="/Maze/wall.png"/>
+
         </Canvas>
     </Viewbox>
 </Page>
