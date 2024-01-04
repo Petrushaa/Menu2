@@ -12,9 +12,9 @@
             <Grid.Background>
                 <ImageBrush ImageSource="/menu2.jpg"/>
             </Grid.Background>
-            <Button x:Name="btBack" Content="Назад" Click="btBack_Click" Margin="0,10,104,342" FontSize="5"/>
-            <Button x:Name="btGamePlay" Content="Настройки игры" Margin="49,86,49,237"  Height="75"/>
-            <Button x:Name="btGraphics" Content="Графика" Margin="80,314,80,44"/>
+            <Button x:Name="btBack" Content="Назад" Click="btBack_Click" Margin="0,10,150,342" FontSize="5"/>
+            <Button x:Name="btGamePlay" Content="Настройки игры" Margin="54,116,53,237"/>
+            <Button x:Name="btGraphics" Content="Графика" Margin="54,314,55,44"/>
             <Button x:Name="btVolume" Content="Звук" Margin="47,199,47,151" Height="48" Width="98"/>
         </Grid>
     </Viewbox>

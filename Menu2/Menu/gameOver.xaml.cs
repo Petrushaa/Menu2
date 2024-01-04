@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Menu2.Menu
@@ -22,16 +23,15 @@ namespace Menu2.Menu
             InitializeComponent();
             this.game = game;
         }
-
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }
-
-        private void btResume_Click(object sender, RoutedEventArgs e)
+        private void btRestart_Click(object sender, RoutedEventArgs e)
         {
             game.RestartGame();
-            this.Close();
+            this.Close(); 
         }
+
     }
 }

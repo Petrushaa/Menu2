@@ -23,30 +23,16 @@ namespace Menu2
         public Settings_Page()
         {
             InitializeComponent();
-            // Создание объекта ImageBrush с ссылкой на изображение
-
-            // Установка изображения в качестве заднего фона для грида
-
-            btGamePlay.BorderBrush = Brushes.White;
-            btGamePlay.Background = Brushes.Black;
-            btGamePlay.Foreground = Brushes.White;
-
-            btGraphics.BorderBrush = Brushes.White;
-            btGraphics.Background = Brushes.Black;
-            btGraphics.Foreground = Brushes.White;
-
-            btVolume.BorderBrush = Brushes.White;
-            btVolume.Background = Brushes.Black;
-            btVolume.Foreground = Brushes.White;
-
-            btBack.BorderBrush = Brushes.White;
-            btBack.Background = Brushes.Black;
-            btBack.Foreground = Brushes.White;
         }
 
         private void btBack_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.GoBack();
+        }
+
+        private void Button_Click()
+        {
+
         }
     }
 }

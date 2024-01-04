@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace Menu2
 {
@@ -20,6 +21,16 @@ namespace Menu2
         public List<UIElement> elementsCopy;
         public List<mob> mobs;
         Random rand;
+        private List<BitmapImage> rightImages;
+        private List<BitmapImage> downImages;
+        private List<BitmapImage> upImages;
+        private List<BitmapImage> leftImages;
+        // Индексы для отслеживания текущего изображения в каждой коллекции
+        int rightIndex = 0;
+        int downIndex = 0;
+        int upIndex = 0;
+        int leftIndex = 0;
+
         public Collisia(Canvas canvas, Image object1, Player player, Random rand = null) //конструктор
         {
             //Конструктор присваиваем все переменные
@@ -27,7 +38,27 @@ namespace Menu2
             this.player = player;
             this.canvas = canvas;
             this.rand = rand;
+
+            rightImages = LoadImages("right");
+            downImages = LoadImages("down");
+            upImages = LoadImages("up");
+            leftImages = LoadImages("left");
+
         }
+        private List<BitmapImage> LoadImages(string direction)
+        {
+            List<BitmapImage> images = new List<BitmapImage>();
+
+            for (int i = 1; i <= 3; i++) // Предположим, у вас есть 3 изображения для каждого направления
+            {
+                string path = $"z{direction}{i}.png"; // Предположим, что ваши изображения названы zRight1.png, zRight2.png, zRight3.png и т.д.
+                BitmapImage image = new BitmapImage(new Uri(path, UriKind.Relative));
+                images.Add(image);
+            }
+
+            return images;
+        }
+
         public void griversCollide()
         {
             foreach (UIElement x in elementsCopy)
@@ -44,25 +75,29 @@ namespace Menu2
                     if (Canvas.GetLeft(x) < Canvas.GetLeft(object1))
                     {
                         Canvas.SetLeft(x, Canvas.GetLeft(x) + mob.zombieSpeed);
-                        ((Image)x).Source = new BitmapImage(new Uri("zRight.png", UriKind.RelativeOrAbsolute));
+                        ((Image)x).Source = rightImages[rightIndex];
+                        rightIndex = (rightIndex + 1) % rightImages.Count;
                     }
                     if (Canvas.GetTop(x) > Canvas.GetTop(object1))
                     {
                         Canvas.SetTop(x, Canvas.GetTop(x) - mob.zombieSpeed);
-                        ((Image)x).Source = new BitmapImage(new Uri("zDown.png", UriKind.RelativeOrAbsolute));
+                        ((Image)x).Source = rightImages[downIndex];
+                        downIndex = (downIndex + 1) % rightImages.Count;
                     }
                     if (Canvas.GetTop(x) < Canvas.GetTop(object1))
                     {
                         Canvas.SetTop(x, Canvas.GetTop(x) + mob.zombieSpeed);
-                        ((Image)x).Source = new BitmapImage(new Uri("zUp.png", UriKind.RelativeOrAbsolute));
+                        ((Image)x).Source = upImages[upIndex];
+                        upIndex = (upIndex + 1) % upImages.Count;
                     }
                     if (Canvas.GetLeft(x) > Canvas.GetLeft(object1))
                     {
                         Canvas.SetLeft(x, Canvas.GetLeft(x) - mob.zombieSpeed);
-                        ((Image)x).Source = new BitmapImage(new Uri("zLeft.png", UriKind.RelativeOrAbsolute));
+                        ((Image)x).Source = leftImages[leftIndex];
+                        leftIndex = (leftIndex + 1) % leftImages.Count;
                     }
                 }
-
+                //Убийство гриверов
                 foreach (mob mobe in mobs.ToList()) // Используйте ToList(), чтобы избежать ошибки изменения коллекции во время итерации
                 {
                     Image griver = mobe.griver;
@@ -72,7 +107,7 @@ namespace Menu2
                         Rect zomb2 = new Rect(Canvas.GetLeft(griver), Canvas.GetTop(griver), griver.Width, griver.Height);
                         if (bul2.IntersectsWith(zomb2))
                         {
-                            mobe.TakeDamage(50); // Гривер получает 50 урона
+                            mobe.TakeDamage(20); // Гривер получает 20 урона
                             if (mobe.Health <= 0)
                             {
                                 canvas.Children.Remove(griver);

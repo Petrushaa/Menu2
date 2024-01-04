@@ -260,5 +260,32 @@
     <Resource Include="bin\Debug\Wall1.png" />
     <Resource Include="bin\Debug\Way1.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Menu\Resume.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Menu\ExitHot.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Menu\Reboot.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Menu\GameOver.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Menu\Exit.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Menu\griverMoving.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Maze\zLeft1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Maze\zLeft2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Maze\zLeft3.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

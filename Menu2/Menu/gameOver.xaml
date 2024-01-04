@@ -7,10 +7,19 @@
         mc:Ignorable="d"
         Title="gameOver" Height="500" Width="500" WindowStyle="None"  WindowStartupLocation="CenterScreen">
     <Viewbox Stretch="Fill">
-        <Canvas Width="500" Height="500">
-            <Button x:Name="btRestart" Content="Начать заново" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="168" Canvas.Top="154" Height="72" Width="164" Click="btResume_Click"/>
-            <Button x:Name="btExit" Content="Выйти из игры" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btExit_Click" Height="49" Canvas.Left="162" Canvas.Top="345" Width="176"/>
-            <Label Content="Game Over" Canvas.Left="140" Canvas.Top="46" FontFamily="Cascadia Code" FontSize="40" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+        <Canvas Width="500" Height="500" Background="Transparent">
+            <Image Width="500" Height="500" Source="/Menu/GameOver.PNG"/>
+            <Button x:Name="btRestart" Style ="{DynamicResource TransparentButtonStyle}"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="164" Canvas.Top="218" Height="64" Width="172" Click="btRestart_Click">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Menu/Reboot.PNG" Stretch="Uniform"/>
+                </Button.Background>
+            </Button>
+            <Button x:Name="btExit" Style ="{DynamicResource TransparentButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Center" Click="btExit_Click" Height="55" Canvas.Left="173" Canvas.Top="287" Width="154">
+                <Button.Background>
+                    <ImageBrush ImageSource="/Menu/Exit.PNG"/>
+                </Button.Background>
+            </Button>
+
         </Canvas>
     </Viewbox>
 </Window>
