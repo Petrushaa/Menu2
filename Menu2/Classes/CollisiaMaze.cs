@@ -143,11 +143,12 @@ namespace Menu2.Classes
                             {
                                 canvas.Children.Remove(griver);
                                 mobs.Remove(mobe); // Удалите этого Гривера из списка mobs
-                                mob newMob = new mob(canvas, rand);
-                                mobs.Add(newMob);
-                                newMob.makeGrivers();
+                                //mob newMob = new mob(canvas, rand);
+                                //mobs.Add(newMob);
+                                //newMob.makeGrivers();
                             }
                             canvas.Children.Remove(x);
+                            break;
                         }
                     }
                 }
@@ -163,6 +164,7 @@ namespace Menu2.Classes
                             bullet.Source = null;
                             canvas.Children.Remove(bullet);
                             bullets.Remove(bull);
+                            break;
                         }
                     }
                 }

@@ -63,42 +63,42 @@ namespace Menu2.Classes
         public void KeyboardUp(object sender, KeyEventArgs e)
         {
 
-            if (e.Key == Key.W || e.Key == Key.Up)
+            if (e.Key == Key.W )
             {
                 UpKeyPressed = false;
             }
-            if (e.Key == Key.S || e.Key == Key.Down)
+            if (e.Key == Key.S)
             {
                 DownKeyPressed = false;
             }
-            if (e.Key == Key.A || e.Key == Key.Left)
+            if (e.Key == Key.A)
             {
                 LeftKeyPressed = false;
             }
-            if (e.Key == Key.D || e.Key == Key.Right)
+            if (e.Key == Key.D)
             {
                 RightKeyPressed = false;
             }
         }
         public void KeyBoardDown(object sender, KeyEventArgs e)
         {
-            if (e.Key == Key.W || e.Key == Key.Up)
+            if (e.Key == Key.W)
             {
                 UpKeyPressed = true;
                 facing = "up";
             }
-            if (e.Key == Key.S || e.Key == Key.Down)
+            if (e.Key == Key.S)
             {
                 DownKeyPressed = true;
                 facing = "down";
             }
-            if (e.Key == Key.A || e.Key == Key.Left)
+            if (e.Key == Key.A)
             {
                 LeftKeyPressed = true;
                 facing = "left";
                 Character.Source = new BitmapImage(new Uri("characterLeft.png", UriKind.RelativeOrAbsolute));
             }
-            if (e.Key == Key.D || e.Key == Key.Right)
+            if (e.Key == Key.D)
             {
                 RightKeyPressed = true;
                 Character.Source = new BitmapImage(new Uri("characterRight.png", UriKind.RelativeOrAbsolute));

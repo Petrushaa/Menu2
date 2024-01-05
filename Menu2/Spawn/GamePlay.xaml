@@ -12,6 +12,15 @@
             <Image x:Name="Character" Tag="User" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="640" Stretch="Fill" Source="/Spawn/characterLeft.png" Canvas.Top="151"/>
             <Image Source="/Spawn/borders.PNG" Width="1920" Height="1080"/>
             <Image Source="/Spawn/images/trees.PNG" Width="1920" Height="1080"/>
+            <Rectangle Height="80" Tag="Collide"  Canvas.Top="980" Width="806" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="76"/>
+            <Rectangle Height="100" Tag="Collide"  Canvas.Top="980" Width="811" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="1109"/>
+            <Rectangle Height="48" Tag="Collide"  Width="806" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Top="20" Canvas.Left="76"/>
+            <Rectangle Height="48" Tag="Collide"  Width="811" Canvas.Left="1109" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="20"/>
+            <Rectangle Height="306" Tag="Collide"  Width="66" Canvas.Left="1854" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Top="68"/>
+            <Rectangle Height="306" Tag="Collide"  Width="82" Canvas.Left="-3" Canvas.Top="68" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Rectangle Height="380" Tag="Collide"  Width="82" Canvas.Left="-3" Canvas.Top="600" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Rectangle Height="375" Tag="Collide"  Width="82" Canvas.Left="1846" Canvas.Top="605" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Rectangle Height="23" Canvas.Left="233" Tag="Collide" Canvas.Top="840" Width="216" HorizontalAlignment="Center" VerticalAlignment="Top"/>
         </Canvas>
     </Viewbox>
 </Page>

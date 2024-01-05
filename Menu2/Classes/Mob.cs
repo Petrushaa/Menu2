@@ -36,8 +36,8 @@ namespace Menu2.Classes
             griver.Source = new BitmapImage(new Uri("zUp.png", UriKind.Relative));
             Canvas.SetLeft(griver, rand.Next(0, 500) + Canvas.GetLeft(character));
             Canvas.SetTop(griver, rand.Next(0, 720) + Canvas.GetTop(character));
-            griver.Height = 500;
-            griver.Width = 500;
+            griver.Height = character.Height + 30;
+            griver.Width = character.Width + 30;
             canvas.Children.Add(griver);
             Canvas.SetZIndex(griver, 1);
         }

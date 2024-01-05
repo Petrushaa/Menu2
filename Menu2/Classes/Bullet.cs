@@ -21,14 +21,15 @@ namespace Menu2.Classes
         public double bulletTop;
         private int speed = 20;
         public Image bullet = new Image();
-        public DispatcherTimer bulletTimer = new DispatcherTimer();
         private int bulletHeight;
         private int bulletWidth;
-        public Bullet(Canvas canvas, Image character)
+        List<Bullet> bullets;
+        public Bullet(Canvas canvas, Image character, List<Bullet> bullets)
         {
             this.canvas = canvas;
             bulletHeight = ((int)character.Height) / 2;
             bulletWidth = ((int)character.Width) / 2;
+            this.bullets = bullets;
         }
         public void MakeBullet()
         {
@@ -64,25 +65,10 @@ namespace Menu2.Classes
                 bullet.Source = new BitmapImage(new Uri("bulletD.png", UriKind.RelativeOrAbsolute));
                 Canvas.SetTop(bullet, Canvas.GetTop(bullet) + speed);
             }
-            if (Canvas.GetLeft(bullet) < 10 || Canvas.GetLeft(bullet) > (canvas.ActualWidth - 50) || Canvas.GetTop(bullet) > (canvas.ActualHeight - 50) || Canvas.GetTop(bullet) < 10) //ограничения по окну
+            if (Canvas.GetLeft(bullet) < 10 || Canvas.GetLeft(bullet) > 1800 || Canvas.GetTop(bullet) < 10 || Canvas.GetTop(bullet) > 980)
             {
-                bulletTimer.Stop();
                 bullet.Source = null;
-                bulletTimer = null;
-                canvas.Children.Remove(bullet);
+                bullets.Remove(this);
             }
         }
     }
-    //public class BulletManager
-    //{
-    //    private List<Bullet> bullets = new List<Bullet>();
-    //    private DispatcherTimer bulletTimer = new DispatcherTimer();
-
-
-
-    //    //public void AddBullet(Bullet bullet)
-    //    //{
-    //    //    bullets.Add(bullet);
-    //    //}
-    //}
-}

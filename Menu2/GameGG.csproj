@@ -219,26 +219,10 @@
     <Resource Include="Spawn\characterRight.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Maze\characterRight.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Maze\characterLeft.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Spawn\ammo.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Maze\zUp.png" />
-    <Resource Include="Maze\zLeft.png" />
-    <Resource Include="Maze\zRight.png" />
-    <Resource Include="Maze\zDown.png" />
-    <Resource Include="Maze\bulletR.png" />
-    <Resource Include="Maze\bulletU.png" />
-    <Resource Include="Maze\bulletL.png" />
-    <Resource Include="Maze\bulletD.png" />
-    <Resource Include="Maze\WALL.png" />
     <Resource Include="Spawn\wall.png" />
-    <Resource Include="Maze\ammo.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="spawn.jpg" />
@@ -248,9 +232,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Spawn\images\spawn.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Maze\WAY.PNG" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Menu\Resume.PNG" />
@@ -271,19 +252,56 @@
     <Resource Include="Menu\griverMoving.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Maze\zLeft1.PNG" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Maze\zLeft2.PNG" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Maze\zLeft3.PNG" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Maze\Maze.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="bin\Debug\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ExitHot.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\GameOver.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\griverMoving.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\griverMoving.mp4" />
+    <Resource Include="Maze\zUp.png" />
+    <Resource Include="Maze\zRight.png" />
+    <Resource Include="Maze\zLeft3.PNG" />
+    <Resource Include="Maze\zLeft2.PNG" />
+    <Resource Include="Maze\Maze.jpg" />
+    <Resource Include="Maze\zLeft.png" />
+    <Resource Include="Maze\zLeft1.PNG" />
+    <Resource Include="Maze\zDown.png" />
+    <Resource Include="Maze\WAY.PNG" />
+    <Resource Include="Maze\wall.png" />
+    <Resource Include="Maze\characterLeft.png" />
+    <Resource Include="Maze\bulletU.png" />
+    <Resource Include="Maze\bulletR.png" />
+    <Resource Include="Maze\bulletL.png" />
+    <Resource Include="Maze\bulletD.png" />
+    <Resource Include="Maze\ammo.png" />
+    <Resource Include="Maze\characterRight.png" />
+    <Resource Include="Maze\images\ammo.png" />
+    <Resource Include="Maze\images\bulletD.png" />
+    <Resource Include="Maze\images\bulletL.png" />
+    <Resource Include="Maze\images\bulletR.png" />
+    <Resource Include="Maze\images\bulletU.png" />
+    <Resource Include="Maze\images\characterLeft.png" />
+    <Resource Include="Maze\images\characterRight.png" />
+    <Resource Include="Maze\images\Maze.jpg" />
+    <Resource Include="Maze\images\WALL.png" />
+    <Resource Include="Maze\images\WAY.PNG" />
+    <Resource Include="Maze\images\zDown.png" />
+    <Resource Include="Maze\images\zLeft.png" />
+    <Resource Include="Maze\images\zLeft1.PNG" />
+    <Resource Include="Maze\images\zLeft2.PNG" />
+    <Resource Include="Maze\images\zLeft3.PNG" />
+    <Resource Include="Maze\images\zRight.png" />
+    <Resource Include="Maze\images\zUp.png" />
+    <Resource Include="images\Reboot.PNG" />
+    <Resource Include="images\Resume.PNG" />
+    <Resource Include="images\Pause.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

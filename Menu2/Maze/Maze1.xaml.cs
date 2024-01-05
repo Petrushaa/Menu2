@@ -101,7 +101,7 @@ namespace Menu2
         }
         public void ShootBullet()
         {
-            Bullet shootBullet = new Bullet(maincanvas, Character);
+            Bullet shootBullet = new Bullet(maincanvas, Character, bullets);
             bullets.Add(shootBullet);
             shootBullet.direction = PlayerMaze.facing;
             shootBullet.bulletLeft = Canvas.GetLeft(Character) + (Character.Width / 2); //выбираем координаты для спавна пули
@@ -110,14 +110,39 @@ namespace Menu2
         }
         public void DropAmmo()
         {
+            double spawnX, spawnY;
+            bool isColliding;
             Image ammo = new Image();
             // Загружаем картинку из ресурсов проекта
             ammo.Source = new BitmapImage(new Uri("ammo.png", UriKind.RelativeOrAbsolute));
             ammo.Tag = "ammo";
             ammo.Height = ((int)Character.Height);
             ammo.Width = ((int)Character.Width);
-            Canvas.SetTop(ammo, rand.Next(10, Convert.ToInt32(maincanvas.ActualHeight - ammo.Height)));
-            Canvas.SetLeft(ammo, rand.Next(10, Convert.ToInt32(maincanvas.ActualWidth - ammo.Width)));
+            do
+            {
+                isColliding = false;
+                // Генерируем случайные координаты для спавна пули
+                spawnX = rand.Next((int)Canvas.GetLeft(Character)-1000, (int)Canvas.GetLeft(Character) + 1000);
+                spawnY = rand.Next((int)Canvas.GetTop(Character)-1000, (int)Canvas.GetTop(Character) + 1000);
+
+                Rect bulletSpawnArea = new Rect(spawnX, spawnY, ammo.Width, ammo.Height);
+
+                // Проверяем столкновение со всеми препятствиями
+                foreach (UIElement element in maincanvas.Children)
+                {
+                    if (element is Rectangle rectangle && (string)rectangle.Tag == "Collide")
+                    {
+                        Rect rectangleArea = new Rect(Canvas.GetLeft(rectangle), Canvas.GetTop(rectangle), rectangle.Width, rectangle.Height);
+                        if (bulletSpawnArea.IntersectsWith(rectangleArea))
+                        {
+                            isColliding = true;
+                            break;
+                        }
+                    }
+                }
+            } while (isColliding);
+            Canvas.SetTop(ammo, spawnY);
+            Canvas.SetLeft(ammo, spawnX);
             maincanvas.Children.Add(ammo);
             Canvas.SetZIndex(ammo, 1);
             Canvas.SetZIndex(Character, 1);
