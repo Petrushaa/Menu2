@@ -105,13 +105,5 @@ namespace Menu2.Classes
                 facing = "right";
             }
         }
-        public void ShootBullet()
-        {
-            Bullet shootBullet = new Bullet(canvas, Character);
-            shootBullet.direction = facing;
-            shootBullet.bulletLeft = Canvas.GetLeft(Character) + (Character.Width / 2); //выбираем координаты для спавна пули
-            shootBullet.bulletTop = Canvas.GetTop(Character) + (Character.Height / 2); //коорды = положение перса + половина его3 размеров
-            shootBullet.MakeBullet();
-        }
     }
 }

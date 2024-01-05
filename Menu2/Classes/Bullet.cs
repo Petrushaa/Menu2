@@ -15,27 +15,25 @@ namespace Menu2.Classes
 {
     internal class Bullet
     {
-        Canvas canvas = new Canvas();
+        Canvas canvas;
         public string direction;
         public double bulletLeft;
         public double bulletTop;
         private int speed = 20;
-        private Image bullet = new Image();
+        public Image bullet = new Image();
         public DispatcherTimer bulletTimer = new DispatcherTimer();
-        private Random rnd = new Random();
-        private Image character;
         private int bulletHeight;
         private int bulletWidth;
         public Bullet(Canvas canvas, Image character)
         {
             this.canvas = canvas;
-            this.character = character;
             bulletHeight = ((int)character.Height) / 2;
             bulletWidth = ((int)character.Width) / 2;
         }
         public void MakeBullet()
         {
             //Загружаем картинку из ресурсов проекта
+            bullet.Source = new BitmapImage(new Uri("bulletR.png", UriKind.Relative));
             bullet.Height = bulletHeight;
             bullet.Width = bulletWidth;
             bullet.Tag = "bullet";
@@ -43,11 +41,8 @@ namespace Menu2.Classes
             Canvas.SetLeft(bullet, bulletLeft);
             Canvas.SetTop(bullet, bulletTop);
             canvas.Children.Add(bullet);
-            bulletTimer.Interval = TimeSpan.FromMilliseconds(speed);
-            bulletTimer.Tick += new EventHandler(BulletTimerEvent);
-            bulletTimer.Start();
         }
-        private void BulletTimerEvent(object sender, EventArgs e)
+        public void MoveBullet()
         {
             if (direction == "left")
             {
@@ -77,19 +72,17 @@ namespace Menu2.Classes
                 canvas.Children.Remove(bullet);
             }
         }
-        public void DropAmmo()
-        {
-            Image ammo = new Image();
-            // Загружаем картинку из ресурсов проекта
-            ammo.Source = new BitmapImage(new Uri("ammo.png", UriKind.RelativeOrAbsolute));
-            ammo.Tag = "ammo";
-            ammo.Height = ((int)character.Height);
-            ammo.Width = ((int)character.Width);
-            Canvas.SetTop(ammo, rnd.Next(10, Convert.ToInt32(canvas.ActualHeight - ammo.Height)));
-            Canvas.SetLeft(ammo, rnd.Next(10, Convert.ToInt32(canvas.ActualWidth - ammo.Width)));
-            canvas.Children.Add(ammo);
-            Canvas.SetZIndex(ammo, 1);
-            Canvas.SetZIndex(character, 1);
-        }
     }
+    //public class BulletManager
+    //{
+    //    private List<Bullet> bullets = new List<Bullet>();
+    //    private DispatcherTimer bulletTimer = new DispatcherTimer();
+
+
+
+    //    //public void AddBullet(Bullet bullet)
+    //    //{
+    //    //    bullets.Add(bullet);
+    //    //}
+    //}
 }

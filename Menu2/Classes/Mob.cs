@@ -15,6 +15,7 @@ namespace Menu2.Classes
         public Image griver;// Добавлено свойство griver
         public int Health = 100;// Добавлено свойство Health
         Random rand;
+        public static Image character;
         public mob(Canvas canvas, Random rand)
         {
             this.canvas = canvas;
@@ -33,8 +34,8 @@ namespace Menu2.Classes
             griver = new Image(); // Используйте свойство griver
             griver.Tag = "griver";
             griver.Source = new BitmapImage(new Uri("zUp.png", UriKind.Relative));
-            Canvas.SetLeft(griver, rand.Next(0, 1280));
-            Canvas.SetTop(griver, rand.Next(0, 720));
+            Canvas.SetLeft(griver, rand.Next(0, 500) + Canvas.GetLeft(character));
+            Canvas.SetTop(griver, rand.Next(0, 720) + Canvas.GetTop(character));
             griver.Height = 500;
             griver.Width = 500;
             canvas.Children.Add(griver);

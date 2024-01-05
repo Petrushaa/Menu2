@@ -32,14 +32,16 @@ namespace Menu2
         RandomMaze randomMaze;
         List<mob> mobs = new List<mob>();
         Random rand = new Random();
+        List<Bullet> bullets = new List<Bullet>();
         public Maze1()
         {
             InitializeComponent();
             randomMaze = new RandomMaze(maincanvas);
             GameScreen.Focus();
-            collisia = new CollisiaMaze(maincanvas, Character, player2, rand);
+            collisia = new CollisiaMaze(maincanvas, Character, player2, bullets, rand);
             player2 = new PlayerMaze(maincanvas, Character, collisia);
             collisia.player = player2;
+            mob.character = Character;
             RestartGame();
             GameTimer.Start();
             GameTimer.Interval = TimeSpan.FromMilliseconds(5);
@@ -54,7 +56,7 @@ namespace Menu2
         private void GameTick(object sender, EventArgs e)
         {
             collisia.elementsCopy = maincanvas.Children.Cast<UIElement>().ToList(); //передаем список из всех дочерних элементов на канвасе
-            lbAmmo.Content = "Ammo: " + Player.ammo;
+            lbAmmo.Content = "Ammo: " + PlayerMaze.ammo;
             if ((Canvas.GetLeft(Character) > maincanvas.ActualWidth) || (Canvas.GetTop(Character) > maincanvas.ActualHeight))
             {
                 GameTimer.Stop();
@@ -79,23 +81,46 @@ namespace Menu2
                 gOver.Show();
                 healthBar.Value = 0;
             }
-            player2.Move();//активируем метод движения нашего игрока
             collisia.mobs = mobs;
-            collisia.griversCollide();
+            player2.Move();//активируем метод движения нашего игрока
+            BulletTimer_Tick();
         }
         private void KeyboardUp(object sender, KeyEventArgs e)
         {
             player2.KeyboardUp(sender, e);
-            if (e.Key == Key.Space && Player.ammo > 0 && gameOver == false)
+            if (e.Key == Key.Space && PlayerMaze.ammo > 0 && gameOver == false)
             {
-                Player.ammo--;
-                player2.ShootBullet();
-                if (Player.ammo < 1)
+                PlayerMaze.ammo--;
+                ShootBullet();
+                if (PlayerMaze.ammo < 1)
                 {
-                    Bullet ammo = new Bullet(maincanvas, Character);
-                    ammo.DropAmmo();
+                    
+                    DropAmmo();
                 }
             }
+        }
+        public void ShootBullet()
+        {
+            Bullet shootBullet = new Bullet(maincanvas, Character);
+            bullets.Add(shootBullet);
+            shootBullet.direction = PlayerMaze.facing;
+            shootBullet.bulletLeft = Canvas.GetLeft(Character) + (Character.Width / 2); //выбираем координаты для спавна пули
+            shootBullet.bulletTop = Canvas.GetTop(Character) + (Character.Height / 2); //коорды = положение перса + половина его3 размеров
+            shootBullet.MakeBullet();
+        }
+        public void DropAmmo()
+        {
+            Image ammo = new Image();
+            // Загружаем картинку из ресурсов проекта
+            ammo.Source = new BitmapImage(new Uri("ammo.png", UriKind.RelativeOrAbsolute));
+            ammo.Tag = "ammo";
+            ammo.Height = ((int)Character.Height);
+            ammo.Width = ((int)Character.Width);
+            Canvas.SetTop(ammo, rand.Next(10, Convert.ToInt32(maincanvas.ActualHeight - ammo.Height)));
+            Canvas.SetLeft(ammo, rand.Next(10, Convert.ToInt32(maincanvas.ActualWidth - ammo.Width)));
+            maincanvas.Children.Add(ammo);
+            Canvas.SetZIndex(ammo, 1);
+            Canvas.SetZIndex(Character, 1);
         }
         private void KeyBoardDown(object sender, KeyEventArgs e)
         {
@@ -114,6 +139,13 @@ namespace Menu2
                 GameTimer.Stop();
             }
         }
+        public void BulletTimer_Tick()
+        {
+            foreach (Bullet bullet in bullets.ToList())
+            {
+                bullet.MoveBullet();
+            }
+        }
         public void RestartGame()
         {
             Character.Source = new BitmapImage(new Uri("characterRight.png", UriKind.RelativeOrAbsolute));
@@ -122,19 +154,19 @@ namespace Menu2
                 maincanvas.Children.Remove(mobe.griver);
             }
             mobs.Clear(); // Очистите список mobs
-            //for (int i = 0; i < 3; i++)
-            //{
-            //    mob newMob = new mob(maincanvas, rand);
-            //    mobs.Add(newMob);
-            //    newMob.makeGrivers();
-            //}
+            for (int i = 0; i < 3; i++)
+            {
+                mob newMob = new mob(maincanvas, rand);
+                mobs.Add(newMob);
+                newMob.makeGrivers();
+            }
             player2.UpKeyPressed = false;
             player2.DownKeyPressed = false;
             player2.LeftKeyPressed = false;
             player2.RightKeyPressed = false;
             gameOver = false;
             player2.Health = 100;
-            Player.ammo = 10;
+            PlayerMaze.ammo = 10;
             GameTimer.Start();
         }
     }

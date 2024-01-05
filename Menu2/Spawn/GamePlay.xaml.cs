@@ -40,7 +40,7 @@ namespace Menu2
         }
         private void GameTick(object sender, EventArgs e)
         {
-            collisia.elementsCopy = GameScreen.Children.Cast<UIElement>().ToList(); //обновляем список элементов, которые есть на канвасе
+            collisia.elementsCopy = GameScreen.Children.OfType<Rectangle>().ToList();
             if ((Canvas.GetLeft(Character) < 0) || (Canvas.GetTop(Character) < 0) || (Canvas.GetLeft(Character) > GameScreen.Width) || (Canvas.GetTop(Character) > GameScreen.Height))
             {
                 GameTimer.Stop();

@@ -17,24 +17,26 @@ namespace Menu2.Classes
         public Canvas canvas;
         public List<UIElement> elementsCopy;
         public List<mob> mobs;
-        private Random rand;
+        Random rand;
         private List<BitmapImage> rightImages;
         private List<BitmapImage> downImages;
         private List<BitmapImage> upImages;
         private List<BitmapImage> leftImages;
+        private List<Bullet> bullets;
         // Индексы для отслеживания текущего изображения в каждой коллекции
         int rightIndex = 0;
         int downIndex = 0;
         int upIndex = 0;
         int leftIndex = 0;
 
-        public CollisiaMaze(Canvas canvas, Image object1, PlayerMaze player, Random rand = null) //конструктор
+        public CollisiaMaze(Canvas canvas, Image object1, PlayerMaze player, List<Bullet> bullets, Random rand = null) //конструктор
         {
             //Конструктор присваиваем все переменные
             this.object1 = object1;
             this.player = player;
             this.canvas = canvas;
             this.rand = rand;
+            this.bullets = bullets;
 
             rightImages = LoadImages("right");
             downImages = LoadImages("down");
@@ -55,11 +57,32 @@ namespace Menu2.Classes
 
             return images;
         }
-
-        public void griversCollide()
+        public void Collide(string Dir) // Сам метод коллизии
         {
             foreach (UIElement x in elementsCopy)
             {
+                if (x is Rectangle imagex && (string)imagex.Tag == "Collide") //Если у ректангле тег Коллизии, то 
+                {
+                    Rect PlayerHB = new Rect(Canvas.GetLeft(object1), Canvas.GetTop(object1), object1.Width, object1.Height);//создаем хитбокс объекта (персонажа) 
+                    Rect ToCollide = new Rect(Canvas.GetLeft(imagex), Canvas.GetTop(imagex), imagex.RenderSize.Width, imagex.RenderSize.Height);//Создаем хитбокс коллизии, т.е. нашего ректа
+                    if (PlayerHB.IntersectsWith(ToCollide))//Проверяем пересекаются ли хитбоксы объекта (персонажа) с нашей коллизией
+                    {
+                        if (Dir == "x")//Если мы передали, что передвинулись по кординате х, то
+                        {
+                            Canvas.SetLeft(object1, Canvas.GetLeft(object1) - player.SpeedX);
+                            Canvas.SetLeft(canvas, Canvas.GetLeft(canvas) + player.SpeedX); //Тут мы его передвигаем обратно по кординате х
+                            player.SpeedX = 0;  //Обнуление переменных _SpeedX и _SpeedY в методе Collide происходит для того, чтобы предотвратить дальнейшее движение
+                                                //объекта в направлении, в котором была обнаружена коллизия. Если вы не обнулите эти переменные, то объект продолжит
+                                                //двигаться в направлении, в котором была обнаружена коллизия, что может привести к нежелательным последствиям .
+                        }
+                        else //Если мы передали, что передвинулись по кординате у , то
+                        {
+                            Canvas.SetTop(object1, Canvas.GetTop(object1) + player.SpeedY);
+                            Canvas.SetTop(canvas, Canvas.GetTop(canvas) - player.SpeedY);//Тут мы его передвигаем обратно по кординате у
+                            player.SpeedY = 0;
+                        }
+                    }
+                }
                 //ии гриверов
                 if (x is Image imageG && (string)imageG.Tag == "griver")
                 {
@@ -94,6 +117,17 @@ namespace Menu2.Classes
                         leftIndex = (leftIndex + 1) % leftImages.Count;
                     }
                 }
+                if (x is Image imagey && (string)imagey.Tag == "ammo") //Если у ректангле тег Коллизии, то 
+                {
+                    Rect PlayerHB = new Rect(Canvas.GetLeft(object1), Canvas.GetTop(object1), object1.Width, object1.Height);//создаем хитбокс объекта (персонажа) 
+                    Rect ToCollide = new Rect(Canvas.GetLeft(imagey), Canvas.GetTop(imagey), imagey.Width, imagey.Height);//Создаем хитбокс коллизии, т.е. нашего ректа
+                    if (PlayerHB.IntersectsWith(ToCollide))//Проверяем пересекаются ли хитбоксы объекта (персонажа) с нашей коллизией
+                    {
+                        canvas.Children.Remove(imagey);
+                        imagey.Source = null;
+                        PlayerMaze.ammo += 5;
+                    }
+                }
                 //Убийство гриверов
                 foreach (mob mobe in mobs.ToList()) // Используйте ToList(), чтобы избежать ошибки изменения коллекции во время итерации
                 {
@@ -117,45 +151,22 @@ namespace Menu2.Classes
                         }
                     }
                 }
-            }
-        }
-        public void Collide(string Dir) // Сам метод коллизии
-        {
-            foreach (var x in canvas.Children.OfType<Rectangle>())
-            {
-                if ((string)x.Tag == "Collide") //Если у ректангле тег Коллизии, то 
+                foreach (Bullet bull in bullets.ToList()) //можно поменять цикл и иф местами
                 {
-                    Rect PlayerHB = new Rect(Canvas.GetLeft(object1), Canvas.GetTop(object1), object1.Width, object1.Height);//создаем хитбокс объекта (персонажа) 
-                    Rect ToCollide = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.Width, x.Height);//Создаем хитбокс коллизии, т.е. нашего ректа
-                    if (PlayerHB.IntersectsWith(ToCollide))//Проверяем пересекаются ли хитбоксы объекта (персонажа) с нашей коллизией
+                    if (x is Rectangle wall && (string)wall.Tag == "Collide")
                     {
-                        if (Dir == "x")//Если мы передали, что передвинулись по кординате х, то
+                        Image bullet = bull.bullet;
+                        Rect bulHB = new Rect(Canvas.GetLeft(bullet), Canvas.GetTop(bullet), bullet.Width, bullet.Height); ;//создаем хитбокс объекта (персонажа) 
+                        Rect wallHB = new Rect(Canvas.GetLeft(wall), Canvas.GetTop(wall), wall.Width, wall.Height);
+                        if (bulHB.IntersectsWith(wallHB))
                         {
-                            Canvas.SetLeft(object1, Canvas.GetLeft(object1) - player.SpeedX);
-                            Canvas.SetLeft(canvas, Canvas.GetLeft(canvas) + player.SpeedX); //Тут мы его передвигаем обратно по кординате х
-                            player.SpeedX = 0;  //Обнуление переменных _SpeedX и _SpeedY в методе Collide происходит для того, чтобы предотвратить дальнейшее движение
-                                                //объекта в направлении, в котором была обнаружена коллизия. Если вы не обнулите эти переменные, то объект продолжит
-                                                //двигаться в направлении, в котором была обнаружена коллизия, что может привести к нежелательным последствиям .
-                        }
-                        else //Если мы передали, что передвинулись по кординате у , то
-                        {
-                            Canvas.SetTop(object1, Canvas.GetTop(object1) + player.SpeedY);
-                            Canvas.SetTop(canvas, Canvas.GetTop(canvas) - player.SpeedY);//Тут мы его передвигаем обратно по кординате у
-                            player.SpeedY = 0;
+                            bullet.Source = null;
+                            canvas.Children.Remove(bullet);
+                            bullets.Remove(bull);
                         }
                     }
                 }
-                //if (x is Image imagey && (string)imagey.Tag == "ammo") //Если у ректангле тег Коллизии, то 
-                //{
-                //    Rect PlayerHB = new Rect(Canvas.GetLeft(object1), Canvas.GetTop(object1), object1.Width, object1.Height);//создаем хитбокс объекта (персонажа) 
-                //    Rect ToCollide = new Rect(Canvas.GetLeft(imagey), Canvas.GetTop(imagey), imagey.Width, imagey.Height);//Создаем хитбокс коллизии, т.е. нашего ректа
-                //    if (PlayerHB.IntersectsWith(ToCollide))//Проверяем пересекаются ли хитбоксы объекта (персонажа) с нашей коллизией
-                //    {
-                //        canvas.Children.Remove(imagey);
-                //        imagey.Source = null;
-                //        Player.ammo += 5;
-                //    }
-                //}
+
             }
         }
     }
