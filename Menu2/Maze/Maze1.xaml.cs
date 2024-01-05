@@ -25,10 +25,9 @@ namespace Menu2
     public partial class Maze1 : Page
     {
         public DispatcherTimer GameTimer = new DispatcherTimer();
-        Player player2;
-        Collisia collisia;
+        PlayerMaze player2;
+        CollisiaMaze collisia;
         bool gameOver;
-        mob mobe;
         hotSettings hotset;
         RandomMaze randomMaze;
         List<mob> mobs = new List<mob>();
@@ -36,15 +35,15 @@ namespace Menu2
         public Maze1()
         {
             InitializeComponent();
-            randomMaze = new RandomMaze(windowMaze, GameScreen);
+            randomMaze = new RandomMaze(maincanvas);
             GameScreen.Focus();
-            collisia = new Collisia(GameScreen, Character, player2, rand);
-            player2 = new Player(GameScreen, Character, collisia);
+            collisia = new CollisiaMaze(maincanvas, Character, player2, rand);
+            player2 = new PlayerMaze(maincanvas, Character, collisia);
             collisia.player = player2;
             RestartGame();
+            GameTimer.Start();
             GameTimer.Interval = TimeSpan.FromMilliseconds(5);
             GameTimer.Tick += GameTick;
-            GameTimer.Start();
             hotset = new hotSettings(GameTimer);
             randomMaze.StartMaze();
             Canvas.SetZIndex(Character, 1);
@@ -54,9 +53,9 @@ namespace Menu2
         }
         private void GameTick(object sender, EventArgs e)
         {
-            collisia.elementsCopy = GameScreen.Children.Cast<UIElement>().ToList(); //передаем список из всех дочерних элементов на канвасе
+            collisia.elementsCopy = maincanvas.Children.Cast<UIElement>().ToList(); //передаем список из всех дочерних элементов на канвасе
             lbAmmo.Content = "Ammo: " + Player.ammo;
-            if ((Canvas.GetLeft(Character) > GameScreen.ActualWidth) || (Canvas.GetTop(Character) > GameScreen.ActualHeight))
+            if ((Canvas.GetLeft(Character) > maincanvas.ActualWidth) || (Canvas.GetTop(Character) > maincanvas.ActualHeight))
             {
                 GameTimer.Stop();
                 // Get the navigation service from the current page
@@ -93,7 +92,7 @@ namespace Menu2
                 player2.ShootBullet();
                 if (Player.ammo < 1)
                 {
-                    Bullet ammo = new Bullet(GameScreen, Character);
+                    Bullet ammo = new Bullet(maincanvas, Character);
                     ammo.DropAmmo();
                 }
             }
@@ -120,15 +119,15 @@ namespace Menu2
             Character.Source = new BitmapImage(new Uri("characterRight.png", UriKind.RelativeOrAbsolute));
             foreach (mob mobe in mobs)
             {
-                GameScreen.Children.Remove(mobe.griver);
+                maincanvas.Children.Remove(mobe.griver);
             }
             mobs.Clear(); // Очистите список mobs
-            for (int i = 0; i < 3; i++)
-            {
-                mob newMob = new mob(GameScreen, rand);
-                mobs.Add(newMob);
-                newMob.makeGrivers();
-            }
+            //for (int i = 0; i < 3; i++)
+            //{
+            //    mob newMob = new mob(maincanvas, rand);
+            //    mobs.Add(newMob);
+            //    newMob.makeGrivers();
+            //}
             player2.UpKeyPressed = false;
             player2.DownKeyPressed = false;
             player2.LeftKeyPressed = false;

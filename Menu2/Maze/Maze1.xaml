@@ -5,13 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Menu2"
         mc:Ignorable="d"
-        Title="Maze1" Height="1080" Width="1920">
+        Title="Maze1" Height="1080" Width="1920" KeyUp="KeyboardUp" KeyDown="KeyBoardDown">
     <Viewbox Stretch="Fill">
-        <Canvas x:Name="GameScreen" Focusable="True" KeyUp="KeyboardUp" KeyDown="KeyBoardDown" Background="Gray" Height="1080" Width="1920">
-            <Image x:Name="Character" Tag="User" Width="30" Height="30" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Top="1050" Canvas.Left="945" Source="/images/characterRight.png" Stretch="Fill"/>
-            <ProgressBar x:Name="healthBar" Height="30"  Width="200" Value="100" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="1720" Canvas.Top="30"/>
-            <Label x:Name="lbHealth" Content="Health:" Canvas.Left="1626" Canvas.Top="25" Height="40" Width="89" FontSize="30" FontFamily="Bahnschrift SemiBold SemiCondensed" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-            <Label x:Name="lbAmmo" Content="Ammo: 0" Canvas.Left="91" Canvas.Top="10" Height="40" Width="122" FontSize="30" FontFamily="Bahnschrift SemiBold SemiCondensed" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <Canvas x:Name="GameScreen" Focusable="True"  Height="1080" Width="1920">
+            <!--нижний канвас просто нужен-->
+            <Canvas x:Name="maincanvas" Height="10800" Width="19200" Canvas.Left="-8580" Canvas.Top="-9720">
+                <Image x:Name="Character" Tag="User" Width="100" Height="100" Canvas.Top="10500" Canvas.Left="9550" Source="/images/characterRight.png" Stretch="Fill" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            </Canvas>
+            <!--Канвас для лабиринта-->
+            <Canvas x:Name="Bars">
+                <!--канвас для того, что всегда будет на одном месте (бары перс)-->
+                <ProgressBar x:Name="healthBar" Height="30"  Width="200" Value="100" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="1720" Canvas.Top="30"/>
+                <Label x:Name="lbHealth" Content="Health:" Canvas.Left="1626" Canvas.Top="25" Height="40" Width="89" FontSize="30" FontFamily="Bahnschrift SemiBold SemiCondensed" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label x:Name="lbAmmo" Content="Ammo: 0" Canvas.Left="91" Canvas.Top="10" Height="40" Width="122" FontSize="30" FontFamily="Bahnschrift SemiBold SemiCondensed" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Canvas>
 
         </Canvas>
     </Viewbox>

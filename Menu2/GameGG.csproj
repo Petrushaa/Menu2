@@ -57,8 +57,10 @@
     </ApplicationDefinition>
     <Compile Include="Classes\Bullet.cs" />
     <Compile Include="Classes\Collisia1.cs" />
+    <Compile Include="Classes\CollisiaMaze.cs" />
     <Compile Include="Classes\Mob.cs" />
     <Compile Include="Classes\Player.cs" />
+    <Compile Include="Classes\PlayerMaze.cs" />
     <Compile Include="Classes\RandomMaze.cs" />
     <Compile Include="Game.xaml.cs">
       <DependentUpon>Game.xaml</DependentUpon>
@@ -251,16 +253,6 @@
     <Resource Include="Maze\WAY.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="bin\Debug\WALL.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="bin\Debug\WAY.PNG" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="bin\Debug\Wall1.png" />
-    <Resource Include="bin\Debug\Way1.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Menu\Resume.PNG" />
   </ItemGroup>
   <ItemGroup>
@@ -286,6 +278,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Maze\zLeft3.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Maze\Maze.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\Debug\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -13,15 +13,13 @@ namespace Menu2.Classes
 {
     internal class RandomMaze
     {
-        Page page;
         Random random = new Random();
         static int WidthMaze = 53;
         static int HeightMaze = 33;
         int[,] Maze = new int[HeightMaze, WidthMaze];  //матрица лабиринта
         Canvas mainCanvas;
-        public RandomMaze(Page page, Canvas mainCanvas)
+        public RandomMaze(Canvas mainCanvas)
         {
-            this.page = page;
             this.mainCanvas = mainCanvas;
         }
 
@@ -142,19 +140,18 @@ namespace Menu2.Classes
                 }
             }
         }
-
         private void PaintMaze()       // отрисовка матрицы
         {
             ImageBrush wall = new ImageBrush();
             ImageBrush way = new ImageBrush();
-            wall.ImageSource = new BitmapImage(new Uri("Wall1.png", UriKind.Relative));
-            way.ImageSource = new BitmapImage(new Uri("Way1.png", UriKind.Relative));
+            wall.ImageSource = new BitmapImage(new Uri("wall.png", UriKind.Relative));
+            way.ImageSource = new BitmapImage(new Uri("way.png", UriKind.Relative));
             for (int i = 0; i < HeightMaze; i++)  //брутфорс матрицы лабиринта
             {
                 for (int j = 0; j < WidthMaze; j++)
                 {
-                    double cellWidth = page.Width / WidthMaze;
-                    double cellHeight = page.Height / HeightMaze;
+                    double cellWidth = mainCanvas.Width / WidthMaze;
+                    double cellHeight = mainCanvas.Height / HeightMaze;
                     switch (Maze[i, j])
                     {
                         case 0:
