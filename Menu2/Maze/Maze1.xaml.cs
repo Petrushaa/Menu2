@@ -63,16 +63,19 @@ namespace Menu2
             foreach (mob mobe in mobs)
             {
                 Image mobb = mobe.griver;
-                if (Canvas.GetLeft(mobb) < Canvas.GetLeft(Character))
+                if ((Math.Abs(Canvas.GetTop(mobb) - Canvas.GetTop(Character)) < 650) || (Math.Abs(Canvas.GetLeft(mobb) - Canvas.GetLeft(Character)) < 1000))
                 {
-                    //право
+                    if (mobe.direction == "Right")
+                    {
+                        //право
 
-                    AnimateGriver(3, 5, mobb);
-                }
-                if (Canvas.GetLeft(mobb) > Canvas.GetLeft(Character))
-                {
-                    //лево
-                    AnimateGriver(0, 2, mobb);
+                        AnimateGriver(3, 5, mobb);
+                    }
+                    if (mobe.direction == "Left")
+                    {
+                        //лево
+                        AnimateGriver(0, 2, mobb);
+                    }
                 }
             }
             if (NitroUsed == true)
@@ -244,6 +247,7 @@ namespace Menu2
                 mob newMob = new mob(maincanvas, rand);
                 mobs.Add(newMob);
                 newMob.makeGrivers();
+                AnimateGriver(3, 5, newMob.griver);
             }
             player2.UpKeyPressed = false;
             player2.DownKeyPressed = false;
@@ -253,8 +257,7 @@ namespace Menu2
             player2.Health = 100;
             PlayerMaze.ammo = 10;
             GameTimer.Start();
-            //griverTimer.Start();
-
+            griverTimer.Start();
         }
     }
 }

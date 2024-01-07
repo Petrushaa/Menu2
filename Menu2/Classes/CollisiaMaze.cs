@@ -126,6 +126,7 @@ namespace Menu2.Classes
                 {
                     Canvas.SetLeft(mobb, Canvas.GetLeft(mobb) + mob.griverSpeed);
                     //право
+                    mobe.direction = "Right";
                 }
                 if (Canvas.GetTop(mobb) > Canvas.GetTop(object1))
                 {
@@ -139,6 +140,7 @@ namespace Menu2.Classes
                 {
                     Canvas.SetLeft(mobb, Canvas.GetLeft(mobb) - mob.griverSpeed);
                     //лево
+                    mobe.direction = "Left";
                 }
             }
         }

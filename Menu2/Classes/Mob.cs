@@ -16,6 +16,7 @@ namespace Menu2.Classes
         public int Health = 100;// Добавлено свойство Health
         Random rand;
         public static Image character;
+        public string direction;
         public mob(Canvas canvas, Random rand)
         {
             this.canvas = canvas;
