@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Menu2.Menu"
         mc:Ignorable="d"
-        Title="gameOver" Height="500" Width="500" WindowStyle="None"  WindowStartupLocation="CenterScreen">
+        Title="gameOver" Height="1000" Width="1000" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen">
     <Viewbox Stretch="Fill">
         <Canvas Width="500" Height="500" Background="Transparent">
-            <Image Width="500" Height="500" Source="/Menu/GameOver.PNG"/>
+            <Image Width="500" Height="500" Source="/Menu/GameOver.PNG" HorizontalAlignment="Left" Canvas.Left="10" VerticalAlignment="Center"/>
             <Button x:Name="btRestart" Style ="{DynamicResource TransparentButtonStyle}"  HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="164" Canvas.Top="218" Height="64" Width="172" Click="btRestart_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="/Menu/Reboot.PNG" Stretch="Uniform"/>

@@ -12,16 +12,16 @@ namespace Menu2.Classes
     internal class PlayerMaze
     {
         public bool UpKeyPressed, DownKeyPressed, LeftKeyPressed, RightKeyPressed;
-        public float SpeedX, SpeedY, Friction, Speed;
+        public float SpeedX, SpeedY, Friction;
         public Image Character;
         public static string facing = "up";
         private Canvas canvas;
         public static int ammo = 10;
         public CollisiaMaze collisia;
-        public int Health = 100;
-        public PlayerMaze(Canvas canvas, Image Character, CollisiaMaze collisia, float SpeedY = 0, float SpeedX = 0, bool UpKeyPressed = false, bool DownKeyPressed = false, bool LeftKeyPressed = false, bool RightKeyPressed = false, float Friction = 0.77f, float Speed = 2f)
+        public int Health = 1000;
+        public float Speed = 2f;
+        public PlayerMaze(Canvas canvas, Image Character, CollisiaMaze collisia, float SpeedY = 0, float SpeedX = 0, bool UpKeyPressed = false, bool DownKeyPressed = false, bool LeftKeyPressed = false, bool RightKeyPressed = false, float Friction = 0.77f)
         {
-            this.Speed = Speed;
             this.SpeedY = SpeedY;
             this.SpeedX = SpeedX;
             this.Friction = Friction;

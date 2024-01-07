@@ -5,19 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Menu2"
         mc:Ignorable="d"
-        Title="hotSettings" Height="500" Width="500" WindowStyle="None"  WindowStartupLocation="CenterScreen">
+        Title="hotSettings" Height="1000" Width="1000" WindowStyle="None" AllowsTransparency="True" Background="Transparent"  WindowStartupLocation="CenterScreen">
     <Viewbox Stretch="Fill">
-        <Canvas Width="500" Height="500">
-            <Button x:Name="btResume" Style ="{DynamicResource TransparentButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="90" Canvas.Top="124" Height="112" Width="320" Click="btResume_Click">
+        <Canvas Width="1000" Height="1000">
+            <Image Source="/Menu/Pause.PNG" Height="1000" Width="1000"></Image>
+            <Button x:Name="btResume" Style ="{DynamicResource TransparentButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="254" Canvas.Top="249" Height="209" Width="492" Click="btResume_Click">
                 <Button.Background>
                     <ImageBrush ImageSource="/Menu/Resume.PNG" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="btExit" Style ="{DynamicResource TransparentButtonStyle}" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btExit_Click" Height="72" Canvas.Left="103" Canvas.Top="342" Width="294">
+            <Button x:Name="btExit" Style ="{DynamicResource TransparentButtonStyle}" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btExit_Click" Height="122" Canvas.Left="282" Canvas.Top="608" Width="436">
                 <Button.Background>
                     <ImageBrush ImageSource="/Menu/ExitHot.PNG" Stretch="Uniform"/>
                 </Button.Background>
             </Button>
+            <Image Height="100" Canvas.Left="85" Canvas.Top="180" Width="100"/>
         </Canvas>
     </Viewbox>
 </Window>

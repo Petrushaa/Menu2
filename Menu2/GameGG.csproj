@@ -59,6 +59,7 @@
     <Compile Include="Classes\Collisia1.cs" />
     <Compile Include="Classes\CollisiaMaze.cs" />
     <Compile Include="Classes\Mob.cs" />
+    <Compile Include="Classes\MobAnimation.cs" />
     <Compile Include="Classes\Player.cs" />
     <Compile Include="Classes\PlayerMaze.cs" />
     <Compile Include="Classes\RandomMaze.cs" />
@@ -265,16 +266,14 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\griverMoving.mp4" />
-    <Resource Include="Maze\zUp.png" />
-    <Resource Include="Maze\zRight.png" />
-    <Resource Include="Maze\zLeft3.PNG" />
-    <Resource Include="Maze\zLeft2.PNG" />
+    <Resource Include="Maze\griver6.png" />
+    <Resource Include="Maze\griver5.png" />
+    <Resource Include="Maze\griver4.png" />
+    <Resource Include="Menu\Pause.PNG" />
+    <Resource Include="Maze\griver3.PNG" />
+    <Resource Include="Maze\griver2.PNG" />
     <Resource Include="Maze\Maze.jpg" />
-    <Resource Include="Maze\zLeft.png" />
-    <Resource Include="Maze\zLeft1.PNG" />
-    <Resource Include="Maze\zDown.png" />
-    <Resource Include="Maze\WAY.PNG" />
-    <Resource Include="Maze\wall.png" />
+    <Resource Include="Maze\griver1.PNG" />
     <Resource Include="Maze\characterLeft.png" />
     <Resource Include="Maze\bulletU.png" />
     <Resource Include="Maze\bulletR.png" />
@@ -297,8 +296,6 @@
     <Resource Include="Maze\images\zLeft1.PNG" />
     <Resource Include="Maze\images\zLeft2.PNG" />
     <Resource Include="Maze\images\zLeft3.PNG" />
-    <Resource Include="Maze\images\zRight.png" />
-    <Resource Include="Maze\images\zUp.png" />
     <Resource Include="images\Reboot.PNG" />
     <Resource Include="images\Resume.PNG" />
     <Resource Include="images\Pause.PNG" />

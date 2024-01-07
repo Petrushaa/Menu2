@@ -7,6 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace Menu2.Classes
 {
@@ -18,15 +19,9 @@ namespace Menu2.Classes
         public List<UIElement> elementsCopy;
         public List<mob> mobs;
         Random rand;
-        private List<BitmapImage> rightImages;
-        private List<BitmapImage> downImages;
-        private List<BitmapImage> upImages;
-        private List<BitmapImage> leftImages;
         private List<Bullet> bullets;
         // Индексы для отслеживания текущего изображения в каждой коллекции
         int rightIndex = 0;
-        int downIndex = 0;
-        int upIndex = 0;
         int leftIndex = 0;
 
         public CollisiaMaze(Canvas canvas, Image object1, PlayerMaze player, List<Bullet> bullets, Random rand = null) //конструктор
@@ -38,24 +33,6 @@ namespace Menu2.Classes
             this.rand = rand;
             this.bullets = bullets;
 
-            rightImages = LoadImages("right");
-            downImages = LoadImages("down");
-            upImages = LoadImages("up");
-            leftImages = LoadImages("left");
-
-        }
-        private List<BitmapImage> LoadImages(string direction)
-        {
-            List<BitmapImage> images = new List<BitmapImage>();
-
-            for (int i = 1; i <= 3; i++) // Предположим, у вас есть 3 изображения для каждого направления
-            {
-                string path = $"z{direction}{i}.png"; // Предположим, что ваши изображения названы zRight1.png, zRight2.png, zRight3.png и т.д.
-                BitmapImage image = new BitmapImage(new Uri(path, UriKind.Relative));
-                images.Add(image);
-            }
-
-            return images;
         }
         public void Collide(string Dir) // Сам метод коллизии
         {
@@ -81,40 +58,6 @@ namespace Menu2.Classes
                             Canvas.SetTop(canvas, Canvas.GetTop(canvas) - player.SpeedY);//Тут мы его передвигаем обратно по кординате у
                             player.SpeedY = 0;
                         }
-                    }
-                }
-                //ии гриверов
-                if (x is Image imageG && (string)imageG.Tag == "griver")
-                {
-                    Rect PlayerHB = new Rect(Canvas.GetLeft(object1), Canvas.GetTop(object1), object1.Width, object1.Height);//создаем хитбокс объекта (персонажа) 
-                    Rect GriverHB = new Rect(Canvas.GetLeft(imageG), Canvas.GetTop(imageG), imageG.Width, imageG.Height);
-                    if (PlayerHB.IntersectsWith(GriverHB))
-                    {
-                        player.Health -= 1;
-                    }
-                    if (Canvas.GetLeft(x) < Canvas.GetLeft(object1))
-                    {
-                        Canvas.SetLeft(x, Canvas.GetLeft(x) + mob.zombieSpeed);
-                        ((Image)x).Source = rightImages[rightIndex];
-                        rightIndex = (rightIndex + 1) % rightImages.Count;
-                    }
-                    if (Canvas.GetTop(x) > Canvas.GetTop(object1))
-                    {
-                        Canvas.SetTop(x, Canvas.GetTop(x) - mob.zombieSpeed);
-                        ((Image)x).Source = rightImages[downIndex];
-                        downIndex = (downIndex + 1) % rightImages.Count;
-                    }
-                    if (Canvas.GetTop(x) < Canvas.GetTop(object1))
-                    {
-                        Canvas.SetTop(x, Canvas.GetTop(x) + mob.zombieSpeed);
-                        ((Image)x).Source = upImages[upIndex];
-                        upIndex = (upIndex + 1) % upImages.Count;
-                    }
-                    if (Canvas.GetLeft(x) > Canvas.GetLeft(object1))
-                    {
-                        Canvas.SetLeft(x, Canvas.GetLeft(x) - mob.zombieSpeed);
-                        ((Image)x).Source = leftImages[leftIndex];
-                        leftIndex = (leftIndex + 1) % leftImages.Count;
                     }
                 }
                 if (x is Image imagey && (string)imagey.Tag == "ammo") //Если у ректангле тег Коллизии, то 
@@ -152,9 +95,9 @@ namespace Menu2.Classes
                         }
                     }
                 }
-                foreach (Bullet bull in bullets.ToList()) //можно поменять цикл и иф местами
-                {
-                    if (x is Rectangle wall && (string)wall.Tag == "Collide")
+                 if (x is Rectangle wall && (string)wall.Tag == "Collide")//можно поменять цикл и иф местами
+                 {
+                    foreach (Bullet bull in bullets.ToList()) 
                     {
                         Image bullet = bull.bullet;
                         Rect bulHB = new Rect(Canvas.GetLeft(bullet), Canvas.GetTop(bullet), bullet.Width, bullet.Height); ;//создаем хитбокс объекта (персонажа) 
@@ -167,8 +110,36 @@ namespace Menu2.Classes
                             break;
                         }
                     }
+                 }
+            }
+            //ии гриверов
+            foreach (mob mobe in mobs)
+            {
+                Image mobb = mobe.griver;
+                Rect PlayerHB = new Rect(Canvas.GetLeft(object1), Canvas.GetTop(object1), object1.Width, object1.Height);//создаем хитбокс объекта (персонажа) 
+                Rect GriverHB = new Rect(Canvas.GetLeft(mobb), Canvas.GetTop(mobb), mobb.Width, mobb.Height);
+                if (PlayerHB.IntersectsWith(GriverHB))
+                {
+                    player.Health -= 1;
                 }
-
+                if (Canvas.GetLeft(mobb) < Canvas.GetLeft(object1))
+                {
+                    Canvas.SetLeft(mobb, Canvas.GetLeft(mobb) + mob.griverSpeed);
+                    //право
+                }
+                if (Canvas.GetTop(mobb) > Canvas.GetTop(object1))
+                {
+                    Canvas.SetTop(mobb, Canvas.GetTop(mobb) - mob.griverSpeed);
+                }
+                if (Canvas.GetTop(mobb) < Canvas.GetTop(object1))
+                {
+                    Canvas.SetTop(mobb, Canvas.GetTop(mobb) + mob.griverSpeed);
+                }
+                if (Canvas.GetLeft(mobb) > Canvas.GetLeft(object1))
+                {
+                    Canvas.SetLeft(mobb, Canvas.GetLeft(mobb) - mob.griverSpeed);
+                    //лево
+                }
             }
         }
     }

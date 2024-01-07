@@ -11,7 +11,7 @@ namespace Menu2.Classes
     internal class mob
     {
         Canvas canvas = new Canvas();
-        public static int zombieSpeed = 1;
+        public static int griverSpeed = 2;
         public Image griver;// Добавлено свойство griver
         public int Health = 100;// Добавлено свойство Health
         Random rand;
@@ -33,11 +33,11 @@ namespace Menu2.Classes
         {
             griver = new Image(); // Используйте свойство griver
             griver.Tag = "griver";
-            griver.Source = new BitmapImage(new Uri("zUp.png", UriKind.Relative));
-            Canvas.SetLeft(griver, rand.Next(0, 500) + Canvas.GetLeft(character));
-            Canvas.SetTop(griver, rand.Next(0, 720) + Canvas.GetTop(character));
-            griver.Height = character.Height + 30;
-            griver.Width = character.Width + 30;
+            griver.Source = new BitmapImage(new Uri("griver1.png", UriKind.Relative));
+            Canvas.SetLeft(griver, rand.Next(0, (int)canvas.Width));
+            Canvas.SetTop(griver, rand.Next(0, (int)canvas.Height));
+            griver.Height = character.Height*4;
+            griver.Width = character.Width*4;
             canvas.Children.Add(griver);
             Canvas.SetZIndex(griver, 1);
         }

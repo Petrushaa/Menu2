@@ -15,9 +15,11 @@
             <!--Канвас для лабиринта-->
             <Canvas x:Name="Bars">
                 <!--канвас для того, что всегда будет на одном месте (бары)-->
-                <ProgressBar x:Name="healthBar" Height="30"  Width="200" Value="100" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="1720" Canvas.Top="30"/>
-                <Label x:Name="lbHealth" Content="Health:" Canvas.Left="1626" Canvas.Top="25" Height="40" Width="89" FontSize="30" FontFamily="Bahnschrift SemiBold SemiCondensed" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-                <Label x:Name="lbAmmo" Content="Ammo: 0" Canvas.Left="91" Canvas.Top="10" Height="40" Width="122" FontSize="30" FontFamily="Bahnschrift SemiBold SemiCondensed" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                <ProgressBar x:Name="healthBar" Height="36"  Width="239" Value="100" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="152" Canvas.Top="970"/>
+                <Label x:Name="lbHealth" Content="Health:" Canvas.Left="38" Canvas.Top="974" Height="40" Width="88" FontSize="30" FontFamily="Bahnschrift SemiBold SemiCondensed" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <Label x:Name="lbAmmo" Content="Ammo: 0" Canvas.Left="12" Canvas.Top="879" Height="40" Width="122" FontSize="30" FontFamily="Bahnschrift SemiBold SemiCondensed" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                <ProgressBar x:Name="Nitro" Height="35" Width="239" Value="100" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="152" Foreground ="Blue" Canvas.Top="930"></ProgressBar>
+                <Label x:Name="lbNitro" Content="Stamina:" Canvas.Left="12" Canvas.Top="924" Height="50" Width="140" FontSize="30" FontFamily="Comic Sans MS" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             </Canvas>
 
         </Canvas>
