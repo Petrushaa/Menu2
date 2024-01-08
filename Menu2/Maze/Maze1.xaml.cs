@@ -50,7 +50,7 @@ namespace Menu2
             animations.Add(new BitmapImage(new Uri("griver6.png", UriKind.Relative)));
             GameTimer.Interval = TimeSpan.FromMilliseconds(5);
             GameTimer.Tick += GameTick;
-            randomMaze = new RandomMaze(maincanvas, "Влево");
+            randomMaze = new RandomMaze(maincanvas, "Вверх");
             GameScreen.Focus();
             collisia = new CollisiaMaze(maincanvas, Character, player2, bullets, rand);
             player2 = new PlayerMaze(maincanvas, Character, collisia);
@@ -60,8 +60,9 @@ namespace Menu2
             hotset = new hotSettings(GameTimer);
             randomMaze.StartMaze();
             Canvas.SetZIndex(Character, 1);
-            Canvas.SetZIndex(healthBar, 1);
-            Canvas.SetZIndex(lbAmmo, 1);
+
+
+
         }
         private void griverTick(object sender, EventArgs e)
         {

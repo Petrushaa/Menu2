@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Menu2"
         mc:Ignorable="d"
-        Title="GamePlay"  Height="1080" Width="1920">
+        Title="GamePlay"  d:DesignHeight="1080" d:DesignWidth="1920">
     <Viewbox Stretch="Fill">
         <Canvas x:Name="GameScreen" Focusable="True" KeyUp="KeyboardUp" KeyDown="KeyBoardDown"  Height="1080" Width="1920"  HorizontalAlignment="Left" VerticalAlignment="Top">
             <Image Source="/Spawn/images/spawn.jpg" Height="1080" Width="1920"/>

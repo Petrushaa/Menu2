@@ -25,7 +25,7 @@ namespace Menu2
         public MainMenu()
         {
             InitializeComponent();
-            Application.Current.MainWindow.WindowState = WindowState.Maximized;
+            
             // Создание объекта ImageBrush с ссылкой на изображение
 
         }

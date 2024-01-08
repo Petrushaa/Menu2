@@ -29,6 +29,7 @@ namespace Menu2
         public GamePlay()
         {
             InitializeComponent();
+            Application.Current.MainWindow.WindowState = WindowState.Maximized;
             GameScreen.Focus();
             collisia = new Collisia(GameScreen, Character, player);
             player = new Player(GameScreen, Character, collisia);
