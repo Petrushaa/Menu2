@@ -203,8 +203,10 @@ namespace Menu2.Classes
         {
             ImageBrush wall = new ImageBrush();
             ImageBrush way = new ImageBrush();
+            ImageBrush exit = new ImageBrush();
             wall.ImageSource = new BitmapImage(new Uri("Wall.png", UriKind.Relative));
             way.ImageSource = new BitmapImage(new Uri("Way.png", UriKind.Relative));
+            exit.ImageSource = new BitmapImage(new Uri("characterLeft.png", UriKind.Relative));
             cellWidth = mainCanvas.Width / WidthMaze;
             cellHeight = mainCanvas.Height / HeightMaze;
             for (int i = 0; i < HeightMaze; i++)  //брутфорс матрицы лабиринта
@@ -242,8 +244,8 @@ namespace Menu2.Classes
                         case 2:
                             Rectangle Wall1 = new Rectangle()    // стена
                             {
-                                Tag = "Exit",
-                                Fill = way,
+                                Tag = "Key",
+                                Fill = exit,
                                 Width = cellWidth + 1,   //размер ячейки
                                 Height = cellHeight + 1,
                             };

@@ -273,9 +273,7 @@
   <ItemGroup>
     <Resource Include="Menu\griverMoving.gif" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\Debug\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="images\ExitHot.PNG" />
   </ItemGroup>
@@ -286,6 +284,9 @@
     <Resource Include="images\griverMoving.gif" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="bin\Debug\wall.PNG" />
+    <Resource Include="bin\Debug\way.PNG" />
+    <Resource Include="bin\Debug\characterLeft.png" />
     <Content Include="images\griverMoving.mp4" />
     <Resource Include="Maze\Stamina.PNG" />
     <Resource Include="Maze\Health.PNG" />

@@ -32,6 +32,7 @@ namespace Menu2
         MazeD mazeDown;
         MazeL mazeLeft;
         MazeR mazeRight;
+        public static int countKeys = 0;
         public static Image hero;
         public GamePlay()
         {
@@ -52,6 +53,7 @@ namespace Menu2
         }
         private void GameTick(object sender, EventArgs e)
         {
+            lbCount.Content = "Count of Keys: " + Convert.ToString(countKeys);
             collisia.elementsCopy = GameScreen.Children.OfType<Rectangle>().ToList();
             if (Canvas.GetTop(Character) < 0)//верх
             {
@@ -62,6 +64,7 @@ namespace Menu2
                 player.RightKeyPressed = false;
                 player.LeftKeyPressed = false;
                 Maze1.GameTimer.Start();
+                Maze1.griverTimer.Start();
                 Canvas.SetTop(Maze1.hero, Canvas.GetTop(Maze1.hero) - 35);
                 NavigationService.Navigate(mazeUp);
             }
@@ -73,6 +76,7 @@ namespace Menu2
                 player.RightKeyPressed = false;
                 player.LeftKeyPressed = false;
                 MazeR.GameTimer.Start();
+                MazeR.griverTimer.Start();
                 Canvas.SetLeft(MazeR.hero, Canvas.GetLeft(MazeR.hero) + 35);
                 NavigationService.Navigate(mazeRight);
             }
@@ -84,6 +88,7 @@ namespace Menu2
                 player.RightKeyPressed = false;
                 player.LeftKeyPressed = false;
                 MazeD.GameTimer.Start();
+                MazeD.griverTimer.Start();
                 Canvas.SetTop(MazeD.hero, Canvas.GetTop(MazeD.hero) + 35);
                 NavigationService.Navigate(mazeDown);
             }
@@ -95,6 +100,7 @@ namespace Menu2
                 player.RightKeyPressed = false;
                 player.LeftKeyPressed = false;
                 MazeL.GameTimer.Start();
+                MazeL.griverTimer.Start();
                 Canvas.SetLeft(MazeL.hero, Canvas.GetLeft(MazeL.hero) - 35);
                 NavigationService.Navigate(mazeLeft);
             }

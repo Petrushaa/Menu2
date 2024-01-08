@@ -38,6 +38,7 @@ namespace Menu2
         int steps = 0;
         List<BitmapImage> animations = new List<BitmapImage>();
         public static Image hero;
+        private bool isFKeyPressed = false;
         public Maze1(string direction)
         {
             InitializeComponent();
@@ -62,9 +63,6 @@ namespace Menu2
             hotset = new hotSettings(GameTimer);
             randomMaze.StartMaze();
             Canvas.SetZIndex(Character, 1);
-
-
-
         }
         private void griverTick(object sender, EventArgs e)
         {
@@ -171,6 +169,10 @@ namespace Menu2
                 NitroUsed = false;
                 player2.Speed = 2;
             }
+            if (e.Key == Key.F)
+            {
+                isFKeyPressed = false;
+            }
         }
         private void KeyBoardDown(object sender, KeyEventArgs e)
         {
@@ -192,6 +194,11 @@ namespace Menu2
             {
                 player2.Speed = 4;
                 NitroUsed = true;
+            }
+            if (e.Key == Key.F && !isFKeyPressed)
+            {
+                collisia.Key();
+                isFKeyPressed = true;
             }
         }
         public void ShootBullet()

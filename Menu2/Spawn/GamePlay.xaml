@@ -21,6 +21,7 @@
             <Rectangle Height="380" Tag="Collide"  Width="82" Canvas.Left="-3" Canvas.Top="600" HorizontalAlignment="Center" VerticalAlignment="Center"/>
             <Rectangle Height="375" Tag="Collide"  Width="82" Canvas.Left="1846" Canvas.Top="605" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Rectangle Height="23" Canvas.Left="233" Tag="Collide" Canvas.Top="840" Width="216" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+            <Label x:Name="lbCount" Content="Count of keys:" Canvas.Left="79" Canvas.Top="44" FontSize="30" FontFamily="Cascadia Code SemiBold"/>
         </Canvas>
     </Viewbox>
 </Page>

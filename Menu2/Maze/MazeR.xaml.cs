@@ -38,6 +38,7 @@ namespace Menu2.Maze
         int steps = 0;
         List<BitmapImage> animations = new List<BitmapImage>();
         public static Image hero;
+        private bool isFKeyPressed = false;
         public MazeR(string direction)
         {
             InitializeComponent();
@@ -168,6 +169,10 @@ namespace Menu2.Maze
                 NitroUsed = false;
                 player2.Speed = 2;
             }
+            if (e.Key == Key.F)
+            {
+                isFKeyPressed = false;
+            }
         }
         private void KeyBoardDown(object sender, KeyEventArgs e)
         {
@@ -189,6 +194,11 @@ namespace Menu2.Maze
             {
                 player2.Speed = 4;
                 NitroUsed = true;
+            }
+            if (e.Key == Key.F && !isFKeyPressed)
+            {
+                collisia.Key();
+                isFKeyPressed = true;
             }
         }
         public void ShootBullet()
