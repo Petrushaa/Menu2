@@ -58,6 +58,7 @@
     <Compile Include="Classes\Bullet.cs" />
     <Compile Include="Classes\Collisia1.cs" />
     <Compile Include="Classes\CollisiaMaze.cs" />
+    <Compile Include="Classes\ListOfMazes.cs" />
     <Compile Include="Classes\Mob.cs" />
     <Compile Include="Classes\MobAnimation.cs" />
     <Compile Include="Classes\Player.cs" />
