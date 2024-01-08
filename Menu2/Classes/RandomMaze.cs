@@ -50,28 +50,28 @@ namespace Menu2.Classes
 
         private void CellExit(String direction)
         {
-            if (direction == "Вверх")   //относительно спавна
+            if (direction == "up")   //относительно спавна
             {
                 int mid = WidthMaze / 2;
                 Maze[HeightMaze - 1, mid] = 1;
                 Maze[HeightMaze - 1, mid - 1] = 1;
                 Maze[HeightMaze - 1, mid + 1] = 1;
             }
-            if (direction == "Вниз")   //относительно спавна
+            if (direction == "down")   //относительно спавна
             {
                 int mid = WidthMaze / 2;
                 Maze[0, mid] = 1;
                 Maze[0, mid - 1] = 1;
                 Maze[0, mid + 1] = 1;
             }
-            if (direction == "Вправо")   //относительно спавна
+            if (direction == "right")   //относительно спавна
             {
                 int mid = HeightMaze / 2;
                 Maze[mid, 0] = 1;
                 Maze[mid + 1, 0] = 1;
                 Maze[mid - 1, 0] = 1;
             }
-            if (direction == "Влево")   //относительно спавна
+            if (direction == "left")   //относительно спавна
             {
                 int mid = HeightMaze / 2;
                 Maze[mid, WidthMaze - 1] = 1;

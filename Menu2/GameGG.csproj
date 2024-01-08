@@ -58,7 +58,6 @@
     <Compile Include="Classes\Bullet.cs" />
     <Compile Include="Classes\Collisia1.cs" />
     <Compile Include="Classes\CollisiaMaze.cs" />
-    <Compile Include="Classes\ListOfMazes.cs" />
     <Compile Include="Classes\Mob.cs" />
     <Compile Include="Classes\MobAnimation.cs" />
     <Compile Include="Classes\Player.cs" />
@@ -66,6 +65,15 @@
     <Compile Include="Classes\RandomMaze.cs" />
     <Compile Include="Game.xaml.cs">
       <DependentUpon>Game.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Maze\MazeD.xaml.cs">
+      <DependentUpon>MazeD.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Maze\MazeL.xaml.cs">
+      <DependentUpon>MazeL.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Maze\MazeR.xaml.cs">
+      <DependentUpon>MazeR.xaml</DependentUpon>
     </Compile>
     <Compile Include="Maze\test.xaml.cs">
       <DependentUpon>test.xaml</DependentUpon>
@@ -79,8 +87,8 @@
     <Compile Include="Menu\hotSettings.xaml.cs">
       <DependentUpon>hotSettings.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Maze\Maze1.xaml.cs">
-      <DependentUpon>Maze1.xaml</DependentUpon>
+    <Compile Include="Maze\MazeUp.xaml.cs">
+      <DependentUpon>MazeUp.xaml</DependentUpon>
     </Compile>
     <Compile Include="Menu\Settings_Page.xaml.cs">
       <DependentUpon>Settings_Page.xaml</DependentUpon>
@@ -90,6 +98,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Game.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Maze\MazeD.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Maze\MazeL.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Maze\MazeR.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -125,7 +145,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Maze\Maze1.xaml">
+    <Page Include="Maze\MazeUp.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -16,20 +16,12 @@ namespace Menu2
 {
     internal class Player
     {
-        public bool UpKeyPressed, DownKeyPressed, LeftKeyPressed, RightKeyPressed;
-        public float SpeedX, SpeedY, Friction, Speed;
+        public float SpeedY = 0, SpeedX = 0, Friction = 0.77f, Speed = 2f;
+        public bool UpKeyPressed = false, DownKeyPressed = false, LeftKeyPressed = false, RightKeyPressed = false;
         public Image Character;
         public Collisia collisia;
-        public Player(Canvas canvas, Image Character, Collisia collisia, float SpeedY = 0, float SpeedX = 0, bool UpKeyPressed = false, bool DownKeyPressed = false, bool LeftKeyPressed = false, bool RightKeyPressed = false, float Friction = 0.77f, float Speed = 2f)
+        public Player(Canvas canvas, Image Character, Collisia collisia)
         {
-            this.Speed = Speed;
-            this.SpeedY = SpeedY;
-            this.SpeedX = SpeedX;
-            this.Friction = Friction;
-            this.UpKeyPressed = UpKeyPressed;
-            this.DownKeyPressed = DownKeyPressed;
-            this.LeftKeyPressed = LeftKeyPressed;
-            this.RightKeyPressed = RightKeyPressed;
             this.Character = Character;
             this.collisia = collisia;
         }

@@ -9,7 +9,7 @@
     <Viewbox Stretch="Fill">
         <Canvas x:Name="GameScreen" Focusable="True" KeyUp="KeyboardUp" KeyDown="KeyBoardDown"  Height="1080" Width="1920"  HorizontalAlignment="Left" VerticalAlignment="Top">
             <Image Source="/Spawn/images/spawn.jpg" Height="1080" Width="1920"/>
-            <Image x:Name="Character" Tag="User" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="640" Stretch="Fill" Source="/Spawn/characterLeft.png" Canvas.Top="151"/>
+            <Image x:Name="Character" Tag="User" Width="50" Height="50" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="935" Stretch="Fill" Source="/Spawn/characterLeft.png" Canvas.Top="540"/>
             <Image Source="/Spawn/borders.PNG" Width="1920" Height="1080"/>
             <Image Source="/Spawn/images/trees.PNG" Width="1920" Height="1080"/>
             <Rectangle Height="80" Tag="Collide"  Canvas.Top="980" Width="806" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="76"/>

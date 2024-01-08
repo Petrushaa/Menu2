@@ -21,13 +21,13 @@ using System.Windows.Shapes;
 using System.Windows.Threading;
 using System.Xml.Linq;
 
-namespace Menu2
+namespace Menu2.Maze
 {
-    public partial class Maze1 : Page
+    public partial class MazeD : Page
     {
-        public DispatcherTimer GameTimer = new DispatcherTimer();
+        public static DispatcherTimer GameTimer = new DispatcherTimer();
+        public static DispatcherTimer griverTimer = new DispatcherTimer();
         PlayerMaze player2;
-        public DispatcherTimer griverTimer = new DispatcherTimer();
         CollisiaMaze collisia;
         bool gameOver, NitroUsed;
         hotSettings hotset;
@@ -37,9 +37,11 @@ namespace Menu2
         List<Bullet> bullets = new List<Bullet>();
         int steps = 0;
         List<BitmapImage> animations = new List<BitmapImage>();
-        public Maze1()
+        public static Image hero;
+        public MazeD(string direction)
         {
             InitializeComponent();
+            hero = Character;
             griverTimer.Interval = TimeSpan.FromMilliseconds(100);
             griverTimer.Tick += griverTick;
             animations.Add(new BitmapImage(new Uri("griver1.PNG", UriKind.Relative)));
@@ -50,7 +52,7 @@ namespace Menu2
             animations.Add(new BitmapImage(new Uri("griver6.png", UriKind.Relative)));
             GameTimer.Interval = TimeSpan.FromMilliseconds(5);
             GameTimer.Tick += GameTick;
-            randomMaze = new RandomMaze(maincanvas, "Вверх");
+            randomMaze = new RandomMaze(maincanvas, direction);
             GameScreen.Focus();
             collisia = new CollisiaMaze(maincanvas, Character, player2, bullets, rand);
             player2 = new PlayerMaze(maincanvas, Character, collisia);
@@ -60,9 +62,6 @@ namespace Menu2
             hotset = new hotSettings(GameTimer);
             randomMaze.StartMaze();
             Canvas.SetZIndex(Character, 1);
-
-
-
         }
         private void griverTick(object sender, EventArgs e)
         {
@@ -70,16 +69,16 @@ namespace Menu2
             {
                 Image mobb = mobe.griver;
 
-                    if (mobe.direction == "Right")
-                    {
-                        //право
-                        AnimateGriver(3, 5, mobb);
-                    }
-                    if (mobe.direction == "Left")
-                    {
-                        //лево
-                        AnimateGriver(0, 2, mobb);
-                    }
+                if (mobe.direction == "Right")
+                {
+                    //право
+                    AnimateGriver(3, 5, mobb);
+                }
+                if (mobe.direction == "Left")
+                {
+                    //лево
+                    AnimateGriver(0, 2, mobb);
+                }
             }
             if (NitroUsed == true)
             {
@@ -110,13 +109,20 @@ namespace Menu2
         {
             collisia.elementsCopy = maincanvas.Children.Cast<UIElement>().ToList(); //передаем список из всех дочерних элементов на канвасе
             lbAmmo.Content = "Ammo: " + PlayerMaze.ammo;
-            //if ((Canvas.GetLeft(Character) > maincanvas.ActualWidth) || (Canvas.GetTop(Character) > maincanvas.ActualHeight))
-            //{
-            //    GameTimer.Stop();
-            //    // Get the navigation service from the current page
-            //    // Navigate to the GamePlay page
-            //    NavigationService.Navigate(new GamePlay());
-            //}//переход на другую локацию
+            if (Canvas.GetTop(Character) < 0)
+            {
+                GameTimer.Stop();
+                griverTimer.Stop();
+                player2.UpKeyPressed = false;
+                player2.DownKeyPressed = false;
+                player2.RightKeyPressed = false;
+                player2.LeftKeyPressed = false;
+                // Get the navigation service from the current page
+                // Navigate to the GamePlay page
+                GamePlay.GameTimer.Start();
+                Canvas.SetTop(GamePlay.hero, Canvas.GetTop(GamePlay.hero) - 35);
+                NavigationService.GoBack();
+            }//переход на другую локацию
             if (player2.Health > 0)
             {
                 healthBar.Value = player2.Health;
@@ -131,8 +137,8 @@ namespace Menu2
                 GameTimer.Stop();
                 griverTimer.Stop();
                 // Передаем ссылку на текущее окно в конструктор второго окна
-                gameOver gOver = new gameOver(this);
-                gOver.Show();
+                //gameOver gOver = new gameOver(this);
+                //gOver.Show();
                 healthBar.Value = 0;
             }
             collisia.mobs = mobs;
@@ -148,7 +154,7 @@ namespace Menu2
                 ShootBullet();
                 if (PlayerMaze.ammo < 1)
                 {
-                    
+
                     DropAmmo();
                 }
             }
@@ -208,8 +214,8 @@ namespace Menu2
             {
                 isColliding = false;
                 // Генерируем случайные координаты для спавна пули
-                spawnX = rand.Next((int)Canvas.GetLeft(Character)-1000, (int)Canvas.GetLeft(Character) + 1000);
-                spawnY = rand.Next((int)Canvas.GetTop(Character)-1000, (int)Canvas.GetTop(Character) + 1000);
+                spawnX = rand.Next((int)Canvas.GetLeft(Character) - 1000, (int)Canvas.GetLeft(Character) + 1000);
+                spawnY = rand.Next((int)Canvas.GetTop(Character) - 1000, (int)Canvas.GetTop(Character) + 1000);
 
                 Rect bulletSpawnArea = new Rect(spawnX, spawnY, ammo.Width, ammo.Height);
 
@@ -261,8 +267,6 @@ namespace Menu2
             gameOver = false;
             player2.Health = 100;
             PlayerMaze.ammo = 10;
-            GameTimer.Start();
-            griverTimer.Start();
         }
     }
 }
