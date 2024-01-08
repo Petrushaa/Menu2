@@ -266,6 +266,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="images\griverMoving.mp4" />
+    <Resource Include="Maze\spawn.jpg" />
     <Resource Include="Maze\griver6.png" />
     <Resource Include="Maze\griver5.png" />
     <Resource Include="Maze\griver4.png" />

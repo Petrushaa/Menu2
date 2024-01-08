@@ -112,7 +112,7 @@ namespace Menu2.Classes
                     }
                  }
             }
-            //ии гриверов
+            //ии гриверов  
             foreach (mob mobe in mobs)
             {
                 Image mobb = mobe.griver;

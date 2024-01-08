@@ -22,7 +22,6 @@ namespace Menu2.Classes
         {
             this.mainCanvas = mainCanvas;
         }
-
         private void CreateControlPoint()   // создание контрольных точек для формирования стен
         {
             for (int i = 2; i < HeightMaze - 2; i += 2)
@@ -33,7 +32,6 @@ namespace Menu2.Classes
                 }
             }
         }
-
         private void GamePlace()    //игровое поле 29 на 39 //отброс крайних стен
         {
             for (int i = 1; i < HeightMaze - 1; i++)

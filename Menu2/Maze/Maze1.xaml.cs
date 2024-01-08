@@ -36,12 +36,18 @@ namespace Menu2
         Random rand = new Random();
         List<Bullet> bullets = new List<Bullet>();
         int steps = 0;
-        List<string> animations = new List<string> { "griver1.png", "griver2.png", "griver3.png", "griver4.png", "griver5.png", "griver6.png" };
+        List<BitmapImage> animations = new List<BitmapImage>();
         public Maze1()
         {
             InitializeComponent();
             griverTimer.Interval = TimeSpan.FromMilliseconds(100);
             griverTimer.Tick += griverTick;
+            animations.Add(new BitmapImage(new Uri("griver1.PNG", UriKind.Relative)));
+            animations.Add(new BitmapImage(new Uri("griver2.PNG", UriKind.Relative)));
+            animations.Add(new BitmapImage(new Uri("griver3.PNG", UriKind.Relative)));
+            animations.Add(new BitmapImage(new Uri("griver4.png", UriKind.Relative)));
+            animations.Add(new BitmapImage(new Uri("griver5.png", UriKind.Relative)));
+            animations.Add(new BitmapImage(new Uri("griver6.png", UriKind.Relative)));
             GameTimer.Interval = TimeSpan.FromMilliseconds(5);
             GameTimer.Tick += GameTick;
             randomMaze = new RandomMaze(maincanvas);
@@ -63,12 +69,10 @@ namespace Menu2
             foreach (mob mobe in mobs)
             {
                 Image mobb = mobe.griver;
-                if ((Math.Abs(Canvas.GetTop(mobb) - Canvas.GetTop(Character)) < 650) || (Math.Abs(Canvas.GetLeft(mobb) - Canvas.GetLeft(Character)) < 1000))
-                {
+
                     if (mobe.direction == "Right")
                     {
                         //право
-
                         AnimateGriver(3, 5, mobb);
                     }
                     if (mobe.direction == "Left")
@@ -76,7 +80,6 @@ namespace Menu2
                         //лево
                         AnimateGriver(0, 2, mobb);
                     }
-                }
             }
             if (NitroUsed == true)
             {
@@ -91,8 +94,8 @@ namespace Menu2
             {
                 Nitro.Value += 1;
             }
-        }
 
+        }
         public void AnimateGriver(int start, int end, Image griver)
         {
             steps++;
@@ -101,7 +104,7 @@ namespace Menu2
             {
                 steps = start;
             }
-            griver.Source = new BitmapImage(new Uri(animations[steps], UriKind.Relative));
+            griver.Source = animations[steps];
         }
         private void GameTick(object sender, EventArgs e)
         {
@@ -135,7 +138,6 @@ namespace Menu2
             collisia.mobs = mobs;
             player2.Move();//активируем метод движения нашего игрока
             BulletTimer_Tick();
-
         }
         private void KeyboardUp(object sender, KeyEventArgs e)
         {
@@ -152,8 +154,13 @@ namespace Menu2
             }
             if (e.Key == Key.LeftShift || Nitro.Value < 0)
             {
-                player2.Speed = 2;
+                if (Nitro.Value >= 10)
+                {
+                    player2.Speed = 4;
+                    NitroUsed = true;
+                }
                 NitroUsed = false;
+                player2.Speed = 2;
             }
         }
         private void KeyBoardDown(object sender, KeyEventArgs e)
@@ -226,7 +233,6 @@ namespace Menu2
             Canvas.SetZIndex(ammo, 1);
             Canvas.SetZIndex(Character, 1);
         }
-        
         public void BulletTimer_Tick()
         {
             foreach (Bullet bullet in bullets.ToList())
@@ -247,7 +253,6 @@ namespace Menu2
                 mob newMob = new mob(maincanvas, rand);
                 mobs.Add(newMob);
                 newMob.makeGrivers();
-                AnimateGriver(3, 5, newMob.griver);
             }
             player2.UpKeyPressed = false;
             player2.DownKeyPressed = false;
