@@ -61,7 +61,6 @@ namespace Menu2
             randomMaze.StartMaze();
             Canvas.SetZIndex(Character, 1);
             Canvas.SetZIndex(healthBar, 1);
-            Canvas.SetZIndex(lbHealth, 1);
             Canvas.SetZIndex(lbAmmo, 1);
         }
         private void griverTick(object sender, EventArgs e)
