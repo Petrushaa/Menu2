@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Menu2"
         mc:Ignorable="d"
-        Title="Game" Height="1080" Width="1920" WindowStyle="None" WindowState="Maximized" ResizeMode = "NoResize">
-    <Frame Name="MainFrame" NavigationUIVisibility="Hidden" Background="Black">
+        Title="Game" Height="1080" Width="1900" WindowStyle="None" WindowState="Maximized">
+    <Frame Name="MainFrame" NavigationUIVisibility="Hidden" Width="Auto" Height="Auto"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Background="Black">
     </Frame>
 </Window>

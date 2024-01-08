@@ -50,7 +50,7 @@ namespace Menu2
             animations.Add(new BitmapImage(new Uri("griver6.png", UriKind.Relative)));
             GameTimer.Interval = TimeSpan.FromMilliseconds(5);
             GameTimer.Tick += GameTick;
-            randomMaze = new RandomMaze(maincanvas);
+            randomMaze = new RandomMaze(maincanvas, "Влево");
             GameScreen.Focus();
             collisia = new CollisiaMaze(maincanvas, Character, player2, bullets, rand);
             player2 = new PlayerMaze(maincanvas, Character, collisia);
@@ -109,13 +109,13 @@ namespace Menu2
         {
             collisia.elementsCopy = maincanvas.Children.Cast<UIElement>().ToList(); //передаем список из всех дочерних элементов на канвасе
             lbAmmo.Content = "Ammo: " + PlayerMaze.ammo;
-            if ((Canvas.GetLeft(Character) > maincanvas.ActualWidth) || (Canvas.GetTop(Character) > maincanvas.ActualHeight))
-            {
-                GameTimer.Stop();
-                // Get the navigation service from the current page
-                // Navigate to the GamePlay page
-                NavigationService.Navigate(new GamePlay());
-            }//переход на другую локацию
+            //if ((Canvas.GetLeft(Character) > maincanvas.ActualWidth) || (Canvas.GetTop(Character) > maincanvas.ActualHeight))
+            //{
+            //    GameTimer.Stop();
+            //    // Get the navigation service from the current page
+            //    // Navigate to the GamePlay page
+            //    NavigationService.Navigate(new GamePlay());
+            //}//переход на другую локацию
             if (player2.Health > 0)
             {
                 healthBar.Value = player2.Health;

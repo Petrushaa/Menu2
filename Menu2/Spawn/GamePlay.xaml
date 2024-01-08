@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="GamePlay"  Height="1080" Width="1920">
     <Viewbox Stretch="Fill">
-        <Canvas x:Name="GameScreen" Focusable="True" KeyUp="KeyboardUp" KeyDown="KeyBoardDown"  Height="1080" Width="1920" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Canvas x:Name="GameScreen" Focusable="True" KeyUp="KeyboardUp" KeyDown="KeyBoardDown"  Height="1080" Width="1920"  HorizontalAlignment="Left" VerticalAlignment="Top">
             <Image Source="/Spawn/images/spawn.jpg" Height="1080" Width="1920"/>
             <Image x:Name="Character" Tag="User" Width="50" Height="50" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="640" Stretch="Fill" Source="/Spawn/characterLeft.png" Canvas.Top="151"/>
             <Image Source="/Spawn/borders.PNG" Width="1920" Height="1080"/>

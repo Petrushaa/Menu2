@@ -33,7 +33,7 @@ namespace Menu2
             collisia = new Collisia(GameScreen, Character, player);
             player = new Player(GameScreen, Character, collisia);
             collisia.player = player;
-            GameTimer.Interval = TimeSpan.FromMilliseconds(1);
+            GameTimer.Interval = TimeSpan.FromMilliseconds(5);
             GameTimer.Tick += GameTick;
             GameTimer.Start();
             hotset = new hotSettings(GameTimer);

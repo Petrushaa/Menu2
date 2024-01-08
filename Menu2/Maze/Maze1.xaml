@@ -10,7 +10,7 @@
         <Canvas x:Name="GameScreen" Focusable="True"  Height="1080" Width="1920">
             <!--нижний канвас просто нужен-->
 
-            <Canvas x:Name="maincanvas" Height="10800" Width="19200" Canvas.Left="-8580" Canvas.Top="-10000">
+            <Canvas x:Name="maincanvas" Height="1080" Width="1920" Canvas.Left="0" Canvas.Top="0">
                 <Image x:Name="Character" Tag="User" Width="100" Height="100" Canvas.Top="10488" Canvas.Left="9500" Source="/images/characterRight.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             </Canvas>
             <!--Канвас для лабиринта-->
