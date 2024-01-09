@@ -43,18 +43,18 @@ namespace Menu2
             collisia = new Collisia(GameScreen, Character, player);
             player = new Player(GameScreen, Character, collisia);
             collisia.player = player;
-            GameTimer.Interval = TimeSpan.FromMilliseconds(5);
-            GameTimer.Tick += GameTick;
-            GameTimer.Start();
             hotset = new hotSettings(GameTimer);
-            mazeUp = new Maze1("up");
+            mazeUp = new Maze1("up", this);
             mazeRight = new MazeR("right");
             mazeDown = new MazeD("down");
             mazeLeft = new MazeL("left");
+            GameTimer.Interval = TimeSpan.FromMilliseconds(5);
+            GameTimer.Tick += GameTick;
+            GameTimer.Start();
         }
         private void GameTick(object sender, EventArgs e)
         {
-            lbCount.Content = "Count of Keys: " + Convert.ToString(countKeys);
+            lbCount.Content = "Count of codes: " + Convert.ToString(countKeys);
             collisia.elementsCopy = GameScreen.Children.OfType<Rectangle>().ToList();
             if (Canvas.GetTop(Character) < 0)//верх
             {
@@ -67,7 +67,7 @@ namespace Menu2
                 Maze1.GameTimer.Start();
                 Maze1.griverTimer.Start();
                 Canvas.SetTop(Maze1.hero, Canvas.GetTop(Maze1.hero) - 35);
-                NavigationService.Navigate(mazeUp);
+                Game.frame.NavigationService.Navigate(mazeUp);
             }
             else if (Canvas.GetLeft(Character) > GameScreen.Width)//право
             {
@@ -133,7 +133,18 @@ namespace Menu2
             {
                 collisia.Lift();
                 isFKeyPressed = true;
+                player.UpKeyPressed = false;
+                player.DownKeyPressed = false;
+                player.LeftKeyPressed = false;
+                player.RightKeyPressed = false;
             }
+        }
+        public void RestartGame()
+        {
+            mazeUp = new Maze1("up", this);
+            mazeRight = new MazeR("right");
+            mazeDown = new MazeD("down");
+            mazeLeft = new MazeL("left");
         }
     }
 }

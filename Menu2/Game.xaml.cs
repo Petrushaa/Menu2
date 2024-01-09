@@ -16,10 +16,12 @@ namespace Menu2
 {
     public partial class Game : Window
     {
+        public static Frame frame { get; set; }
         public Game()
         {
             InitializeComponent();
             MainFrame.Content = new GamePlay();
+            frame = MainFrame;
         }
     }
 }

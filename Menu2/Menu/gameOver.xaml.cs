@@ -17,11 +17,11 @@ namespace Menu2.Menu
 {
     public partial class gameOver : Window
     {
-        //private Maze1 game;
-        public gameOver(/*Maze1 game*/)
+        GamePlay spawn;
+        public gameOver(GamePlay spawn)
         {
             InitializeComponent();
-            //this.game = game;
+            this.spawn = spawn;
         }
         private void btExit_Click(object sender, RoutedEventArgs e)
         {
@@ -29,9 +29,13 @@ namespace Menu2.Menu
         }
         private void btRestart_Click(object sender, RoutedEventArgs e)
         {
-            //game.RestartGame();
-            this.Close(); 
+            GamePlay.GameTimer.Start();
+            GamePlay.countKeys = 0;
+            Canvas.SetLeft(GamePlay.hero, 935);
+            Canvas.SetTop(GamePlay.hero, 540);
+            spawn.RestartGame();
+            Game.frame.NavigationService.Navigate(spawn);
+            this.Close();
         }
-
     }
 }
