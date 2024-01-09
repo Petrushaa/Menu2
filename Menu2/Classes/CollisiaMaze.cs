@@ -35,21 +35,19 @@ namespace Menu2.Classes
             this.bullets = bullets;
 
         }
-        public void Key()
+        public void Code()
         {
             foreach (UIElement x in elementsCopy)
             {
-                if (x is Rectangle rect && (string)rect.Tag == "Key")
+                if (x is Image code && (string)code.Tag == "code")
                 {
                     Rect PlayerHB = new Rect(Canvas.GetLeft(object1), Canvas.GetTop(object1), object1.Width, object1.Height);
-                    Rect ToCollide = new Rect(Canvas.GetLeft(rect), Canvas.GetTop(rect), rect.RenderSize.Width, rect.RenderSize.Height);
+                    Rect ToCollide = new Rect(Canvas.GetLeft(code), Canvas.GetTop(code), code.RenderSize.Width, code.RenderSize.Height);
                     if (PlayerHB.IntersectsWith(ToCollide))//Проверяем пересекаются ли хитбоксы объекта (персонажа) с нашей коллизией
                     {
                         GamePlay.countKeys += 1;
-                        rect.Tag = "Used";
-                        ImageBrush way = new ImageBrush();
-                        way.ImageSource = new BitmapImage(new Uri("Way.png", UriKind.Relative));
-                        rect.Fill = way;
+                        code.Source = null;
+                        canvas.Children.Remove(x);
                     }
                 }
             }

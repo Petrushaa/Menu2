@@ -197,7 +197,7 @@ namespace Menu2.Maze
             }
             if (e.Key == Key.F && !isFKeyPressed)
             {
-                collisia.Key();
+                collisia.Code();
                 isFKeyPressed = true;
             }
         }

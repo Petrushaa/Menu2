@@ -235,9 +235,6 @@
     <Resource Include="images\Settings.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\zombie.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Spawn\characterRight.png" />
   </ItemGroup>
   <ItemGroup>
@@ -284,9 +281,16 @@
     <Resource Include="images\griverMoving.gif" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Maze\pinCode.PNG" />
+    <Resource Include="Maze\listCode.PNG" />
+    <Resource Include="Spawn\images\Lift.PNG" />
     <Resource Include="bin\Debug\wall.PNG" />
     <Resource Include="bin\Debug\way.PNG" />
     <Resource Include="bin\Debug\characterLeft.png" />
+    <Resource Include="Maze\Code1.PNG" />
+    <Resource Include="Maze\Code2.PNG" />
+    <Resource Include="Maze\Code3.PNG" />
+    <Resource Include="Maze\Code4.PNG" />
     <Content Include="images\griverMoving.mp4" />
     <Resource Include="Maze\Stamina.PNG" />
     <Resource Include="Maze\Health.PNG" />

@@ -244,7 +244,7 @@ namespace Menu2.Classes
                         case 2:
                             Rectangle Wall1 = new Rectangle()    // стена
                             {
-                                Tag = "Key",
+                                Tag = "Collide",
                                 Fill = exit,
                                 Width = cellWidth + 1,   //размер ячейки
                                 Height = cellHeight + 1,
