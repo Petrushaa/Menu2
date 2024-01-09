@@ -55,6 +55,8 @@ namespace Menu2
             TimerSpawn.Interval = TimeSpan.FromMinutes(1);
             TimerSpawn.Tick += griverSpawn;
             TimerSpawn.Start();
+            GameTimer.Interval = TimeSpan.FromMilliseconds(5);
+            GameTimer.Tick += GameTick;
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
@@ -64,19 +66,17 @@ namespace Menu2
             animations.Add(new BitmapImage(new Uri("griver4.png", UriKind.Relative)));
             animations.Add(new BitmapImage(new Uri("griver5.png", UriKind.Relative)));
             animations.Add(new BitmapImage(new Uri("griver6.png", UriKind.Relative)));
-            GameTimer.Interval = TimeSpan.FromMilliseconds(5);
-            GameTimer.Tick += GameTick;
             randomMaze = new RandomMaze(maincanvas, direction);
             GameScreen.Focus();
             collisia = new CollisiaMaze(maincanvas, Character, player2, bullets, rand);
             player2 = new PlayerMaze(maincanvas, Character, collisia);
             collisia.player = player2;
             mob.character = Character;
-            RestartGame();
             hotset = new hotSettings(GameTimer);
             randomMaze.StartMaze();
             Canvas.SetZIndex(Character, 1);
             DropPinCode();
+            RestartGame();
             start = DateTime.Now;
             timer.Start();
         }
@@ -162,11 +162,12 @@ namespace Menu2
                 player2.LeftKeyPressed = false;
                 GameTimer.Stop();
                 griverTimer.Stop();
+                timer.Stop();
+                TimerSpawn.Stop();
                 //Передаем ссылку на текущее окно в конструктор второго окна
                 gameOver gOver = new gameOver(spawn);
                 gOver.Show();
                 healthBar.Value = 0;
-                RestartGame();
             }
             collisia.mobs = mobs;
             player2.Move();//активируем метод движения нашего игрока
@@ -324,7 +325,6 @@ namespace Menu2
         }
         public void RestartGame()
         {
-            InitializeComponent();
             Character.Source = new BitmapImage(new Uri("characterRight.png", UriKind.RelativeOrAbsolute));
             foreach (mob mobe in mobs)
             {

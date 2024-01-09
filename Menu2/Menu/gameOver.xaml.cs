@@ -35,6 +35,7 @@ namespace Menu2.Menu
             Canvas.SetTop(GamePlay.hero, 540);
             spawn.RestartGame();
             Game.frame.NavigationService.Navigate(spawn);
+            spawn = null;
             this.Close();
         }
     }
