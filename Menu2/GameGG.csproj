@@ -81,6 +81,9 @@
     <Compile Include="Menu\gameOver.xaml.cs">
       <DependentUpon>gameOver.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Menu\Lift.xaml.cs">
+      <DependentUpon>Lift.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Spawn\GamePlay.xaml.cs">
       <DependentUpon>GamePlay.xaml</DependentUpon>
     </Compile>
@@ -118,6 +121,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Menu\gameOver.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Menu\Lift.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -281,7 +288,7 @@
     <Resource Include="images\griverMoving.gif" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Maze\pinCode.PNG" />
+    <Resource Include="Menu\pinCode.PNG" />
     <Resource Include="Maze\listCode.PNG" />
     <Resource Include="Spawn\images\Lift.PNG" />
     <Resource Include="bin\Debug\wall.PNG" />

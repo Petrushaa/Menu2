@@ -1,0 +1,15 @@
+﻿<Window x:Class="Menu2.Menu.Lift"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Menu2.Menu"
+        mc:Ignorable="d"
+        Title="Lift"  Height="1000" Width="1000" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen" KeyUp="Window_KeyUp" >
+    <Viewbox>
+        <Canvas  Height="1000" Width="1000">
+            <Image Source="/Menu/pinCode.PNG" Height="1000" Width="1000" />
+            <Label x:Name="lbLose" Content="НЕ ВЕРНЫЙ КОД" Canvas.Top="189" Height="209" Width="600" Canvas.Left="200" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="76" Opacity="0"/>
+        </Canvas>
+    </Viewbox>
+</Window>

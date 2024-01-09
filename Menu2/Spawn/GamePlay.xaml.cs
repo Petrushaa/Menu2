@@ -34,6 +34,7 @@ namespace Menu2
         MazeR mazeRight;
         public static int countKeys = 0;
         public static Image hero;
+        private bool isFKeyPressed = false;
         public GamePlay()
         {
             InitializeComponent();
@@ -109,7 +110,12 @@ namespace Menu2
         private void KeyboardUp(object sender, KeyEventArgs e)
         {
             player.KeyboardUp(sender, e);
+            if (e.Key == Key.F)
+            {
+                isFKeyPressed = false;
+            }
         }
+
         private void KeyBoardDown(object sender, KeyEventArgs e)
         {
             player.KeyBoardDown(sender, e);
@@ -122,6 +128,11 @@ namespace Menu2
                 player.UpKeyPressed = false;
                 hotset.Visibility = Visibility.Visible;
                 GameTimer.Stop();
+            }
+            if (e.Key == Key.F && !isFKeyPressed)
+            {
+                collisia.Lift();
+                isFKeyPressed = true;
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using Menu2.Classes;
+using Menu2.Menu;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,6 +56,22 @@ namespace Menu2
             }
 
             return images;
+        }
+        public void Lift()
+        {
+            foreach (var x in canvas.Children.OfType<Image>())
+            {
+                if ((string)x.Tag == "Lift")
+                {
+                    Rect PlayerHB = new Rect(Canvas.GetLeft(object1), Canvas.GetTop(object1), object1.Width, object1.Height);//создаем хитбокс объекта (персонажа) 
+                    Rect LiftHB = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.RenderSize.Width, x.RenderSize.Height);//Создаем хитбокс коллизии, т.е. нашего ректа
+                    if (PlayerHB.IntersectsWith(LiftHB))
+                    {
+                        Lift lift = new Lift();
+                        lift.Show();
+                    }
+                }
+            }
         }
         public void Collide(string Dir) // Сам метод коллизии
         {

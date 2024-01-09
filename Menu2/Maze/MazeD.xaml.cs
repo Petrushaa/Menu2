@@ -63,6 +63,7 @@ namespace Menu2.Maze
             hotset = new hotSettings(GameTimer);
             randomMaze.StartMaze();
             Canvas.SetZIndex(Character, 1);
+            DropPinCode();
         }
         private void griverTick(object sender, EventArgs e)
         {
@@ -247,6 +248,45 @@ namespace Menu2.Maze
             Canvas.SetLeft(ammo, spawnX);
             maincanvas.Children.Add(ammo);
             Canvas.SetZIndex(ammo, 1);
+            Canvas.SetZIndex(Character, 1);
+        }
+        public void DropPinCode()
+        {
+            double spawnX, spawnY;
+            bool isColliding;
+            Image code = new Image();
+            // Загружаем картинку из ресурсов проекта
+            code.Source = new BitmapImage(new Uri("code1.png", UriKind.RelativeOrAbsolute));
+            code.Tag = "code";
+            code.Height = ((int)Character.Height);
+            code.Width = ((int)Character.Width);
+            do
+            {
+                isColliding = false;
+                // Генерируем случайные координаты для спавна пули
+                spawnX = rand.Next(10, (int)maincanvas.Width);
+                spawnY = rand.Next(10, (int)maincanvas.Height);
+
+                Rect codeSpawnArea = new Rect(spawnX, spawnY, code.Width, code.Height);
+
+                // Проверяем столкновение со всеми препятствиями
+                foreach (UIElement element in maincanvas.Children)
+                {
+                    if (element is Rectangle rectangle && (string)rectangle.Tag == "Collide")
+                    {
+                        Rect rectangleArea = new Rect(Canvas.GetLeft(rectangle), Canvas.GetTop(rectangle), rectangle.Width, rectangle.Height);
+                        if (codeSpawnArea.IntersectsWith(rectangleArea))
+                        {
+                            isColliding = true;
+                            break;
+                        }
+                    }
+                }
+            } while (isColliding);
+            Canvas.SetTop(code, spawnY);
+            Canvas.SetLeft(code, spawnX);
+            maincanvas.Children.Add(code);
+            Canvas.SetZIndex(code, 1);
             Canvas.SetZIndex(Character, 1);
         }
         public void BulletTimer_Tick()

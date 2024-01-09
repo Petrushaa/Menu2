@@ -25,6 +25,7 @@ namespace Menu2
 {
     public partial class Maze1 : Page
     {
+        public static DispatcherTimer TimerSpawn = new DispatcherTimer();
         public static DispatcherTimer GameTimer = new DispatcherTimer();
         public static DispatcherTimer griverTimer = new DispatcherTimer();
         PlayerMaze player2;
@@ -45,6 +46,8 @@ namespace Menu2
             hero = Character;
             griverTimer.Interval = TimeSpan.FromMilliseconds(100);
             griverTimer.Tick += griverTick;
+            TimerSpawn.Interval = TimeSpan.FromMinutes(2);
+            TimerSpawn.Tick += griverSpawn;
             animations.Add(new BitmapImage(new Uri("griver1.PNG", UriKind.Relative)));
             animations.Add(new BitmapImage(new Uri("griver2.PNG", UriKind.Relative)));
             animations.Add(new BitmapImage(new Uri("griver3.PNG", UriKind.Relative)));
@@ -64,6 +67,12 @@ namespace Menu2
             randomMaze.StartMaze();
             Canvas.SetZIndex(Character, 1);
             DropPinCode();
+        }
+        private void griverSpawn(object sender, EventArgs e)
+        {
+            mob newMob = new mob(maincanvas, rand);
+            mobs.Add(newMob);
+            newMob.makeGrivers();
         }
         private void griverTick(object sender, EventArgs e)
         {
@@ -175,6 +184,7 @@ namespace Menu2
                 isFKeyPressed = false;
             }
         }
+
         private void KeyBoardDown(object sender, KeyEventArgs e)
         {
             if (gameOver == true)
@@ -304,12 +314,9 @@ namespace Menu2
                 maincanvas.Children.Remove(mobe.griver);
             }
             mobs.Clear(); // Очистите список mobs
-            for (int i = 0; i < 3; i++)
-            {
                 mob newMob = new mob(maincanvas, rand);
                 mobs.Add(newMob);
                 newMob.makeGrivers();
-            }
             player2.UpKeyPressed = false;
             player2.DownKeyPressed = false;
             player2.LeftKeyPressed = false;
