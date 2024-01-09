@@ -30,7 +30,8 @@ namespace Menu2
         public static DispatcherTimer TimerSpawn = new DispatcherTimer();
         public static DispatcherTimer GameTimer = new DispatcherTimer();
         public static DispatcherTimer griverTimer = new DispatcherTimer();
-        public static DispatcherTimer timer = new DispatcherTimer();
+        public static DispatcherTimer timer;
+        DateTime start;
         PlayerMaze player2;
         CollisiaMaze collisia;
         bool gameOver, NitroUsed;
@@ -54,8 +55,9 @@ namespace Menu2
             TimerSpawn.Interval = TimeSpan.FromMinutes(1);
             TimerSpawn.Tick += griverSpawn;
             TimerSpawn.Start();
+            timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
-            //timer.Tick += Timer_Tick;
+            timer.Tick += Timer_Tick;
             animations.Add(new BitmapImage(new Uri("griver1.PNG", UriKind.Relative)));
             animations.Add(new BitmapImage(new Uri("griver2.PNG", UriKind.Relative)));
             animations.Add(new BitmapImage(new Uri("griver3.PNG", UriKind.Relative)));
@@ -75,6 +77,8 @@ namespace Menu2
             randomMaze.StartMaze();
             Canvas.SetZIndex(Character, 1);
             DropPinCode();
+            start = DateTime.Now;
+            timer.Start();
         }
         private void griverSpawn(object sender, EventArgs e)
         {
@@ -114,11 +118,11 @@ namespace Menu2
             }
 
         }
-        //private void Timer_Tick(object sender, EventArgs e)
-        //{
-        //    TimeSpan elapsed = DateTime.Now - start;
-        //    lblTimer.Content = String.Format("{0:00}:{1:00}:{2:00}", elapsed.Hours, elapsed.Minutes, elapsed.Seconds);
-        //}
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan elapsed = DateTime.Now - start;
+            lblTimer.Content = String.Format("{0:00}:{1:00}:{2:00}", elapsed.Hours, elapsed.Minutes, elapsed.Seconds);
+        }
         public void AnimateGriver(int start, int end, Image griver)
         {
             steps++;
