@@ -287,13 +287,6 @@
     <Resource Include="images\GameOver.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Spawn\heroBack2.PNG" />
-    <Resource Include="Spawn\heroBack1.PNG" />
-    <Resource Include="Spawn\hero5.PNG" />
-    <Resource Include="Spawn\hero4.PNG" />
-    <Resource Include="Spawn\hero3.PNG" />
-    <Resource Include="Spawn\hero2.PNG" />
-    <Resource Include="Spawn\hero1.PNG" />
     <Resource Include="Menu\pinCode.PNG" />
     <Resource Include="Maze\listCode.PNG" />
     <Resource Include="Spawn\images\Lift.PNG" />
@@ -353,10 +346,37 @@
     <Resource Include="Maze\hero4.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Maze\hero5.PNG" />
+    <Resource Include="Maze\heroBack1.PNG" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Maze\heroBack1.PNG" />
+    <Resource Include="Maze\stayForward.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Maze\stayBack.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Spawn\stayForward.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Spawn\stayBack.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Spawn\heroBack2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Spawn\heroBack1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Spawn\hero4.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Spawn\hero2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Spawn\hero3.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Spawn\hero1.PNG" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

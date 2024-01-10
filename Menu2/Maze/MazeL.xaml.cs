@@ -284,7 +284,7 @@ namespace Menu2.Maze
             bool isColliding;
             Image code = new Image();
             // Загружаем картинку из ресурсов проекта
-            code.Source = new BitmapImage(new Uri("code1.png", UriKind.RelativeOrAbsolute));
+            code.Source = new BitmapImage(new Uri("code3.png", UriKind.RelativeOrAbsolute));
             code.Tag = "code";
             code.Height = ((int)Character.Height);
             code.Width = ((int)Character.Width);
