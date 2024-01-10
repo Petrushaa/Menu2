@@ -324,7 +324,7 @@ namespace Menu2
         }
         public void RestartGame()
         {
-            Character.Source = new BitmapImage(new Uri("characterRight.png", UriKind.RelativeOrAbsolute));
+            Character.Source = new BitmapImage(new Uri("hero1.png", UriKind.RelativeOrAbsolute));
             foreach (mob mobe in mobs)
             {
                 maincanvas.Children.Remove(mobe.griver);

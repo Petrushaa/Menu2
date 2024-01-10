@@ -35,11 +35,15 @@ namespace Menu2
         public static int countKeys = 0;
         public static Image hero;
         private bool isFKeyPressed = false;
+
+        
+
         public GamePlay()
         {
             InitializeComponent();
             hero = Character;
             GameScreen.Focus();
+
             collisia = new Collisia(GameScreen, Character, player);
             player = new Player(GameScreen, Character, collisia);
             collisia.player = player;
@@ -51,7 +55,11 @@ namespace Menu2
             GameTimer.Interval = TimeSpan.FromMilliseconds(5);
             GameTimer.Tick += GameTick;
             GameTimer.Start();
+
         }
+
+
+
         private void GameTick(object sender, EventArgs e)
         {
             lbCount.Content = "Count of codes: " + Convert.ToString(countKeys);
@@ -147,6 +155,7 @@ namespace Menu2
                 player.RightKeyPressed = false;
             }
         }
+
         public void RestartGame()
         {
             mazeUp = new Maze1("up", this);
