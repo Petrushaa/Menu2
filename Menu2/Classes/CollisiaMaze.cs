@@ -34,6 +34,7 @@ namespace Menu2.Classes
             this.rand = rand;
             this.bullets = bullets;
 
+
         }
         public void Code()
         {

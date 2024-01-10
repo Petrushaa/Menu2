@@ -10,7 +10,7 @@
         <Canvas x:Name="GameScreen" Focusable="True"  Height="1080" Width="1920" KeyUp="KeyboardUp" KeyDown="KeyBoardDown">
             <!--нижний канвас просто нужен-->
             <Canvas x:Name="maincanvas" Height="10800" Width="19200" Canvas.Left="-18200" Canvas.Top="-5000">
-                <Image x:Name="Character" Tag="User" Width="100" Height="100" Canvas.Top="5538" Canvas.Left="19135" Source="/images/characterRight.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Image x:Name="Character" Tag="User" Width="60" Height="100" Canvas.Top="5538" Canvas.Left="19135" Source="/images/characterRight.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             </Canvas>
             <Canvas x:Name="Bars" Height="1080" Width="1920">
                 <!--канвас для того, что всегда будет на одном месте (бары)-->

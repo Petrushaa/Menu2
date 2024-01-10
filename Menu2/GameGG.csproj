@@ -340,5 +340,23 @@
     <Resource Include="images\Resume.PNG" />
     <Resource Include="images\Pause.PNG" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Maze\heroBack2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Maze\hero2.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Maze\hero3.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Maze\hero4.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Maze\hero5.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Maze\heroBack1.PNG" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

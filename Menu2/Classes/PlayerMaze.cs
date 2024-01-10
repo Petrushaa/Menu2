@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 namespace Menu2.Classes
 {
@@ -18,8 +19,11 @@ namespace Menu2.Classes
         private Canvas canvas;
         public static int ammo = 10;
         public CollisiaMaze collisia;
-        public int Health = 1000;
+        public int Health = 100;
         public float Speed = 2f;
+        List<BitmapImage> animations = new List<BitmapImage>();
+        public DispatcherTimer animTimer = new DispatcherTimer();
+        int steps = 0;
         public PlayerMaze(Canvas canvas, Image Character, CollisiaMaze collisia, float SpeedY = 0, float SpeedX = 0, bool UpKeyPressed = false, bool DownKeyPressed = false, bool LeftKeyPressed = false, bool RightKeyPressed = false, float Friction = 0.77f)
         {
             this.SpeedY = SpeedY;
@@ -32,6 +36,43 @@ namespace Menu2.Classes
             this.Character = Character;
             this.canvas = canvas;
             this.collisia = collisia;
+            animTimer.Interval = TimeSpan.FromMilliseconds(100);
+            animTimer.Tick += heroTick;
+            animTimer.Start();
+            FillList();
+        }
+        public void AnimateHero(int start, int end)
+        {
+            steps++;
+
+            if (steps > end || steps < start)
+            {
+                steps = start;
+            }
+            Character.Source = animations[steps];
+        }
+        public void FillList()
+        {
+            animations.Add(new BitmapImage(new Uri("hero1.PNG", UriKind.Relative)));
+            animations.Add(new BitmapImage(new Uri("hero2.PNG", UriKind.Relative)));
+            animations.Add(new BitmapImage(new Uri("hero3.PNG", UriKind.Relative)));
+            animations.Add(new BitmapImage(new Uri("hero4.png", UriKind.Relative)));
+            animations.Add(new BitmapImage(new Uri("hero5.png", UriKind.Relative)));
+            animations.Add(new BitmapImage(new Uri("heroBack1.png", UriKind.Relative)));
+            animations.Add(new BitmapImage(new Uri("heroBack2.png", UriKind.Relative)));
+        }
+
+        private void heroTick(object sender, EventArgs e)
+        {
+            if (UpKeyPressed)
+            {
+                AnimateHero(5, 6);
+            }
+
+            if (DownKeyPressed)
+            {
+                AnimateHero(0, 4);
+            }
         }
         public void Move()
         {
@@ -96,12 +137,10 @@ namespace Menu2.Classes
             {
                 LeftKeyPressed = true;
                 facing = "left";
-                Character.Source = new BitmapImage(new Uri("characterLeft.png", UriKind.RelativeOrAbsolute));
             }
             if (e.Key == Key.D)
             {
                 RightKeyPressed = true;
-                Character.Source = new BitmapImage(new Uri("characterRight.png", UriKind.RelativeOrAbsolute));
                 facing = "right";
             }
         }
