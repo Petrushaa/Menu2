@@ -135,6 +135,7 @@ namespace Menu2.Maze
         {
             collisia.elementsCopy = maincanvas.Children.Cast<UIElement>().ToList(); //передаем список из всех дочерних элементов на канвасе
             lbAmmo.Content = "Ammo: " + PlayerMaze.ammo;
+            if (Canvas.GetLeft(Character) > maincanvas.ActualWidth)
             {
                 GameTimer.Stop();
                 griverTimer.Stop();
@@ -147,7 +148,8 @@ namespace Menu2.Maze
                 GamePlay.GameTimer.Start();
                 Canvas.SetLeft(GamePlay.hero, Canvas.GetLeft(GamePlay.hero) + 35);
                 NavigationService.GoBack();
-            }//переход на другую локацию
+            }
+
             if (player2.Health > 0)
             {
                 healthBar.Value = player2.Health;
@@ -324,7 +326,7 @@ namespace Menu2.Maze
         }
         public void RestartGame()
         {
-            Character.Source = new BitmapImage(new Uri("characterRight.png", UriKind.RelativeOrAbsolute));
+            Character.Source = new BitmapImage(new Uri("hero1.png", UriKind.RelativeOrAbsolute));
             foreach (mob mobe in mobs)
             {
                 maincanvas.Children.Remove(mobe.griver);
