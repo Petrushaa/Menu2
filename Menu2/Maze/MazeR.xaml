@@ -19,6 +19,7 @@
                 <ProgressBar x:Name="Nitro" Height="34" Width="158" Value="100" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="51" Foreground ="Blue" Canvas.Top="954"/>
                 <Image x:Name="imgHealth" Source="Health.PNG" Height="72" Width="263" Canvas.Left="1" Canvas.Top="1007" HorizontalAlignment="Left" VerticalAlignment="Center" Stretch="Fill"/>
                 <Image x:Name="imgStamina" Source="Stamina.PNG" Height="69" Width="246" Canvas.Left="1" Canvas.Top="943" HorizontalAlignment="Center" VerticalAlignment="Top" Stretch="Fill"/>
+                <Label x:Name="lblTimer" Content ="00:00:00" Height="109" Width="283" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="75"></Label>
             </Canvas>
             <!--Канвас для лабиринта-->
         </Canvas>

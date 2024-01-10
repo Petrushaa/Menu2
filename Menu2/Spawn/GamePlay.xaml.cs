@@ -45,9 +45,9 @@ namespace Menu2
             collisia.player = player;
             hotset = new hotSettings(GameTimer);
             mazeUp = new Maze1("up", this);
-            mazeRight = new MazeR("right");
-            mazeDown = new MazeD("down");
-            mazeLeft = new MazeL("left");
+            mazeRight = new MazeR("right", this);
+            mazeDown = new MazeD("down", this);
+            mazeLeft = new MazeL("left", this);
             GameTimer.Interval = TimeSpan.FromMilliseconds(5);
             GameTimer.Tick += GameTick;
             GameTimer.Start();
@@ -66,6 +66,8 @@ namespace Menu2
                 player.LeftKeyPressed = false;
                 Maze1.GameTimer.Start();
                 Maze1.griverTimer.Start();
+                Maze1.timer.Start();
+                Maze1.TimerSpawn.Start();
                 Canvas.SetTop(Maze1.hero, Canvas.GetTop(Maze1.hero) - 35);
                 Game.frame.NavigationService.Navigate(mazeUp);
             }
@@ -78,6 +80,8 @@ namespace Menu2
                 player.LeftKeyPressed = false;
                 MazeR.GameTimer.Start();
                 MazeR.griverTimer.Start();
+                MazeR.timer.Start();
+                MazeR.TimerSpawn.Start();
                 Canvas.SetLeft(MazeR.hero, Canvas.GetLeft(MazeR.hero) + 35);
                 NavigationService.Navigate(mazeRight);
             }
@@ -90,6 +94,8 @@ namespace Menu2
                 player.LeftKeyPressed = false;
                 MazeD.GameTimer.Start();
                 MazeD.griverTimer.Start();
+                MazeD.timer.Start();
+                MazeD.TimerSpawn.Start();
                 Canvas.SetTop(MazeD.hero, Canvas.GetTop(MazeD.hero) + 35);
                 NavigationService.Navigate(mazeDown);
             }
@@ -102,6 +108,8 @@ namespace Menu2
                 player.LeftKeyPressed = false;
                 MazeL.GameTimer.Start();
                 MazeL.griverTimer.Start();
+                MazeL.timer.Start();
+                MazeL.TimerSpawn.Start();
                 Canvas.SetLeft(MazeL.hero, Canvas.GetLeft(MazeL.hero) - 35);
                 NavigationService.Navigate(mazeLeft);
             }
@@ -142,9 +150,9 @@ namespace Menu2
         public void RestartGame()
         {
             mazeUp = new Maze1("up", this);
-            mazeRight = new MazeR("right");
-            mazeDown = new MazeD("down");
-            mazeLeft = new MazeL("left");
+            mazeRight = new MazeR("right", this);
+            mazeDown = new MazeD("down", this);
+            mazeLeft = new MazeL("left", this);
         }
     }
 }

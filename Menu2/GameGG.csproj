@@ -293,7 +293,6 @@
     <Resource Include="Spawn\images\Lift.PNG" />
     <Resource Include="bin\Debug\wall.PNG" />
     <Resource Include="bin\Debug\way.PNG" />
-    <Resource Include="bin\Debug\characterLeft.png" />
     <Resource Include="Maze\Code1.PNG" />
     <Resource Include="Maze\Code2.PNG" />
     <Resource Include="Maze\Code3.PNG" />

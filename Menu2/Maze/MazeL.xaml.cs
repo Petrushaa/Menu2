@@ -1,11 +1,13 @@
 ﻿using Menu2.Classes;
 using Menu2.Menu;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -25,8 +27,11 @@ namespace Menu2.Maze
 {
     public partial class MazeL : Page
     {
+        public static DispatcherTimer TimerSpawn = new DispatcherTimer();
         public static DispatcherTimer GameTimer = new DispatcherTimer();
         public static DispatcherTimer griverTimer = new DispatcherTimer();
+        public static DispatcherTimer timer;
+        DateTime start;
         PlayerMaze player2;
         CollisiaMaze collisia;
         bool gameOver, NitroUsed;
@@ -39,31 +44,45 @@ namespace Menu2.Maze
         List<BitmapImage> animations = new List<BitmapImage>();
         public static Image hero;
         private bool isFKeyPressed = false;
-        public MazeL(string direction)
+        GamePlay spawn;
+        public MazeL(string direction, GamePlay spawn)
         {
             InitializeComponent();
+            this.spawn = spawn;
             hero = Character;
             griverTimer.Interval = TimeSpan.FromMilliseconds(100);
             griverTimer.Tick += griverTick;
+            TimerSpawn.Interval = TimeSpan.FromMinutes(1);
+            TimerSpawn.Tick += griverSpawn;
+            GameTimer.Interval = TimeSpan.FromMilliseconds(5);
+            GameTimer.Tick += GameTick;
+            timer = new DispatcherTimer();
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += Timer_Tick;
             animations.Add(new BitmapImage(new Uri("griver1.PNG", UriKind.Relative)));
             animations.Add(new BitmapImage(new Uri("griver2.PNG", UriKind.Relative)));
             animations.Add(new BitmapImage(new Uri("griver3.PNG", UriKind.Relative)));
             animations.Add(new BitmapImage(new Uri("griver4.png", UriKind.Relative)));
             animations.Add(new BitmapImage(new Uri("griver5.png", UriKind.Relative)));
             animations.Add(new BitmapImage(new Uri("griver6.png", UriKind.Relative)));
-            GameTimer.Interval = TimeSpan.FromMilliseconds(5);
-            GameTimer.Tick += GameTick;
             randomMaze = new RandomMaze(maincanvas, direction);
             GameScreen.Focus();
             collisia = new CollisiaMaze(maincanvas, Character, player2, bullets, rand);
             player2 = new PlayerMaze(maincanvas, Character, collisia);
             collisia.player = player2;
             mob.character = Character;
-            RestartGame();
             hotset = new hotSettings(GameTimer);
             randomMaze.StartMaze();
             Canvas.SetZIndex(Character, 1);
             DropPinCode();
+            RestartGame();
+            start = DateTime.Now;
+        }
+        private void griverSpawn(object sender, EventArgs e)
+        {
+            mob newMob = new mob(maincanvas, rand);
+            mobs.Add(newMob);
+            newMob.makeGrivers();
         }
         private void griverTick(object sender, EventArgs e)
         {
@@ -97,6 +116,11 @@ namespace Menu2.Maze
             }
 
         }
+        private void Timer_Tick(object sender, EventArgs e)
+        {
+            TimeSpan elapsed = DateTime.Now - start;
+            lblTimer.Content = String.Format("{0:00}:{1:00}:{2:00}", elapsed.Hours, elapsed.Minutes, elapsed.Seconds);
+        }
         public void AnimateGriver(int start, int end, Image griver)
         {
             steps++;
@@ -111,7 +135,6 @@ namespace Menu2.Maze
         {
             collisia.elementsCopy = maincanvas.Children.Cast<UIElement>().ToList(); //передаем список из всех дочерних элементов на канвасе
             lbAmmo.Content = "Ammo: " + PlayerMaze.ammo;
-            if (Canvas.GetLeft(Character) > maincanvas.ActualWidth)
             {
                 GameTimer.Stop();
                 griverTimer.Stop();
@@ -138,9 +161,11 @@ namespace Menu2.Maze
                 player2.LeftKeyPressed = false;
                 GameTimer.Stop();
                 griverTimer.Stop();
-                // Передаем ссылку на текущее окно в конструктор второго окна
-                //gameOver gOver = new gameOver(this);
-                //gOver.Show();
+                timer.Stop();
+                TimerSpawn.Stop();
+                //Передаем ссылку на текущее окно в конструктор второго окна
+                gameOver gOver = new gameOver(spawn);
+                gOver.Show();
                 healthBar.Value = 0;
             }
             collisia.mobs = mobs;
@@ -175,6 +200,7 @@ namespace Menu2.Maze
                 isFKeyPressed = false;
             }
         }
+
         private void KeyBoardDown(object sender, KeyEventArgs e)
         {
             if (gameOver == true)
@@ -304,19 +330,18 @@ namespace Menu2.Maze
                 maincanvas.Children.Remove(mobe.griver);
             }
             mobs.Clear(); // Очистите список mobs
-            for (int i = 0; i < 3; i++)
-            {
-                mob newMob = new mob(maincanvas, rand);
-                mobs.Add(newMob);
-                newMob.makeGrivers();
-            }
+            mob newMob = new mob(maincanvas, rand);
+            mobs.Add(newMob);
+            newMob.makeGrivers();
             player2.UpKeyPressed = false;
             player2.DownKeyPressed = false;
             player2.LeftKeyPressed = false;
             player2.RightKeyPressed = false;
+            GameTimer.Stop();
+            griverTimer.Stop();
             gameOver = false;
             player2.Health = 100;
-            PlayerMaze.ammo = 10;
+            PlayerMaze.ammo = 5;
         }
     }
 }

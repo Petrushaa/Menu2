@@ -54,7 +54,7 @@ namespace Menu2
             griverTimer.Tick += griverTick;
             TimerSpawn.Interval = TimeSpan.FromMinutes(1);
             TimerSpawn.Tick += griverSpawn;
-            TimerSpawn.Start();
+
             GameTimer.Interval = TimeSpan.FromMilliseconds(5);
             GameTimer.Tick += GameTick;
             timer = new DispatcherTimer();
@@ -78,7 +78,6 @@ namespace Menu2
             DropPinCode();
             RestartGame();
             start = DateTime.Now;
-            timer.Start();
         }
         private void griverSpawn(object sender, EventArgs e)
         {
