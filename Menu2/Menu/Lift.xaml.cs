@@ -41,7 +41,7 @@ namespace Menu2.Menu
                 }
                 else
                 {
-                    lbLose.Opacity = 1;
+                    lbLose.Content = "Error";
                 }
             }
         }
@@ -51,6 +51,7 @@ namespace Menu2.Menu
             if (code.Length != 4)
             {
                 code += "1";
+                lbLose.Content = code;
             }
         }
 
@@ -59,6 +60,7 @@ namespace Menu2.Menu
             if (code.Length != 4)
             {
                 code += "2";
+                lbLose.Content = code;
             }
         }
 
@@ -67,6 +69,7 @@ namespace Menu2.Menu
             if (code.Length != 4)
             {
                 code += "3";
+                lbLose.Content = code;
             }
         }
 
@@ -75,6 +78,7 @@ namespace Menu2.Menu
             if (code.Length != 4)
             {
                 code += "4";
+                lbLose.Content = code;
             }
         }
 
@@ -83,6 +87,7 @@ namespace Menu2.Menu
             if (code.Length != 4)
             {
                 code += "5";
+                lbLose.Content = code;
             }
         }
 
@@ -91,6 +96,7 @@ namespace Menu2.Menu
             if (code.Length != 4)
             {
                 code += "6";
+                lbLose.Content = code;
             }
         }
 
@@ -99,6 +105,7 @@ namespace Menu2.Menu
             if (code.Length != 4)
             {
                 code += "7";
+                lbLose.Content = code;
             }
         }
 
@@ -107,6 +114,7 @@ namespace Menu2.Menu
             if (code.Length != 4)
             {
                 code += "8";
+                lbLose.Content = code;
             }
         }
 
@@ -115,6 +123,7 @@ namespace Menu2.Menu
             if (code.Length != 4)
             {
                 code += "9";
+                lbLose.Content = code;
             }
         }
 
@@ -123,6 +132,29 @@ namespace Menu2.Menu
             if (code.Length != 4)
             {
                 code += "0";
+                lbLose.Content = code;
+            }
+
+        }
+
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+            code = "";
+            lbLose.Content = "";
+        }
+
+        private void Enter_Click(object sender, RoutedEventArgs e)
+        {
+            if (code == GamePlay.kode)
+            {
+                TheEnd end = new TheEnd();
+                end.Show();
+                this.Close();
+                game.Close();
+            }
+            else
+            {
+                lbLose.Content = "Error";
             }
         }
     }

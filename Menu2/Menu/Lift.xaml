@@ -9,17 +9,19 @@
     <Viewbox>
         <Canvas  Height="1000" Width="1000">
             <Image Source="/Menu/pinCode.PNG" Height="1000" Width="1000" />
-            <Label x:Name="lbLose" Content="НЕ ВЕРНЫЙ КОД" Canvas.Top="189" Height="209" Width="600" Canvas.Left="200" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="76" Opacity="0"/>
-            <Button x:Name="one" Content="1" Canvas.Left="251" Canvas.Top="463" Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="80" Click="one_Click"/>
-            <Button x:Name="two" Content="2" Canvas.Left="459" Canvas.Top="463" Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="80" Click="two_Click"/>
-            <Button x:Name="three" Content="3" Canvas.Left="648" Canvas.Top="463" Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="80" Click="three_Click"/>
-            <Button x:Name="four" Content="4" Canvas.Left="251" Canvas.Top="612" Height="110" Width="110" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="80" Click="four_Click"/>
-            <Button x:Name="five" Content="5" Canvas.Left="459" Canvas.Top="612" Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="80" Click="five_Click"/>
-            <Button x:Name="six" Content="6" Canvas.Left="648" Canvas.Top="612" Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="80" Click="six_Click"/>
-            <Button x:Name="seven" Content="7" Canvas.Left="251" Canvas.Top="749" Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="80" Click="seven_Click"/>
-            <Button x:Name="eight" Content="8" Canvas.Left="459" Canvas.Top="749" Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="80" Click="eight_Click"/>
-            <Button x:Name="nine" Content="9" Canvas.Left="648" Canvas.Top="749" Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="80" Click="nine_Click"/>
-            <Button x:Name="null" Content="0" Canvas.Left="807" Canvas.Top="579" Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="80" Click="null_Click"/>
+            <Label x:Name="lbLose" Content="Введите пин код" Canvas.Top="201" Height="197" Width="600" Canvas.Left="200" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="76"/>
+            <Button x:Name="one" Content="1" Canvas.Left="251" Canvas.Top="463" Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="80" Click="one_Click"/>
+            <Button x:Name="two" Content="2" Canvas.Left="390" Canvas.Top="463" Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="80" Click="two_Click"/>
+            <Button x:Name="three" Content="3" Canvas.Left="593" Canvas.Top="463" Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="80" Click="three_Click"/>
+            <Button x:Name="four" Content="4" Canvas.Left="225" Canvas.Top="612" Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="80" Click="four_Click"/>
+            <Button x:Name="five" Content="5" Canvas.Left="404" Canvas.Top="612" Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="80" Click="five_Click"/>
+            <Button x:Name="six" Content="6" Canvas.Left="593" Canvas.Top="612" Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="80" Click="six_Click"/>
+            <Button x:Name="seven" Content="7" Canvas.Left="251" Canvas.Top="738" Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="80" Click="seven_Click"/>
+            <Button x:Name="eight" Content="8" Canvas.Left="390" Canvas.Top="749" Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="80" Click="eight_Click"/>
+            <Button x:Name="nine" Content="9" Canvas.Left="593" Canvas.Top="749" Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="80" Click="nine_Click"/>
+            <Button x:Name="null" Content="0" Canvas.Left="752" Canvas.Top="612" Height="110" Width="110" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="80" Click="null_Click"/>
+            <Button x:Name="Enter" Content="Enter" Height="110" Width="242" Canvas.Left="741" Canvas.Top="463" HorizontalAlignment="Left" VerticalAlignment="Center" FontSize="80" Click="Enter_Click"/>
+            <Button x:Name="Clear" Content="Clear" Height="110" Width="242" Canvas.Left="752" Canvas.Top="716" HorizontalAlignment="Center" VerticalAlignment="Top" FontSize="80" Click="Clear_Click"/>
         </Canvas>
     </Viewbox>
 </Window>
