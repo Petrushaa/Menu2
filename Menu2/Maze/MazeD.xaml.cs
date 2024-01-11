@@ -86,13 +86,13 @@ namespace Menu2.Maze
             }
 
             player2.Health = 100;
-            PlayerMaze.ammo = 5;
 
 
             FillList();
             mob newMob = new mob(maincanvas, rand);
             mobs.Add(newMob);
             newMob.makeGrivers();
+            PlayerMaze.ammo = 5;
         }
 
         private void FillList()
@@ -161,7 +161,6 @@ namespace Menu2.Maze
         {
             collisia.elementsCopy = maincanvas.Children.Cast<UIElement>().ToList(); //передаем список из всех дочерних элементов на канвасе
             lbAmmo.Content = "Ammo: " + PlayerMaze.ammo;
-
             if (Canvas.GetTop(Character) < 0)
             {
                 GameTimer.Stop();
@@ -170,13 +169,10 @@ namespace Menu2.Maze
                 player2.DownKeyPressed = false;
                 player2.RightKeyPressed = false;
                 player2.LeftKeyPressed = false;
-                // Get the navigation service from the current page
-                // Navigate to the GamePlay page
                 GamePlay.GameTimer.Start();
                 Canvas.SetTop(GamePlay.hero, Canvas.GetTop(GamePlay.hero) - 35);
                 NavigationService.GoBack();
             }//переход на другую локацию
-
             if (player2.Health > 0)
             {
                 healthBar.Value = player2.Health;
@@ -322,6 +318,7 @@ namespace Menu2.Maze
                 //spawnY = rand.Next(10, (int)maincanvas.Height);
                 spawnX = Canvas.GetLeft(Character);
                 spawnY = Canvas.GetTop(Character);
+
                 Rect codeSpawnArea = new Rect(spawnX, spawnY, code.Width, code.Height);
 
                 // Проверяем столкновение со всеми препятствиями
@@ -352,8 +349,8 @@ namespace Menu2.Maze
             // Загружаем картинку из ресурсов проекта
             trap.Source = new BitmapImage(new Uri("Spikes.png", UriKind.RelativeOrAbsolute));
             trap.Tag = "trap";
-            trap.Height = (int)Character.Height * 4;
-            trap.Width = (int)Character.Width * 4;
+            trap.Height = (int)Character.Height * 2;
+            trap.Width = (int)Character.Width * 2;
             do
             {
                 isColliding = false;

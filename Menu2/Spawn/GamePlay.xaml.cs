@@ -156,12 +156,5 @@ namespace Menu2
             }
         }
 
-        public void RestartGame()
-        {
-            //mazeUp = new Maze1("up", this);
-            //mazeRight = new MazeR("right", this);
-            //mazeDown = new MazeD("down", this);
-            //mazeLeft = new MazeL("left", this);
-        }
     }
 }

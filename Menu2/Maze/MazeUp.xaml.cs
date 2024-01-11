@@ -275,10 +275,9 @@ namespace Menu2
             {
                 isColliding = false;
                 // Генерируем случайные координаты для спавна пули
-                //spawnX = rand.Next(10, (int)maincanvas.Width);
-                //spawnY = rand.Next(10, (int)maincanvas.Height);
-                spawnX = Canvas.GetLeft(Character);
-                spawnY = Canvas.GetTop(Character);
+                spawnX = rand.Next(10, (int)maincanvas.Width);
+                spawnY = rand.Next(10, (int)maincanvas.Height);
+
 
                 Rect bulletSpawnArea = new Rect(spawnX, spawnY, ammo.Width, ammo.Height);
 
@@ -350,8 +349,8 @@ namespace Menu2
             // Загружаем картинку из ресурсов проекта
             trap.Source = new BitmapImage(new Uri("Spikes.png", UriKind.RelativeOrAbsolute));
             trap.Tag = "trap";
-            trap.Height = (int)Character.Height*4;
-            trap.Width = (int)Character.Width*4;
+            trap.Height = (int)Character.Height*2;
+            trap.Width = (int)Character.Width*2;
             do
             {
                 isColliding = false;

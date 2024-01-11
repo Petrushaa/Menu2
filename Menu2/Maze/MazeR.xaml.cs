@@ -351,8 +351,8 @@ namespace Menu2.Maze
             // Загружаем картинку из ресурсов проекта
             trap.Source = new BitmapImage(new Uri("Spikes.png", UriKind.RelativeOrAbsolute));
             trap.Tag = "trap";
-            trap.Height = (int)Character.Height * 4;
-            trap.Width = (int)Character.Width * 4;
+            trap.Height = (int)Character.Height * 2;
+            trap.Width = (int)Character.Width * 2;
             do
             {
                 isColliding = false;

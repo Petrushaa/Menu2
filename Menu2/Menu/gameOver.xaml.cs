@@ -32,7 +32,6 @@ namespace Menu2.Menu
             GamePlay.GameTimer.Start();
             Canvas.SetLeft(GamePlay.hero, 935);
             Canvas.SetTop(GamePlay.hero, 540);
-            spawn.RestartGame();
             Game.frame.NavigationService.Navigate(spawn);
             spawn = null;
             this.Close();
