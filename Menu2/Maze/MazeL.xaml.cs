@@ -316,11 +316,8 @@ namespace Menu2.Maze
             {
                 isColliding = false;
                 // Генерируем случайные координаты для спавна 
-                //spawnX = rand.Next(10, (int)maincanvas.Width);
-                //spawnY = rand.Next(10, (int)maincanvas.Height);
-
-                spawnX = 19130;
-                spawnY = 5543;
+                spawnX = rand.Next(10, (int)maincanvas.Width);
+                spawnY = rand.Next(10, (int)maincanvas.Height);
                 Rect codeSpawnArea = new Rect(spawnX, spawnY, code.Width, code.Height);
 
                 // Проверяем столкновение со всеми препятствиями

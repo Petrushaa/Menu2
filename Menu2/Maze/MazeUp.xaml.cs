@@ -314,10 +314,9 @@ namespace Menu2
             {
                 isColliding = false;
                 // Генерируем случайные координаты для спавна 
-                //spawnX = rand.Next(10, (int)maincanvas.Width);
-                //spawnY = rand.Next(10, (int)maincanvas.Height);
-                spawnX = Canvas.GetLeft(Character);
-                spawnY = Canvas.GetTop(Character);
+                spawnX = rand.Next(10, (int)maincanvas.Width);
+                spawnY = rand.Next(10, (int)maincanvas.Height);
+
 
                 Rect codeSpawnArea = new Rect(spawnX, spawnY, code.Width, code.Height);
 
