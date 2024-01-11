@@ -19,20 +19,20 @@ namespace Menu2.Classes
         public Canvas canvas;
         public List<UIElement> elementsCopy;
         public List<mob> mobs;
-        Random rand;
         private List<Bullet> bullets;
         // Индексы для отслеживания текущего изображения в каждой коллекции
         int rightIndex = 0;
         int leftIndex = 0;
+        Label lbAmmo;
 
-        public CollisiaMaze(Canvas canvas, Image object1, PlayerMaze player, List<Bullet> bullets, Random rand = null) //конструктор
+        public CollisiaMaze(Canvas canvas, Image object1, PlayerMaze player, List<Bullet> bullets, Label lbAmmo) //конструктор
         {
             //Конструктор присваиваем все переменные
             this.object1 = object1;
             this.player = player;
             this.canvas = canvas;
-            this.rand = rand;
             this.bullets = bullets;
+            this.lbAmmo = lbAmmo;
 
 
         }
@@ -88,6 +88,7 @@ namespace Menu2.Classes
                         canvas.Children.Remove(imagey);
                         imagey.Source = null;
                         PlayerMaze.ammo += 5;
+                        lbAmmo.Foreground = new SolidColorBrush(Color.FromRgb(0, 0, 0));
                     }
                 }
                 //Убийство гриверов
@@ -135,31 +136,37 @@ namespace Menu2.Classes
             foreach (mob mobe in mobs)
             {
                 Image mobb = mobe.griver;
-                Rect PlayerHB = new Rect(Canvas.GetLeft(object1), Canvas.GetTop(object1), object1.Width, object1.Height);//создаем хитбокс объекта (персонажа) 
-                Rect GriverHB = new Rect(Canvas.GetLeft(mobb), Canvas.GetTop(mobb), mobb.Width, mobb.Height);
-                if (PlayerHB.IntersectsWith(GriverHB))
-                {
-                    player.Health -= 1;
-                }
-                if (Canvas.GetLeft(mobb) < Canvas.GetLeft(object1))
+                double playerCenterX = Canvas.GetLeft(object1) + object1.Width / 2;
+                double playerCenterY = Canvas.GetTop(object1) + object1.Height / 2;
+                double mobCenterX = Canvas.GetLeft(mobb) + mobb.Width / 2;
+                double mobCenterY = Canvas.GetTop(mobb) + mobb.Height / 2;
+
+                if (mobCenterX < playerCenterX)
                 {
                     Canvas.SetLeft(mobb, Canvas.GetLeft(mobb) + mob.griverSpeed);
-                    //право
                     mobe.direction = "Right";
                 }
-                if (Canvas.GetTop(mobb) > Canvas.GetTop(object1))
+                else if (mobCenterX > playerCenterX)
                 {
-                    Canvas.SetTop(mobb, Canvas.GetTop(mobb) - mob.griverSpeed);
+                    Canvas.SetLeft(mobb, Canvas.GetLeft(mobb) - mob.griverSpeed);
+                    mobe.direction = "Left";
                 }
-                if (Canvas.GetTop(mobb) < Canvas.GetTop(object1))
+
+                if (mobCenterY < playerCenterY)
                 {
                     Canvas.SetTop(mobb, Canvas.GetTop(mobb) + mob.griverSpeed);
                 }
-                if (Canvas.GetLeft(mobb) > Canvas.GetLeft(object1))
+                else if (mobCenterY > playerCenterY)
                 {
-                    Canvas.SetLeft(mobb, Canvas.GetLeft(mobb) - mob.griverSpeed);
-                    //лево
-                    mobe.direction = "Left";
+                    Canvas.SetTop(mobb, Canvas.GetTop(mobb) - mob.griverSpeed);
+                }
+
+                Rect PlayerHB = new Rect(playerCenterX, playerCenterY, object1.Width, object1.Height);
+                Rect GriverHB = new Rect(mobCenterX, mobCenterY, mobb.Width, mobb.Height/1.5);
+
+                if (PlayerHB.IntersectsWith(GriverHB))
+                {
+                    player.Health -= 1;
                 }
             }
         }

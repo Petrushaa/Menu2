@@ -68,7 +68,7 @@ namespace Menu2
             animations.Add(new BitmapImage(new Uri("griver6.png", UriKind.Relative)));
             randomMaze = new RandomMaze(maincanvas, direction);
             GameScreen.Focus();
-            collisia = new CollisiaMaze(maincanvas, Character, player2, bullets, rand);
+            collisia = new CollisiaMaze(maincanvas, Character, player2, bullets, lbAmmo);
             player2 = new PlayerMaze(maincanvas, Character, collisia);
             collisia.player = player2;
             mob.character = Character;
@@ -76,8 +76,23 @@ namespace Menu2
             randomMaze.StartMaze();
             Canvas.SetZIndex(Character, 1);
             DropPinCode();
-            RestartGame();
+            //RestartGame();
             start = DateTime.Now;
+            for (int i = 0; i < 10; i++)
+            {
+                SpawnTraps();
+            }
+
+            for (int i = 0; i < 10; i++)
+            {
+                DropAmmo();
+            }
+            player2.Health = 100;
+            PlayerMaze.ammo = 5;
+
+            mob newMob = new mob(maincanvas, rand);
+            mobs.Add(newMob);
+            newMob.makeGrivers();
         }
         private void griverSpawn(object sender, EventArgs e)
         {
@@ -181,8 +196,7 @@ namespace Menu2
                 ShootBullet();
                 if (PlayerMaze.ammo < 1)
                 {
-                    
-                    DropAmmo();
+                    lbAmmo.Foreground = new SolidColorBrush(Color.FromRgb(255, 0, 0));
                 }
             }
             if (e.Key == Key.LeftShift || Nitro.Value < 0)
@@ -251,8 +265,8 @@ namespace Menu2
             {
                 isColliding = false;
                 // Генерируем случайные координаты для спавна пули
-                spawnX = rand.Next((int)Canvas.GetLeft(Character)-1000, (int)Canvas.GetLeft(Character) + 1000);
-                spawnY = rand.Next((int)Canvas.GetTop(Character)-1000, (int)Canvas.GetTop(Character) + 1000);
+                spawnX = rand.Next(10, (int)maincanvas.Width);
+                spawnY = rand.Next(10, (int)maincanvas.Height);
 
                 Rect bulletSpawnArea = new Rect(spawnX, spawnY, ammo.Width, ammo.Height);
 
@@ -289,7 +303,7 @@ namespace Menu2
             do
             {
                 isColliding = false;
-                // Генерируем случайные координаты для спавна пули
+                // Генерируем случайные координаты для спавна 
                 spawnX = rand.Next(10, (int)maincanvas.Width);
                 spawnY = rand.Next(10, (int)maincanvas.Height);
 
@@ -315,6 +329,45 @@ namespace Menu2
             Canvas.SetZIndex(code, 1);
             Canvas.SetZIndex(Character, 1);
         }
+        public void SpawnTraps()
+        {
+            double spawnX, spawnY;
+            bool isColliding;
+            Image trap = new Image();
+            // Загружаем картинку из ресурсов проекта
+            trap.Source = new BitmapImage(new Uri("Spikes.png", UriKind.RelativeOrAbsolute));
+            trap.Tag = "Trap";
+            trap.Height = (int)Character.Height*2;
+            trap.Width = (int)Character.Width*2;
+            do
+            {
+                isColliding = false;
+                // Генерируем случайные координаты для спавна пули
+                spawnX = rand.Next(10, (int)maincanvas.Width);
+                spawnY = rand.Next(10, (int)maincanvas.Height);
+
+                Rect codeSpawnArea = new Rect(spawnX, spawnY, trap.Width, trap.Height);
+
+                // Проверяем столкновение со всеми препятствиями
+                foreach (UIElement element in maincanvas.Children)
+                {
+                    if (element is Rectangle rectangle && (string)rectangle.Tag == "Collide")
+                    {
+                        Rect rectangleArea = new Rect(Canvas.GetLeft(rectangle), Canvas.GetTop(rectangle), rectangle.Width, rectangle.Height);
+                        if (codeSpawnArea.IntersectsWith(rectangleArea))
+                        {
+                            isColliding = true;
+                            break;
+                        }
+                    }
+                }
+            } while (isColliding);
+            Canvas.SetTop(trap, spawnY);
+            Canvas.SetLeft(trap, spawnX);
+            maincanvas.Children.Add(trap);
+            Canvas.SetZIndex(trap, 1);
+            Canvas.SetZIndex(Character, 1);
+        }
         public void BulletTimer_Tick()
         {
             foreach (Bullet bullet in bullets.ToList())
@@ -324,24 +377,19 @@ namespace Menu2
         }
         public void RestartGame()
         {
-            Character.Source = new BitmapImage(new Uri("hero1.png", UriKind.RelativeOrAbsolute));
-            foreach (mob mobe in mobs)
-            {
-                maincanvas.Children.Remove(mobe.griver);
-            }
-            mobs.Clear(); // Очистите список mobs
-            mob newMob = new mob(maincanvas, rand);
-            mobs.Add(newMob);
-            newMob.makeGrivers();
-            player2.UpKeyPressed = false;
-            player2.DownKeyPressed = false;
-            player2.LeftKeyPressed = false;
-            player2.RightKeyPressed = false;
-            GameTimer.Stop();
-            griverTimer.Stop();
-            gameOver = false;
-            player2.Health = 100;
-            PlayerMaze.ammo = 5;
+            //Character.Source = new BitmapImage(new Uri("hero1.png", UriKind.RelativeOrAbsolute));
+            //foreach (mob mobe in mobs)
+            //{
+            //    maincanvas.Children.Remove(mobe.griver);
+            //}
+            //mobs.Clear(); // Очистите список mobs
+            //player2.UpKeyPressed = false;
+            //player2.DownKeyPressed = false;
+            //player2.LeftKeyPressed = false;
+            //player2.RightKeyPressed = false;
+            //GameTimer.Stop();
+            //griverTimer.Stop();
+            //gameOver = false;
         }
     }
 }

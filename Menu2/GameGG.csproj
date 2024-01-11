@@ -388,6 +388,8 @@
   <ItemGroup>
     <Resource Include="bin\Debug\characterLeft.png" />
     <Content Include="bin\Debug\TheEnd.MOV" />
+    <Resource Include="bin\Debug\Spikes.png" />
+    <Resource Include="images\Spikes.png" />
     <Content Include="Menu\TheEnd.MOV" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

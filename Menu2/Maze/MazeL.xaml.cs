@@ -67,7 +67,7 @@ namespace Menu2.Maze
             animations.Add(new BitmapImage(new Uri("griver6.png", UriKind.Relative)));
             randomMaze = new RandomMaze(maincanvas, direction);
             GameScreen.Focus();
-            collisia = new CollisiaMaze(maincanvas, Character, player2, bullets, rand);
+            collisia = new CollisiaMaze(maincanvas, Character, player2, bullets, lbAmmo);
             player2 = new PlayerMaze(maincanvas, Character, collisia);
             collisia.player = player2;
             mob.character = Character;
