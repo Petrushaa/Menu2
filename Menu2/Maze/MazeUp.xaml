@@ -15,7 +15,7 @@
             <Canvas x:Name="Bars" Height="1080" Width="1920">
                 <!--канвас для того, что всегда будет на одном месте (бары)-->
                 <ProgressBar x:Name="healthBar" Height="39"  Width="187" Value="100" HorizontalAlignment="Left" VerticalAlignment="Center" Canvas.Left="79" Canvas.Top="1004"/>
-                <Label x:Name="lbAmmo" Content="Ammo: 0" Canvas.Left="12" Canvas.Top="831" Height="40" Width="122" FontSize="30" FontFamily="Bahnschrift SemiBold SemiCondensed" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <Label x:Name="lbAmmo" Content="Ammo: 0" Canvas.Left="12" Canvas.Top="831" Height="40" Width="150" FontSize="30" FontFamily="Bahnschrift SemiBold SemiCondensed" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <ProgressBar x:Name="Nitro" Height="45" Width="219" Value="100" HorizontalAlignment="Center" VerticalAlignment="Top" Canvas.Left="64" Foreground ="Blue" Canvas.Top="902"/>
                 <Image x:Name="imgHealth" Source="Health.PNG" Height="100" Width="336" Canvas.Left="1" Canvas.Top="979" HorizontalAlignment="Left" VerticalAlignment="Top" Stretch="Fill"/>
                 <Image x:Name="imgStamina" Source="Stamina.PNG" Height="92" Width="336" Canvas.Left="1" Canvas.Top="887" HorizontalAlignment="Center" VerticalAlignment="Top" Stretch="Fill"/>

@@ -29,9 +29,9 @@ namespace Menu2
 
         private void MediaElement_MediaEnded(object sender, RoutedEventArgs e)
         {
+            
             NavigationService.Navigate(new GamePlay(game));
         }
-
 
     }
 }

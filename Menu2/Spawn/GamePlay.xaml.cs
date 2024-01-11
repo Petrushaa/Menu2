@@ -32,6 +32,7 @@ namespace Menu2
         MazeD mazeDown;
         MazeL mazeLeft;
         MazeR mazeRight;
+        Random rand = new Random();
         public static string kode;
         public static Image hero;
         private bool isFKeyPressed = false;
@@ -48,8 +49,7 @@ namespace Menu2
             collisia.player = player;
             hotset = new hotSettings(GameTimer);
 
-            //kode = rand.Next(1000, 10_000).ToString();
-            kode = "5248";
+            kode = Convert.ToString(rand.Next(1000, 10000));
             mazeUp = new Maze1("up", this, Convert.ToInt32(kode[0].ToString()));
             mazeRight = new MazeR("right", this, Convert.ToInt32(kode[1].ToString()));
             mazeDown = new MazeD("down", this, Convert.ToInt32(kode[2].ToString()));
