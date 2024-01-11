@@ -386,10 +386,14 @@
     <Resource Include="Spawn\hero1.PNG" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Spawn\listCode.PNG" />
+    <Resource Include="Spawn\gopnik.png" />
     <Resource Include="bin\Debug\characterLeft.png" />
     <Content Include="bin\Debug\TheEnd.MOV" />
     <Resource Include="bin\Debug\Spikes.png" />
     <Resource Include="images\Spikes.png" />
+    <Resource Include="Maze\Spikes.png" />
+    <Resource Include="images\gopnik.png" />
     <Content Include="Menu\TheEnd.MOV" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -79,6 +79,16 @@ namespace Menu2.Classes
                         }
                     }
                 }
+                if (x is Image trap && (string)trap.Tag =="trap")
+                {
+                    Rect PlayerHB = new Rect(Canvas.GetLeft(object1), Canvas.GetTop(object1), object1.Width, object1.Height);//создаем хитбокс объекта (персонажа) 
+                    Rect ToCollide = new Rect(Canvas.GetLeft(trap), Canvas.GetTop(trap), trap.Width, trap.Height);//Создаем хитбокс коллизии, т.е. нашего ректа
+                    if (PlayerHB.IntersectsWith(ToCollide))//Проверяем пересекаются ли хитбоксы объекта (персонажа) с нашей коллизией
+                    {
+                        player.Health -= 1;
+                    }
+
+                }
                 if (x is Image imagey && (string)imagey.Tag == "ammo") //Если у ректангле тег Коллизии, то 
                 {
                     Rect PlayerHB = new Rect(Canvas.GetLeft(object1), Canvas.GetTop(object1), object1.Width, object1.Height);//создаем хитбокс объекта (персонажа) 

@@ -32,7 +32,7 @@ namespace Menu2
         MazeD mazeDown;
         MazeL mazeLeft;
         MazeR mazeRight;
-        public static int countKeys = 4;
+        public static int countKeys = 0;
         public static Image hero;
         private bool isFKeyPressed = false;
         Game game;
@@ -58,7 +58,7 @@ namespace Menu2
 
         private void GameTick(object sender, EventArgs e)
         {
-            lbCount.Content = "Count of codes: " + Convert.ToString(countKeys);
+            lbCount.Content = ": " + Convert.ToString(countKeys);
             collisia.elementsCopy = GameScreen.Children.OfType<Rectangle>().ToList();
             if (Canvas.GetTop(Character) < 0)//верх
             {

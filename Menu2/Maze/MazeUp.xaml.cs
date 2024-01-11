@@ -336,9 +336,9 @@ namespace Menu2
             Image trap = new Image();
             // Загружаем картинку из ресурсов проекта
             trap.Source = new BitmapImage(new Uri("Spikes.png", UriKind.RelativeOrAbsolute));
-            trap.Tag = "Trap";
-            trap.Height = (int)Character.Height*2;
-            trap.Width = (int)Character.Width*2;
+            trap.Tag = "trap";
+            trap.Height = (int)Character.Height*4;
+            trap.Width = (int)Character.Width*4;
             do
             {
                 isColliding = false;
