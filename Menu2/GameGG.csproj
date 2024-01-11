@@ -84,6 +84,9 @@
     <Compile Include="Menu\Lift.xaml.cs">
       <DependentUpon>Lift.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Menu\TheEnd.xaml.cs">
+      <DependentUpon>TheEnd.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Spawn\GamePlay.xaml.cs">
       <DependentUpon>GamePlay.xaml</DependentUpon>
     </Compile>
@@ -125,6 +128,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Menu\Lift.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Menu\TheEnd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -377,6 +384,11 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Spawn\hero1.PNG" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="bin\Debug\characterLeft.png" />
+    <Content Include="bin\Debug\TheEnd.MOV" />
+    <Content Include="Menu\TheEnd.MOV" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

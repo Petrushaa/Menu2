@@ -19,8 +19,10 @@ namespace Menu2.Menu
     /// </summary>
     public partial class Lift : Window
     {
-        public Lift()
+        Game game;
+        public Lift(Game game)
         {
+            this.game = game;
             InitializeComponent();
         }
 
@@ -34,12 +36,14 @@ namespace Menu2.Menu
             {
                 if (GamePlay.countKeys == 4)
                 {
-                    //ВЫИГРЫШ 
+                    TheEnd end = new TheEnd();
+                    end.Show();
+                    this.Close();
+                    game.Close();
                 }
                 else
                 {
                     lbLose.Opacity = 1;
-                    
                 }
             }
         }

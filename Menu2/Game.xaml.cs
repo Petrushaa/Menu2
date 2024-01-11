@@ -20,7 +20,7 @@ namespace Menu2
         public Game()
         {
             InitializeComponent();
-            MainFrame.Content = new GamePlay();
+            MainFrame.Content = new GamePlay(this);
             frame = MainFrame;
         }
     }

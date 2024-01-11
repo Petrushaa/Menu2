@@ -35,11 +35,13 @@ namespace Menu2
         public static int countKeys = 0;
         public static Image hero;
         private bool isFKeyPressed = false;
+        Game game;
 
         
 
-        public GamePlay()
+        public GamePlay(Game game)
         {
+            this.game = game;
             InitializeComponent();
             hero = Character;
             GameScreen.Focus();
@@ -147,7 +149,7 @@ namespace Menu2
             }
             if (e.Key == Key.F && !isFKeyPressed)
             {
-                collisia.Lift();
+                collisia.Lift(game);
                 isFKeyPressed = true;
                 player.UpKeyPressed = false;
                 player.DownKeyPressed = false;

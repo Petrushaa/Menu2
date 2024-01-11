@@ -20,16 +20,6 @@ namespace Menu2
         public Player player;
         public Canvas canvas;
         public List<Rectangle> elementsCopy;
-        Random rand;
-        private List<BitmapImage> rightImages;
-        private List<BitmapImage> downImages;
-        private List<BitmapImage> upImages;
-        private List<BitmapImage> leftImages;
-        // Индексы для отслеживания текущего изображения в каждой коллекции
-        int rightIndex = 0;
-        int downIndex = 0;
-        int upIndex = 0;
-        int leftIndex = 0;
 
         public Collisia(Canvas canvas, Image object1, Player player) //конструктор
         {
@@ -38,26 +28,9 @@ namespace Menu2
             this.player = player;
             this.canvas = canvas;
 
-            rightImages = LoadImages("right");
-            downImages = LoadImages("down");
-            upImages = LoadImages("up");
-            leftImages = LoadImages("left");
 
         }
-        private List<BitmapImage> LoadImages(string direction)
-        {
-            List<BitmapImage> images = new List<BitmapImage>();
-
-            for (int i = 1; i <= 3; i++) // Предположим, у вас есть 3 изображения для каждого направления
-            {
-                string path = $"z{direction}{i}.png"; // Предположим, что ваши изображения названы zRight1.png, zRight2.png, zRight3.png и т.д.
-                BitmapImage image = new BitmapImage(new Uri(path, UriKind.Relative));
-                images.Add(image);
-            }
-
-            return images;
-        }
-        public void Lift()
+        public void Lift(Game game)
         {
             foreach (var x in canvas.Children.OfType<Image>())
             {
@@ -67,7 +40,7 @@ namespace Menu2
                     Rect LiftHB = new Rect(Canvas.GetLeft(x), Canvas.GetTop(x), x.RenderSize.Width, x.RenderSize.Height);//Создаем хитбокс коллизии, т.е. нашего ректа
                     if (PlayerHB.IntersectsWith(LiftHB))
                     {
-                        Lift lift = new Lift();
+                        Lift lift = new Lift(game);
                         lift.Show();
                     }
                 }
