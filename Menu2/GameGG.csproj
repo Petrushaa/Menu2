@@ -87,6 +87,9 @@
     <Compile Include="Menu\TheEnd.xaml.cs">
       <DependentUpon>TheEnd.xaml</DependentUpon>
     </Compile>
+    <Compile Include="prehistory.xaml.cs">
+      <DependentUpon>prehistory.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Spawn\GamePlay.xaml.cs">
       <DependentUpon>GamePlay.xaml</DependentUpon>
     </Compile>
@@ -132,6 +135,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Menu\TheEnd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="prehistory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -382,6 +389,8 @@
     <Resource Include="Spawn\hero1.PNG" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="bin\Debug\prehistory.MOV" />
+    <Content Include="prehistory.MOV" />
     <Resource Include="Spawn\listCode.PNG" />
     <Resource Include="Spawn\gopnik.png" />
     <Resource Include="bin\Debug\characterLeft.png" />
@@ -395,6 +404,7 @@
     <Resource Include="Maze\Code4%283%29.PNG" />
     <Resource Include="Maze\Code5%281%29.PNG" />
     <Resource Include="Maze\Code8%284%29.PNG" />
+    <Content Include="Menu\prehistory.MOV" />
     <Content Include="Menu\TheEnd.MOV" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

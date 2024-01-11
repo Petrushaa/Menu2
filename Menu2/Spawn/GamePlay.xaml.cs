@@ -32,7 +32,6 @@ namespace Menu2
         MazeD mazeDown;
         MazeL mazeLeft;
         MazeR mazeRight;
-        Random rand;
         public static string kode;
         public static Image hero;
         private bool isFKeyPressed = false;

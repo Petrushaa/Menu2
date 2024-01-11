@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Menu2.Menu;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,7 +21,7 @@ namespace Menu2
         public Game()
         {
             InitializeComponent();
-            MainFrame.Content = new GamePlay(this);
+            MainFrame.Content = new prehistory(this);
             frame = MainFrame;
         }
     }
