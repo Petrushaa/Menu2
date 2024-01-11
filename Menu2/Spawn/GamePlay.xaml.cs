@@ -32,7 +32,8 @@ namespace Menu2
         MazeD mazeDown;
         MazeL mazeLeft;
         MazeR mazeRight;
-        public static int countKeys = 0;
+        Random rand;
+        public static string kode;
         public static Image hero;
         private bool isFKeyPressed = false;
         Game game;
@@ -47,10 +48,14 @@ namespace Menu2
             player = new Player(GameScreen, Character, collisia);
             collisia.player = player;
             hotset = new hotSettings(GameTimer);
-            mazeUp = new Maze1("up", this);
-            mazeRight = new MazeR("right", this);
-            mazeDown = new MazeD("down", this);
-            mazeLeft = new MazeL("left", this);
+
+            //kode = rand.Next(1000, 10_000).ToString();
+            kode = "5248";
+            mazeUp = new Maze1("up", this, Convert.ToInt32(kode[0].ToString()));
+            mazeRight = new MazeR("right", this, Convert.ToInt32(kode[1].ToString()));
+            mazeDown = new MazeD("down", this, Convert.ToInt32(kode[2].ToString()));
+            mazeLeft = new MazeL("left", this, Convert.ToInt32(kode[3].ToString()));
+
             GameTimer.Interval = TimeSpan.FromMilliseconds(5);
             GameTimer.Tick += GameTick;
             GameTimer.Start();
@@ -58,7 +63,7 @@ namespace Menu2
 
         private void GameTick(object sender, EventArgs e)
         {
-            lbCount.Content = ": " + Convert.ToString(countKeys);
+            lbCount.Content = ": " + CollisiaMaze.kode;
             collisia.elementsCopy = GameScreen.Children.OfType<Rectangle>().ToList();
             if (Canvas.GetTop(Character) < 0)//верх
             {
@@ -154,10 +159,10 @@ namespace Menu2
 
         public void RestartGame()
         {
-            mazeUp = new Maze1("up", this);
-            mazeRight = new MazeR("right", this);
-            mazeDown = new MazeD("down", this);
-            mazeLeft = new MazeL("left", this);
+            //mazeUp = new Maze1("up", this);
+            //mazeRight = new MazeR("right", this);
+            //mazeDown = new MazeD("down", this);
+            //mazeLeft = new MazeL("left", this);
         }
     }
 }

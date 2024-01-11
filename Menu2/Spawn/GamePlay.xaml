@@ -23,7 +23,7 @@
             <Rectangle Height="375" Tag="Collide"  Width="82" Canvas.Left="1846" Canvas.Top="605" HorizontalAlignment="Left" VerticalAlignment="Top"/>
             <Rectangle Height="23" Canvas.Left="233" Tag="Collide" Canvas.Top="840" Width="216" HorizontalAlignment="Center" VerticalAlignment="Top"/>
             <Rectangle Height="201" Canvas.Left="1414" Tag="Collide" Canvas.Top="114" Width="183" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-            <Label x:Name="lbCount" Content=":" HorizontalAlignment="Left" Height="106" VerticalAlignment="Center" Width="169" Canvas.Left="196" Canvas.Top="44" FontSize="75"></Label>
+            <Label x:Name="lbCount" Content=":" HorizontalAlignment="Left" Height="106" VerticalAlignment="Center" Width="391" Canvas.Left="196" Canvas.Top="44" FontSize="75"></Label>
             <Image  Source="/Spawn/listCode.PNG" Height="106" Width="117" Canvas.Left="79" Canvas.Top="44"/>
         </Canvas>
     </Viewbox>

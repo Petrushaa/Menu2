@@ -20,6 +20,7 @@ namespace Menu2.Classes
         public List<UIElement> elementsCopy;
         public List<mob> mobs;
         private List<Bullet> bullets;
+        public static string kode = "....";
         // Индексы для отслеживания текущего изображения в каждой коллекции
         int rightIndex = 0;
         int leftIndex = 0;
@@ -36,7 +37,18 @@ namespace Menu2.Classes
 
 
         }
-        public void Code()
+        public void SetCharacterAt(int position, char number)
+        {
+            if (position >= 0 && position < kode.Length)
+            {
+                kode = kode.Remove(position, 1).Insert(position, number.ToString());
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException("position");
+            }
+        }
+        public void Code(int position, int number)
         {
             foreach (UIElement x in elementsCopy)
             {
@@ -46,7 +58,8 @@ namespace Menu2.Classes
                     Rect ToCollide = new Rect(Canvas.GetLeft(code), Canvas.GetTop(code), code.RenderSize.Width, code.RenderSize.Height);
                     if (PlayerHB.IntersectsWith(ToCollide))//Проверяем пересекаются ли хитбоксы объекта (персонажа) с нашей коллизией
                     {
-                        GamePlay.countKeys += 1;
+                        //что делать будет
+                        SetCharacterAt(position-1, number.ToString()[0]);
                         code.Source = null;
                         canvas.Children.Remove(x);
                     }

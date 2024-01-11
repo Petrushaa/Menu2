@@ -299,10 +299,6 @@
     <Resource Include="Spawn\images\Lift.PNG" />
     <Resource Include="bin\Debug\wall.PNG" />
     <Resource Include="bin\Debug\way.PNG" />
-    <Resource Include="Maze\Code1.PNG" />
-    <Resource Include="Maze\Code2.PNG" />
-    <Resource Include="Maze\Code3.PNG" />
-    <Resource Include="Maze\Code4.PNG" />
     <Resource Include="Maze\Stamina.PNG" />
     <Resource Include="Maze\Health.PNG" />
     <Resource Include="Maze\spawn.jpg" />
@@ -389,11 +385,16 @@
     <Resource Include="Spawn\listCode.PNG" />
     <Resource Include="Spawn\gopnik.png" />
     <Resource Include="bin\Debug\characterLeft.png" />
+    <Resource Include="bin\Debug\Code8%284%29.PNG" />
     <Content Include="bin\Debug\TheEnd.MOV" />
     <Resource Include="bin\Debug\Spikes.png" />
     <Resource Include="images\Spikes.png" />
     <Resource Include="Maze\Spikes.png" />
     <Resource Include="images\gopnik.png" />
+    <Resource Include="Maze\Code2%282%29.PNG" />
+    <Resource Include="Maze\Code4%283%29.PNG" />
+    <Resource Include="Maze\Code5%281%29.PNG" />
+    <Resource Include="Maze\Code8%284%29.PNG" />
     <Content Include="Menu\TheEnd.MOV" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

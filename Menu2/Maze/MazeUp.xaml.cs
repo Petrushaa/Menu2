@@ -45,10 +45,13 @@ namespace Menu2
         public static Image hero;
         private bool isFKeyPressed = false;
         GamePlay spawn;
-        public Maze1(string direction, GamePlay spawn)
+        public int number;
+        public Maze1(string direction, GamePlay spawn, int number)
         {
             InitializeComponent();
             this.spawn = spawn;
+            this.number = number;
+
             hero = Character;
             griverTimer.Interval = TimeSpan.FromMilliseconds(100);
             griverTimer.Tick += griverTick;
@@ -60,12 +63,6 @@ namespace Menu2
             timer = new DispatcherTimer();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += Timer_Tick;
-            animations.Add(new BitmapImage(new Uri("griver1.PNG", UriKind.Relative)));
-            animations.Add(new BitmapImage(new Uri("griver2.PNG", UriKind.Relative)));
-            animations.Add(new BitmapImage(new Uri("griver3.PNG", UriKind.Relative)));
-            animations.Add(new BitmapImage(new Uri("griver4.png", UriKind.Relative)));
-            animations.Add(new BitmapImage(new Uri("griver5.png", UriKind.Relative)));
-            animations.Add(new BitmapImage(new Uri("griver6.png", UriKind.Relative)));
             randomMaze = new RandomMaze(maincanvas, direction);
             GameScreen.Focus();
             collisia = new CollisiaMaze(maincanvas, Character, player2, bullets, lbAmmo);
@@ -76,7 +73,7 @@ namespace Menu2
             randomMaze.StartMaze();
             Canvas.SetZIndex(Character, 1);
             DropPinCode();
-            //RestartGame();
+            
             start = DateTime.Now;
             for (int i = 0; i < 10; i++)
             {
@@ -87,12 +84,25 @@ namespace Menu2
             {
                 DropAmmo();
             }
+            
             player2.Health = 100;
             PlayerMaze.ammo = 5;
 
+
+            FillList();
             mob newMob = new mob(maincanvas, rand);
             mobs.Add(newMob);
             newMob.makeGrivers();
+        }
+        
+        private void FillList()
+        {
+            animations.Add(new BitmapImage(new Uri("griver1.PNG", UriKind.Relative)));
+            animations.Add(new BitmapImage(new Uri("griver2.PNG", UriKind.Relative)));
+            animations.Add(new BitmapImage(new Uri("griver3.PNG", UriKind.Relative)));
+            animations.Add(new BitmapImage(new Uri("griver4.png", UriKind.Relative)));
+            animations.Add(new BitmapImage(new Uri("griver5.png", UriKind.Relative)));
+            animations.Add(new BitmapImage(new Uri("griver6.png", UriKind.Relative)));
         }
         private void griverSpawn(object sender, EventArgs e)
         {
@@ -238,7 +248,7 @@ namespace Menu2
             }
             if (e.Key == Key.F && !isFKeyPressed)
             {
-                collisia.Code();
+                collisia.Code(1, number);
                 isFKeyPressed = true;
             }
         }
@@ -296,7 +306,7 @@ namespace Menu2
             bool isColliding;
             Image code = new Image();
             // Загружаем картинку из ресурсов проекта
-            code.Source = new BitmapImage(new Uri("code1.png", UriKind.RelativeOrAbsolute));
+            code.Source = new BitmapImage(new Uri($"Code{number}(1).png", UriKind.RelativeOrAbsolute));
             code.Tag = "code";
             code.Height = ((int)Character.Height);
             code.Width = ((int)Character.Width);
@@ -304,8 +314,10 @@ namespace Menu2
             {
                 isColliding = false;
                 // Генерируем случайные координаты для спавна 
-                spawnX = rand.Next(10, (int)maincanvas.Width);
-                spawnY = rand.Next(10, (int)maincanvas.Height);
+                //spawnX = rand.Next(10, (int)maincanvas.Width);
+                //spawnY = rand.Next(10, (int)maincanvas.Height);
+                spawnX = Canvas.GetLeft(Character);
+                spawnY = Canvas.GetTop(Character);
 
                 Rect codeSpawnArea = new Rect(spawnX, spawnY, code.Width, code.Height);
 

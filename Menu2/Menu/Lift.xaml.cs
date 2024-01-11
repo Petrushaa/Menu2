@@ -14,12 +14,10 @@ using System.Windows.Shapes;
 
 namespace Menu2.Menu
 {
-    /// <summary>
-    /// Логика взаимодействия для Lift.xaml
-    /// </summary>
     public partial class Lift : Window
     {
         Game game;
+        string code = "";
         public Lift(Game game)
         {
             this.game = game;
@@ -34,7 +32,7 @@ namespace Menu2.Menu
             }
             if (e.Key == Key.Enter)
             {
-                if (GamePlay.countKeys == 4)
+                if (code == GamePlay.kode)
                 {
                     TheEnd end = new TheEnd();
                     end.Show();
@@ -45,6 +43,86 @@ namespace Menu2.Menu
                 {
                     lbLose.Opacity = 1;
                 }
+            }
+        }
+
+        private void one_Click(object sender, RoutedEventArgs e)
+        {
+            if (code.Length != 4)
+            {
+                code += "1";
+            }
+        }
+
+        private void two_Click(object sender, RoutedEventArgs e)
+        {
+            if (code.Length != 4)
+            {
+                code += "2";
+            }
+        }
+
+        private void three_Click(object sender, RoutedEventArgs e)
+        {
+            if (code.Length != 4)
+            {
+                code += "3";
+            }
+        }
+
+        private void four_Click(object sender, RoutedEventArgs e)
+        {
+            if (code.Length != 4)
+            {
+                code += "4";
+            }
+        }
+
+        private void five_Click(object sender, RoutedEventArgs e)
+        {
+            if (code.Length != 4)
+            {
+                code += "5";
+            }
+        }
+
+        private void six_Click(object sender, RoutedEventArgs e)
+        {
+            if (code.Length != 4)
+            {
+                code += "6";
+            }
+        }
+
+        private void seven_Click(object sender, RoutedEventArgs e)
+        {
+            if (code.Length != 4)
+            {
+                code += "7";
+            }
+        }
+
+        private void eight_Click(object sender, RoutedEventArgs e)
+        {
+            if (code.Length != 4)
+            {
+                code += "8";
+            }
+        }
+
+        private void nine_Click(object sender, RoutedEventArgs e)
+        {
+            if (code.Length != 4)
+            {
+                code += "9";
+            }
+        }
+
+        private void null_Click(object sender, RoutedEventArgs e)
+        {
+            if (code.Length != 4)
+            {
+                code += "0";
             }
         }
     }

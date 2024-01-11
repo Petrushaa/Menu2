@@ -30,7 +30,6 @@ namespace Menu2.Menu
         private void btRestart_Click(object sender, RoutedEventArgs e)
         {
             GamePlay.GameTimer.Start();
-            GamePlay.countKeys = 0;
             Canvas.SetLeft(GamePlay.hero, 935);
             Canvas.SetTop(GamePlay.hero, 540);
             spawn.RestartGame();
