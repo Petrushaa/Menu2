@@ -32,13 +32,10 @@ namespace Menu2
         MazeD mazeDown;
         MazeL mazeLeft;
         MazeR mazeRight;
-        public static int countKeys = 0;
+        public static int countKeys = 4;
         public static Image hero;
         private bool isFKeyPressed = false;
         Game game;
-
-        
-
         public GamePlay(Game game)
         {
             this.game = game;
@@ -57,10 +54,7 @@ namespace Menu2
             GameTimer.Interval = TimeSpan.FromMilliseconds(5);
             GameTimer.Tick += GameTick;
             GameTimer.Start();
-
         }
-
-
 
         private void GameTick(object sender, EventArgs e)
         {

@@ -5,6 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Menu2.Menu"
         mc:Ignorable="d"
-        Title="TheEnd" Height="450" Width="800" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen" WindowState="Maximized">
+        Title="TheEnd" Height="450" Width="800" WindowStyle="None" AllowsTransparency="True" Background="Transparent" WindowStartupLocation="CenterScreen" WindowState="Maximized" KeyUp="KeyUP">
     <MediaElement Source="TheEnd.MOV" />
 </Window>

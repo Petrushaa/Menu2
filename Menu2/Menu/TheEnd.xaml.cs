@@ -14,14 +14,19 @@ using System.Windows.Shapes;
 
 namespace Menu2.Menu
 {
-    /// <summary>
-    /// Логика взаимодействия для TheEnd.xaml
-    /// </summary>
     public partial class TheEnd : Window
     {
         public TheEnd()
         {
             InitializeComponent();
+        }
+
+        private void KeyUP(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Escape)
+            {
+                Application.Current.Shutdown();
+            }
         }
     }
 }
