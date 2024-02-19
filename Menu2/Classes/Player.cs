@@ -78,8 +78,10 @@ namespace Menu2
             animations.Add(new BitmapImage(new Uri("heroBack2.png", UriKind.Relative)));
             animations.Add(new BitmapImage(new Uri("Right1.png", UriKind.Relative)));
             animations.Add(new BitmapImage(new Uri("Right2.png", UriKind.Relative)));
+            animations.Add(new BitmapImage(new Uri("Right3.png", UriKind.Relative)));
             animations.Add(new BitmapImage(new Uri("Left1.png", UriKind.Relative)));
             animations.Add(new BitmapImage(new Uri("Left2.png", UriKind.Relative)));
+            animations.Add(new BitmapImage(new Uri("Left3.png", UriKind.Relative)));
         }
 
         private void heroTick(object sender, EventArgs e)
@@ -95,11 +97,11 @@ namespace Menu2
             }
             if (RightKeyPressed)
             {
-                AnimateHero(6, 7);
+                AnimateHero(6, 8);
             }
             if (LeftKeyPressed)
             {
-                AnimateHero(8, 9);
+                AnimateHero(9, 11);
             }
         }
         public void KeyboardUp(object sender, KeyEventArgs e)

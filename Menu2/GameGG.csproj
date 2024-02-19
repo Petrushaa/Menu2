@@ -386,6 +386,8 @@
     <Resource Include="Spawn\hero1.PNG" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Spawn\Right3.PNG" />
+    <Resource Include="Spawn\Left3.PNG" />
     <Resource Include="bin\Debug\Code1%281%29.PNG" />
     <Resource Include="bin\Debug\Code1%282%29.PNG" />
     <Resource Include="bin\Debug\Code1%283%29.PNG" />
@@ -421,6 +423,10 @@
     <Resource Include="bin\Debug\Code9%282%29.PNG" />
     <Resource Include="bin\Debug\Code9%283%29.PNG" />
     <Resource Include="bin\Debug\Code9%284%29.PNG" />
+    <Resource Include="bin\Debug\Code0%281%29.PNG" />
+    <Resource Include="bin\Debug\Code0%282%29.PNG" />
+    <Resource Include="bin\Debug\Code0%283%29.PNG" />
+    <Resource Include="bin\Debug\Code0%284%29.PNG" />
     <Content Include="bin\Debug\prehistory.MOV" />
     <Resource Include="Spawn\Right2.PNG" />
     <Resource Include="Spawn\Right1.PNG" />
@@ -467,6 +473,8 @@
     <Resource Include="Maze\Code4%281%29.PNG" />
     <Resource Include="Maze\Code4%282%29.PNG" />
     <Resource Include="Maze\Code4%284%29.PNG" />
+    <Resource Include="Maze\Left3.PNG" />
+    <Resource Include="Maze\Right3.PNG" />
     <Content Include="prehistory.MOV" />
     <Resource Include="Spawn\listCode.PNG" />
     <Resource Include="Spawn\gopnik.png" />
